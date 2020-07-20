@@ -1,0 +1,16 @@
+p.title_product{
+    font-weight: bold;
+    margin: 0;
+    text-transform: capitalize;
+}
+span.specification_product {
+    color: #999;
+}
+input.price_customer{
+    border-bottom: 1px solid #c2cad8!important;
+    border-radius: 0;
+    outline: 0!important;
+}
+input.box-shadow-customer:focus{
+    box-shadow: 0!important;
+}

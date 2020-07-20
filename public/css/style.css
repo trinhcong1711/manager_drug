@@ -1,0 +1,21 @@
+.header-left{
+    display: flex;
+}
+.header-right .hotline-header img{
+    max-width: 100%;
+}
+.main-menu .menu-header{
+    margin: auto;
+}
+.main-menu .menu-header a.text-menu-item{
+    padding: 5px 30px;
+}
+.bg-header{
+    background-size: cover;
+    background-attachment: scroll;
+    background-origin: content-box;
+    background-image: url(https://w.ladicdn.com/s1440x163/5d16e320181b0565d46031ce/4123506335-1566552924.jpg);
+    background-position: center top;
+    background-repeat: no-repeat;
+}
+
