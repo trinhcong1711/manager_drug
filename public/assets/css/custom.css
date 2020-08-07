@@ -11,6 +11,26 @@ input.price_customer{
     border-radius: 0;
     outline: 0!important;
 }
-input.box-shadow-customer:focus{
-    box-shadow: 0!important;
+.tool_tip_item_name {
+    display: none;
+}
+.item_name{
+    position: relative;
+}
+.item_name:hover .tool_tip_item_name{
+    display: block;
+    position: absolute;
+    top: 100%;
+}
+.tool_tip_item_name a{
+    padding: 0 10px;
+}
+.tool_tip_item_name a:hover{
+    text-decoration: underline;
+}
+.tool_tip_item_name a{
+    border-right: 1px solid #ccc;
+}
+.tool_tip_item_name a:last-child{
+    border-right: none
 }

@@ -1,7 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b4f10b91-2a09-4a3d-bd43-235e16b4caed" name="Default Changelist" comment="" />
+    <list default="true" id="b4f10b91-2a09-4a3d-bd43-235e16b4caed" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/public/assets/js/customs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/bills/add.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/bills/edit.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/bills/list.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/employees/list.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/export_product/add.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/export_product/edit.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/export_product/list.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/import_product/add.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/import_product/edit.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/import_product/import.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/inventory/add.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/inventory/edit.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/inventory/list.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/products/add.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/products/edit.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/products/list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/custom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/cart.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/cart.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admins/layouts/app-sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/layouts/app-sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admins/layouts/notification.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/layouts/notification.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +44,9 @@
         <option value="CSS File" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -114,19 +141,24 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="D:/theme-volgh/Main_File/HTML_Version/HTML/LTR/Leftmenu-Icon-Light-Sidebar" />
+    <property name="last_opened_file_path" value="C:/laragon/www/mongoMysql" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\onsenvillashoabinh\resources\views\admins" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents" />
+      <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\bills" />
+      <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\inventory" />
+      <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\import_product" />
+      <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\products" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\inventory" />
+      <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\import_product" />
+      <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\employees" />
+      <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\bills" />
       <recent name="C:\xampp\htdocs\onsenvillashoabinh\resources\views\admins" />
-      <recent name="C:\xampp\htdocs\onsenvillashoabinh\public" />
-      <recent name="C:\xampp\htdocs\onsenvillashoabinh\resources\views\admins\contents" />
-      <recent name="C:\xampp\htdocs\onsenvillashoabinh\resources\views" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -164,11 +196,39 @@
       <workItem from="1595121477998" duration="1589000" />
       <workItem from="1595171233936" duration="3728000" />
       <workItem from="1595250530339" duration="10244000" />
+      <workItem from="1595332738191" duration="3995000" />
+      <workItem from="1595381592137" duration="332000" />
+      <workItem from="1595425747746" duration="4766000" />
+      <workItem from="1595467266538" duration="52000" />
+      <workItem from="1595684242449" duration="4795000" />
+      <workItem from="1595729729121" duration="5048000" />
+      <workItem from="1595748988145" duration="3913000" />
+      <workItem from="1595759815120" duration="10313000" />
+      <workItem from="1595930550381" duration="4485000" />
+      <workItem from="1595944757742" duration="5490000" />
+      <workItem from="1595986472165" duration="1326000" />
+      <workItem from="1596031595623" duration="5471000" />
+      <workItem from="1596072494736" duration="15000" />
+      <workItem from="1596118687243" duration="2659000" />
+      <workItem from="1596158660478" duration="182000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

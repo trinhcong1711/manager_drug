@@ -48,13 +48,39 @@
     </div>
     <ul class="side-menu">
 
-        <li><h3>Custom & Error Pages</h3></li>
         <li class="slide">
-            <a class="side-menu__item" data-toggle="slide" href="/ban-hang">
+            <a class="side-menu__item" href="/ban-hang">
                 <i class="side-menu__icon ti-shopping-cart"></i>
                 <span class="side-menu__label">Bán hàng</span>
             </a>
-
+        </li>
+        {{--Quản lý kho--}}
+        <li class="slide">
+            <a class="side-menu__item" data-toggle="slide" href="#">
+                <i class="side-menu__icon ti-home"></i>
+                <span class="side-menu__label">Quản lý kho</span>
+                <i class="angle fa fa-angle-right"></i>
+            </a>
+            <ul class="slide-menu">
+                <li><a class="slide-item" href="/thuoc"><span>Thuốc</span></a></li>
+                <li><a class="slide-item" href="/nhap-hang"><span>Nhập Hàng</span></a></li>
+                <li><a class="slide-item" href="/xuat-hang"><span>Xuất Hàng</span></a></li>
+                <li><a class="slide-item" href="/kiem-kho"><span>Kiểm kho</span></a></li>
+            </ul>
+        </li>
+        {{--Quản Lý Hóa Đơn--}}
+        <li class="slide">
+            <a class="side-menu__item" href="/hoa-don">
+                <i class="side-menu__icon ti-home"></i>
+                <span class="side-menu__label">Quản lý hóa đơn</span>
+            </a>
+        </li>
+        {{--Quản Lý Nhân viên--}}
+        <li class="slide">
+            <a class="side-menu__item" href="/nhan-vien">
+                <i class="side-menu__icon ti-home"></i>
+                <span class="side-menu__label">Quản lý nhân viên</span>
+            </a>
         </li>
     </ul>
 </aside>
