@@ -2,28 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b4f10b91-2a09-4a3d-bd43-235e16b4caed" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/assets/js/customs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/bills/add.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/bills/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/bills/list.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/employees/list.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/export_product/add.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/export_product/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/export_product/list.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/import_product/add.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/import_product/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/import_product/import.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/inventory/add.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/inventory/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/inventory/list.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/products/add.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/products/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/products/list.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/custom.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/cart.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/cart.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admins/layouts/app-sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/layouts/app-sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admins/layouts/notification.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/layouts/notification.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admins/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_07_19_012245_create_settings_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_07_19_012245_create_settings_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/bills/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/bills/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/bills/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/bills/list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/export_product/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/export_medicines/add.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/export_product/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/export_medicines/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/export_product/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/export_medicines/list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/import_product/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/import_medicines/add.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/import_product/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/import_medicines/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/import_product/import.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/import_medicines/import.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/products/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/medicines/add.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/products/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/medicines/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/products/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/medicines/list.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -141,24 +134,24 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="C:/laragon/www/mongoMysql" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\laragon\www\manager_drug\app\Http\Controllers\Admin" />
+      <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\inventory" />
+      <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\import_product" />
+      <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\employees" />
+      <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\bills" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents" />
       <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\bills" />
       <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\inventory" />
       <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\import_product" />
       <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\products" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\inventory" />
-      <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\import_product" />
-      <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\employees" />
-      <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\bills" />
-      <recent name="C:\xampp\htdocs\onsenvillashoabinh\resources\views\admins" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -211,6 +204,8 @@
       <workItem from="1596072494736" duration="15000" />
       <workItem from="1596118687243" duration="2659000" />
       <workItem from="1596158660478" duration="182000" />
+      <workItem from="1596852005992" duration="76000" />
+      <workItem from="1597586168306" duration="9543000" />
     </task>
     <servers />
   </component>

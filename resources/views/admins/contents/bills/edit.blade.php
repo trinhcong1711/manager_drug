@@ -11,15 +11,15 @@
     <div class="btn-list">
 
             <button type="button" class="btn btn-outline-default" data-toggle="tooltip"
-                    title="Quay về trang danh sách phiếu nhập">
-                <a href="/nhap-hang"><i class="icon icon-action-undo mr-2"></i>Quay lại</a>
+                    title="Quay về trang danh sách hóa đơn">
+                <a href="/hoa-don"><i class="icon icon-action-undo mr-2"></i>Quay lại</a>
             </button>
 
         <button type="button" class="btn btn-outline-success" data-toggle="tooltip" title="Lưu và tiếp tục thêm mới"><i
                 class="ti-save-alt mr-2"></i>Lưu và tiếp tục
         </button>
         <button type="button" class="btn btn-outline-success" data-toggle="tooltip"
-                title="Lưu và quay về trang danh sách phiếu nhập"><i
+                title="Lưu và quay về trang danh sách hóa đơn"><i
                 class="ti-save-alt mr-2"></i>Lưu và thoát
         </button>
     </div>
@@ -34,14 +34,14 @@
         <div class="col-md-12 col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="mb-0 card-title">Sửa phiếu nhập hàng</h3>
+                    <h3 class="mb-0 card-title">Sửa hóa đơn A</h3>
                 </div>
                 <div class="card-body">
                     <form action="" method="POST">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label">Tên phiếu nhập</label>
+                                    <label class="form-label">Tên</label>
                                     <input type="text" class="form-control" name="name"
                                            placeholder="Nhập tên phiếu nhập">
                                 </div>

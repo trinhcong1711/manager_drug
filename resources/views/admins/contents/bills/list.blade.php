@@ -1,11 +1,11 @@
 @extends('admins.layouts.master')
 @section('page-header')
     <!-- PAGE-HEADER -->
-        <div class="btn-list">
-            <button type="button" class="btn btn-outline-secondary" data-toggle="tooltip" title="Tạo mới hóa đơn">
-                <a href="/hoa-don/them"><i class="fe fe-plus mr-2"></i>Tạo mới</a>
-            </button>
-        </div>
+    <div class="btn-list">
+        <button type="button" class="btn btn-outline-secondary" data-toggle="tooltip" title="Tạo mới hóa đơn">
+            <a href="/hoa-don/them"><i class="fe fe-plus mr-2"></i>Tạo mới</a>
+        </button>
+    </div>
     <!-- PAGE-HEADER END -->
 @endsection
 @section('content')
@@ -24,7 +24,7 @@
                             <th>STT</th>
                             <th>Mã HĐ</th>
                             <th>Khách hàng</th>
-                            <th>Người bán</th>
+                            <th>Nhân viên</th>
                             <th>Ngày bán</th>
                             <th>Tổng tiền</th>
                             <th>Ghi chú</th>
@@ -42,23 +42,15 @@
                                     <span class="custom-control-label"></span>
                                 </label>
                             </th>
-                            <td>1</td>
-                            <td>HD001</td>
-                            <td>
-                                <div class="item_name">
-                                    <a href="#0">Trịnh Thị Nhàn</a>
-                                    <span class="tool_tip_item_name">
-                                        <a href="/hoa-don/1">Sửa</a>
-                                        <a href="#2">Xóa</a>
-                                    </span>
-                                </div>
-                            </td>
-                            <td>Trịnh Thị Nhàn</td>
-                            <td>19/09/2020</td>
-                            <td>100.000</td>
-                            <td>Nợ 50K</td>
-                            <td>Bán hàng / Khách trả lại/ Trả lại thuốc</td>
-                            <td>Chưa thanh toán/Hoàn tất</td>
+                            <td data-toggle="modal" data-target="#show_invoice_back">1</td>
+                            <td data-toggle="modal" data-target="#show_invoice_back">HD001</td>
+                            <td data-toggle="modal" data-target="#show_invoice_back">Trịnh Thị Nhàn</td>
+                            <td data-toggle="modal" data-target="#show_invoice_back">Trịnh Thị Nhàn</td>
+                            <td data-toggle="modal" data-target="#show_invoice_back">19/09/2020</td>
+                            <td data-toggle="modal" data-target="#show_invoice_back">100.000</td>
+                            <td data-toggle="modal" data-target="#show_invoice_back">Nợ 50K</td>
+                            <td data-toggle="modal" data-target="#show_invoice_back">Bán hàng / Khách trả lại</td>
+                            <td data-toggle="modal" data-target="#show_invoice_back">Chưa thanh toán/Hoàn tất</td>
                         </tr>
                         <tr>
                             <th scope="row">
@@ -70,20 +62,12 @@
                             </th>
                             <td>1</td>
                             <td>HD001</td>
-                            <td>
-                                <div class="item_name">
-                                    <a href="#0">Trịnh Thị Nhàn</a>
-                                    <span class="tool_tip_item_name">
-                                        <a href="/hoa-don/1">Sửa</a>
-                                        <a href="#2">Xóa</a>
-                                    </span>
-                                </div>
-                            </td>
+                            <td>Trịnh Thị Nhàn</td>
                             <td>Trịnh Thị Nhàn</td>
                             <td>19/09/2020</td>
                             <td>100.000</td>
                             <td>Nợ 50K</td>
-                            <td>Bán hàng / Khách trả lại/ Trả lại thuốc</td>
+                            <td>Bán hàng / Khách trả lại</td>
                             <td>Chưa thanh toán/Hoàn tất</td>
                         </tr>
 
@@ -95,4 +79,83 @@
         </div>
     </div>
     <!-- ROW-1 CLOSED -->
+
+
+
+
+    <!-- TẠO PHIẾU KHÁCH TRẢ -->
+    <div class="modal fade" id="show_invoice_back" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="example-Modal3">Khách trả lại</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table card-table table-vcenter text-nowrap">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>STT</th>
+                                <th>Mã HĐ</th>
+                                <th>Khách hàng</th>
+                                <th>Nhân viên</th>
+                                <th>Ngày trả lại</th>
+                                <th>Trả lại</th>
+                                <th>Ghi chú</th>
+                                <th>Trạng thái</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr>
+                                <th scope="row">
+                                    <label class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="example-checkbox1"
+                                               value="option1" checked="">
+                                        <span class="custom-control-label"></span>
+                                    </label>
+                                </th>
+                                <td data-toggle="modal" data-target="#show_invoice_back">1</td>
+                                <td data-toggle="modal" data-target="#show_invoice_back">HD001</td>
+                                <td data-toggle="modal" data-target="#show_invoice_back">Trịnh Thị Nhàn</td>
+                                <td data-toggle="modal" data-target="#show_invoice_back">Trịnh Thị Nhàn</td>
+                                <td data-toggle="modal" data-target="#show_invoice_back">19/09/2020</td>
+                                <td data-toggle="modal" data-target="#show_invoice_back">100.000</td>
+                                <td data-toggle="modal" data-target="#show_invoice_back">Nợ 50K</td>
+                                <td data-toggle="modal" data-target="#show_invoice_back">Chưa thanh toán/Hoàn tất</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <label class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="example-checkbox1"
+                                               value="option1" checked="">
+                                        <span class="custom-control-label"></span>
+                                    </label>
+                                </th>
+                                <td>1</td>
+                                <td>HD001</td>
+                                <td>Trịnh Thị Nhàn</td>
+                                <td>Trịnh Thị Nhàn</td>
+                                <td>19/09/2020</td>
+                                <td>100.000</td>
+                                <td>Nợ 50K</td>
+                                <td>Chưa thanh toán/Hoàn tất</td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Tạo mới</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- TẠO PHIẾU KHÁCH TRẢ CLOSED -->
 @endsection
