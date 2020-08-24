@@ -2,21 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b4f10b91-2a09-4a3d-bd43-235e16b4caed" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/onsenvillashoabinh.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/onsenvillashoabinh.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admins/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Entities/Medicine.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Entities/Medicine.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admins/MedicineController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admins/MedicineController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CURD/CURDController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CURD/CURDController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_07_19_012245_create_settings_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_07_19_012245_create_settings_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/bills/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/bills/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/bills/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/bills/list.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/export_product/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/export_medicines/add.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/export_product/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/export_medicines/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/export_product/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/export_medicines/list.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/import_product/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/import_medicines/add.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/import_product/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/import_medicines/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/import_product/import.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/import_medicines/import.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/products/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/medicines/add.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/products/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/medicines/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/products/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/medicines/list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/medicines/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/medicines/add.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/medicines/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/medicines/list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admins/layouts/app-sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/layouts/app-sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admins/layouts/footer-scripts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/layouts/footer-scripts.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admins/layouts/head.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/layouts/head.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -128,6 +127,11 @@
       <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
       <path value="$PROJECT_DIR$/vendor/fzaninotto/faker" />
       <path value="$PROJECT_DIR$/vendor/monolog/monolog" />
+      <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-oracle" />
+      <path value="$PROJECT_DIR$/vendor/prettus/l5-repository" />
+      <path value="$PROJECT_DIR$/vendor/prettus/laravel-validation" />
+      <path value="$PROJECT_DIR$/vendor/maximebf/debugbar" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-debugbar" />
     </include_path>
   </component>
   <component name="ProjectId" id="1eoQZEhgf4jaI1swSULYLc5kktc" />
@@ -205,7 +209,14 @@
       <workItem from="1596118687243" duration="2659000" />
       <workItem from="1596158660478" duration="182000" />
       <workItem from="1596852005992" duration="76000" />
-      <workItem from="1597586168306" duration="9543000" />
+      <workItem from="1597586168306" duration="9964000" />
+      <workItem from="1597628764981" duration="696000" />
+      <workItem from="1597669725609" duration="7612000" />
+      <workItem from="1597713485055" duration="484000" />
+      <workItem from="1597750457464" duration="8068000" />
+      <workItem from="1597801816683" duration="223000" />
+      <workItem from="1598169784452" duration="3065000" />
+      <workItem from="1598232297185" duration="57000" />
     </task>
     <servers />
   </component>

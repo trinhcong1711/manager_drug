@@ -62,7 +62,7 @@
                 <i class="angle fa fa-angle-right"></i>
             </a>
             <ul class="slide-menu">
-                <li><a class="slide-item" href="/thuoc"><span>Thuốc</span></a></li>
+                <li><a class="slide-item" href="{{route('admin.medicine.getIndex')}}"><span>Thuốc</span></a></li>
                 <li><a class="slide-item" href="/nhap-hang"><span>Nhập Hàng</span></a></li>
                 <li><a class="slide-item" href="/xuat-hang"><span>Xuất Hàng</span></a></li>
                 <li><a class="slide-item" href="/kiem-kho"><span>Kiểm kho</span></a></li>

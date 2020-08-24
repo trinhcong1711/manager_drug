@@ -19,8 +19,7 @@
         <!--C3.JS CHARTS PLUGIN -->
         <link href="{{ URL::asset('assets/plugins/charts-c3/c3-chart.css')}}" rel="stylesheet"/>
 
-
-
+        <link rel="stylesheet" href="{{ URL::asset('assets/plugins/datatable/dataTables.bootstrap4.min.css') }}">
         <!-- CUSTOM SCROLL BAR CSS-->
         <link href="{{ URL::asset('assets/plugins/scroll-bar/jquery.mCustomScrollbar.css')}}" rel="stylesheet"/>
 

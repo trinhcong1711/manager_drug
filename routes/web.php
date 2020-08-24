@@ -22,15 +22,9 @@ Route::get('/ban-hang', function () {
 Route::get('/medicine', 'Admins\MedicineController@getIndex')->name('admin.medicine.getIndex');
 Route::get('/medicine/add', 'Admins\MedicineController@getAdd')->name('admin.medicine.getAdd');
 Route::post('/medicine/add', 'Admins\MedicineController@postAdd')->name('admin.medicine.postAdd');
+Route::get('/medicine/data', 'Admins\MedicineController@data')->name('admin.medicine.data');
 Route::get('/medicine/{id}', 'Admins\MedicineController@getEdit')->name('admin.medicine.getEdit');
 Route::get('/medicine/delete/{id}', 'Admins\MedicineController@getDelete')->name('admin.medicine.getDelete');
-
-Route::get('/thuoc/them', function () {
-    return view('admins.contents.products.add');
-});
-//Route::get('/thuoc/{id}', function () {
-//    return view('admins.contents.products.edit');
-//});
 
 Route::get('/nhap-hang', function () {
     return view('admins.contents.import_product.import');

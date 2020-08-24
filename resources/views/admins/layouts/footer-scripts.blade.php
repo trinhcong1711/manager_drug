@@ -3,6 +3,10 @@
 		<!-- JQUERY JS -->
 		<script src="{{ URL::asset('assets/js/jquery-3.4.1.min.js') }}"></script>
 
+        <script src="{{ URL::asset('assets/plugins/datatable/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ URL::asset('assets/plugins/datatable/dataTables.bootstrap4.min.js') }}"></script>
+        <script src="{{ URL::asset('assets/plugins/datatable/datatable.js') }}"></script>
+        <script src="{{ URL::asset('assets/plugins/datatable/dataTables.responsive.min.js') }}"></script>
 		<!-- BOOTSTRAP JS -->
 		<script src="{{ URL::asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 		<script src="{{ URL::asset('assets/plugins/bootstrap/js/popper.min.js') }}"></script>
@@ -28,12 +32,12 @@
 
         <!-- CUSTOM SCROLLBAR JS-->
 		<script src="{{ URL::asset('assets/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js') }}"></script>
-		
-		@yield('js')
+
+        @yield('js')
 
 		<!-- SIDEBAR JS -->
 		<script src="{{ URL::asset('assets/plugins/sidebar/sidebar.js') }}"></script>
-		
+
 		<!--CUSTOM JS -->
 		<script src="{{ URL::asset('assets/js/custom.js') }}"></script>
 

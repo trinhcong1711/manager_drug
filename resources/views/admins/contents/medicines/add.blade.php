@@ -6,11 +6,6 @@
     <!-- SELECT2 CSS -->
     <link href="{{URL::asset('assets/plugins/select2/select2.min.css')}}" rel="stylesheet"/>
 @endsection
-@section('page-header')
-    <!-- PAGE-HEADER -->
-
-    <!-- PAGE-HEADER END -->
-@endsection
 @section('content')
     <!-- ROW-1 -->
     <div class="row">
@@ -43,12 +38,12 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Tên thuốc</label>
-                                    <input type="text" class="form-control" name="name" placeholder="Nhập tên thuốc">
+                                    <input type="text" class="form-control" value="{{old('name')}}" name="name" placeholder="Nhập tên thuốc">
                                 </div>
 
                                 <div class="form-group">
                                     <label class="form-label">Hàm lượng</label>
-                                    <input type="text" class="form-control" name="amount" placeholder="Nhập hàm lượng">
+                                    <input type="text" class="form-control" value="{{old('amount')}}" name="amount" placeholder="Nhập hàm lượng">
                                 </div>
 
                                 <div class="form-group d-flex">
@@ -62,35 +57,20 @@
                                             </div>
                                             <input class="form-control fc-datepicker" name="exp"
                                                    placeholder="MM/DD/YYYY"
+                                                   value="{{old('exp')}}"
                                                    type="text">
                                         </div>
                                     </div>
                                     <div class="col-md-6 pr-0">
                                         <label class="form-label">Quy cách đóng gói</label>
-                                        <input type="text" class="form-control" name="package"
+                                        <input type="text" class="form-control" value="{{old('package')}}" name="package"
                                                placeholder="Nhập quy cách đóng gói">
-                                    </div>
-                                </div>
-                                <div class="form-group d-flex">
-                                    <div class="col-md-6 pl-0">
-                                        <div class="form-group">
-                                            <label class="form-label">Tồn kho thục tế</label>
-                                            <input type="number" class="form-control" name="inventory"
-                                                   placeholder="Nhập tồn kho thục tế">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 pr-0">
-                                        <div class="form-group">
-                                            <label class="form-label">Giá nhập</label>
-                                            <input type="number" class="form-control" name="price_import"
-                                                   placeholder="Nhập giá nhập">
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group text-right">
                                     <div class="form-label">Trạng thái</div>
                                     <label class="custom-switch">
-                                        <input type="checkbox" name="status" class="custom-switch-input">
+                                        <input type="checkbox" name="status" class="custom-switch-input" checked>
                                         <span class="custom-switch-indicator"></span>
                                     </label>
                                 </div>
@@ -98,22 +78,28 @@
 
                             <div class="col-md-6">
                                 <div class="form-group d-flex list_unit">
-                                    <div class="col-md-5 pl-0">
+                                    <div class="col-md-3">
                                         <label class="form-label">Đơn vị tính</label>
                                         <input type="text" class="form-control" name="unit[]"
                                                placeholder="Nhập đơn vị tính">
                                     </div>
-                                    <div class="col-md-5 pr-0">
+                                    <div class="col-md-3">
+                                        <label class="form-label">Đơn vị quy đổi</label>
+                                        <input type="number" class="form-control" name="convert[]"
+                                               placeholder="Nhập đơn vị quy đổi" value="1">
+                                    </div>
+                                    <div class="col-md-3">
                                         <label class="form-label">Giá bán</label>
                                         <input type="number" class="form-control" name="price[]"
-                                               placeholder="Nhập giá bán">
+                                               placeholder="Nhập giá bán" value="0">
                                     </div>
                                 </div>
-                                <div class="col-md-12 p-0" id="add_unit_parent">
+                                <div class="col-md-12" id="add_unit_parent">
                                     <button type="button" class="btn btn-secondary" id="add_unit"
                                             title="Thêm mới đơn vị tính">
                                         <i class="ti-plus mr-2"></i> Thêm mới
                                     </button>
+                                    <i class="text-danger">1 Đ.vị tính = Giá bán / Đơn vị quy đổi</i>
                                 </div>
                             </div>
                         </div>
@@ -145,16 +131,22 @@
         $(document).ready(function () {
             $('body').on('click', '#add_unit', function () {
                 let html = '<div class="form-group d-flex list_unit">\n' +
-                    '                                    <div class="col-md-5 pl-0">\n' +
+                    '<div class="col-md-3">\n' +
                     '                                        <label class="form-label">Đơn vị tính</label>\n' +
                     '                                        <input type="text" class="form-control" name="unit[]"\n' +
                     '                                               placeholder="Nhập đơn vị tính">\n' +
                     '                                    </div>\n' +
-                    '                                    <div class="col-md-5 pr-0">\n' +
-                    '                                        <label class="form-label">Giá bán</label>\n' +
-                    '                                        <input type="text" class="form-control" name="price[]" placeholder="Nhập giá bán">\n' +
+                    '                                    <div class="col-md-3">\n' +
+                    '                                        <label class="form-label">Đơn vị quy đổi</label>\n' +
+                    '                                        <input type="number" class="form-control" name="convert[]"\n' +
+                    '                                               placeholder="Nhập đơn vị quy đổi"  value="1">\n' +
                     '                                    </div>\n' +
-                    '                                    <div class="col-md-2 text-center">\n' +
+                    '                                    <div class="col-md-3">\n' +
+                    '                                        <label class="form-label">Giá bán</label>\n' +
+                    '                                        <input type="number" class="form-control" name="price[]"\n' +
+                    '                                               placeholder="Nhập giá bán" value="0">\n' +
+                    '                                    </div>' +
+                    '                                    <div class="col-md-3 text-center">\n' +
                     '                                        <label class="form-label">Xóa</label>\n' +
                     '                                        <button type="button" class="btn btn-secondary delete_unit">\n' +
                     '                                            <i class="ti-close"></i>\n' +
