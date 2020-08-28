@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admins;
 
-use App\Entities\Medicine;
 use App\Http\Controllers\CURD\CURDController;
+use App\Http\Requests\AddMedicineRequest;
+use App\Http\Requests\EditMedicineRequest;
 use App\Repositories\MedicinesRepositoryEloquent;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\DataTables\DataTables;
 
 class MedicineController extends CURDController
@@ -19,7 +19,7 @@ class MedicineController extends CURDController
 
     protected function data(MedicinesRepositoryEloquent $medicines)
     {
-        $medicine = $medicines->get('*');
+        $medicine = $medicines->select('*');
         return Datatables::of($medicine)
             ->addColumn('checkbox', function ($medicine) {
                 return $this->checkboxMulti($medicine);
@@ -45,16 +45,9 @@ class MedicineController extends CURDController
         return view('admins.contents.medicines.add');
     }
 
-    protected function postAdd(Request $request,MedicinesRepositoryEloquent $medicines)
+    protected function postAdd(AddMedicineRequest $request, MedicinesRepositoryEloquent $medicines)
     {
-        $arr = [];
-        $units = $request->unit;
-        $converts = $request->convert;
-        $prices = $request->price;
-        $arr['unit']=$units;
-        $arr['convert']=$converts;
-        $arr['price']=$prices;
-        $price = json_encode($arr);
+        $price = $this->formatPriceSave($request->unit, $request->convert, $request->price);
         $exp = $this->jsonDateSave($request->exp);
         $data = array_merge($request->only('name', 'slug', 'package', 'amount', 'inventory', 'price_import'), [
             'slug' => Str::slug($request->get('name')),
@@ -62,15 +55,22 @@ class MedicineController extends CURDController
             'exp' => $exp,
             'status' => $request->get('status') == 'on' ? 1 : 0,
         ]);
-        $medicines->create($data);
-        return redirect(route('admin.medicine.getIndex'))->with('success', 'Thêm mới thành công!');
+        $save = $medicines->create($data);
+        if ($save) {
+            Alert::success('Thành công', 'Thêm mới thành công');
+            return redirect(route('admin.medicine.getIndex'));
+        } else {
+            Alert::error('Lỗi', 'Có lỗi xảy ra!');
+            return redirect()->back();
+        }
     }
 
-    protected function getEdit($id,MedicinesRepositoryEloquent $medicines)
+    protected function getEdit($id, MedicinesRepositoryEloquent $medicines)
     {
         if (isset($id)) {
             $data['medicine'] = $medicines->find($id);
             if (is_object($data['medicine'])) {
+                $data['prices'] = (array)json_decode($data['medicine']->price);
                 return view('admins.contents.medicines.edit', $data);
             } else {
                 return redirect(route('admin.medicine.getIndex'));
@@ -78,12 +78,36 @@ class MedicineController extends CURDController
         }
     }
 
-    protected function getDelete($id,MedicinesRepositoryEloquent $medicines)
+    protected function postEdit(EditMedicineRequest $request, $id, MedicinesRepositoryEloquent $medicines)
+    {
+        $price = $this->formatPriceSave($request->unit, $request->convert, $request->price);
+        $exp = $this->jsonDateSave($request->exp);
+        $data = array_merge($request->only('name', 'slug', 'package', 'amount', 'inventory', 'price_import'), [
+            'slug' => Str::slug($request->get('name')),
+            'price' => $price,
+            'exp' => $exp,
+            'status' => $request->get('status') == 'on' ? 1 : 0,
+        ]);
+        $update = $medicines->update($data, $id);
+        if ($update) {
+            Alert::success('Thành công', 'Cập nhật thành công');
+            return redirect(route('admin.medicine.getIndex'));
+        } else {
+            Alert::error('Lỗi', 'Có lỗi xảy ra!');
+            return redirect()->back();
+        }
+    }
+
+    protected function getDelete($id, MedicinesRepositoryEloquent $medicines)
     {
         if (isset($id)) {
-            $medicine = $medicines->find($id);
-            if (is_object($medicine)) {
-                $medicine->delete();
+            $delete = $medicines->delete($id);
+            if ($deletegit add .) {
+                Alert::success('Thành công', 'Xóa thành công');
+                return redirect(route('admin.medicine.getIndex'));
+            } else {
+                Alert::error('Lỗi', 'Có lỗi xảy ra!');
+                return redirect()->back();
             }
         }
     }

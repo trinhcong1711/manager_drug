@@ -11,6 +11,7 @@ class CURDController extends Controller
     /*
      * Hàm đinh dạng số
      * $int : int
+     * return: int
      */
     protected function formatNumber($int = false)
     {
@@ -24,13 +25,15 @@ class CURDController extends Controller
     /*
      * Hàm format Giá bán
      * $int : int
+     * return: string
      */
     protected function formatPrice($json)
     {
         if ($json) {
             $prices = (array)json_decode($json);
-            $html = '<table>';
-            if (count($prices) > 0) {
+            $html='';
+            if (count($prices) > 0 && !empty($prices['unit'])) {
+                $html = '<table>';
                 foreach ($prices['unit'] as $k => $price) {
                     $html .= '<tr>
                             <td class="border-top-0 p-0">' . $this->formatNumber($prices['convert'][$k]) . '</td>
@@ -38,8 +41,8 @@ class CURDController extends Controller
                             <td class="border-top-0 p-0">' . $this->formatNumber($prices['price'][$k]) . '</td>
                         </tr>';
                 }
+                $html .= '</table>';
             }
-            $html .= '</table>';
             return $html;
         } else {
             return '';
@@ -47,8 +50,23 @@ class CURDController extends Controller
     }
 
     /*
+     * Hàm format Giá bán để lưu vào DB
+     * $int : int
+     * return: array
+     */
+    protected function formatPriceSave($units, $converts, $prices)
+    {
+        $arr['unit'] = $units;
+        $arr['convert'] = $converts;
+        $arr['price'] = $prices;
+        $price = json_encode($arr);
+        return $price;
+    }
+
+    /*
      * Hàm Hiển thị trạng thái
      * $int : int
+     * return: string
      */
     protected function showStatus($status)
     {
@@ -72,6 +90,8 @@ class CURDController extends Controller
 
     /*
      *Hàm chọn nhiều dòng
+     *
+     * return: string
      */
     protected function checkboxMulti($collection)
     {
@@ -89,6 +109,7 @@ class CURDController extends Controller
 
     /*
      *Hàm hiển thị nút thêm sửa xóa.
+     * return: string
      */
     protected function actionCurd($collection, $nameRouteEdit, $nameRouteDelete)
     {
@@ -107,6 +128,7 @@ class CURDController extends Controller
 
     /*
      *Hàm format ngày/tháng/năm.
+     * return: date - d/m/Y
      */
     protected function formatDate($date)
     {

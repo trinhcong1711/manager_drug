@@ -8,37 +8,66 @@
 @endsection
 @section('page-header')
     <!-- PAGE-HEADER -->
-    <div class="btn-list">
-        <button type="button" class="btn btn-outline-default" data-toggle="tooltip"
-                title="Quay về trang danh sách thuốc">
-            <a href="/thuoc" style="color: inherit;"><i class="icon icon-action-undo mr-2"></i>Quay lại</a>
-        </button>
-        <button type="button" class="btn btn-outline-success" data-toggle="tooltip" title="Lưu và tiếp tục sửa"><i
-                class="ti-save-alt mr-2"></i>Lưu và tiếp tục
-        </button>
-        <button type="button" class="btn btn-outline-success" data-toggle="tooltip"
-                title="Lưu và quay về trang danh sách thuốc"><i
-                class="ti-save-alt mr-2"></i>Lưu và thoát
-        </button>
-    </div>
+
     <!-- PAGE-HEADER END -->
 @endsection
 @section('content')
     <!-- ROW-1 -->
     <div class="row">
         <div class="col-md-12 col-lg-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="mb-0 card-title">Chỉnh sửa thuốc</h3>
-                </div>
-                <div class="card-body">
-                    <form action="" method="POST">
+            <form action="" method="POST">
+                @csrf
+                <div class="card">
+                    <div class="card-header">
+                        <div class="col-6 p-0">
+                            <h3 class="mb-0 card-title">Chỉnh sửa thuốc</h3>
+                        </div>
+                        <div class="col-6 p-0">
+                            <div class="btn-list text-right">
+                                <button type="button" class="btn btn-outline-default" data-toggle="tooltip"
+                                        title="Quay về trang danh sách thuốc">
+                                    <a href="{{route('admin.medicine.getIndex')}}" style="color: inherit;"><i
+                                            class="icon icon-action-undo mr-2"></i>Quay lại</a>
+                                </button>
+                                <button type="submit" class="btn btn-outline-success" data-toggle="tooltip"
+                                        title="Lưu và tiếp tục sửa"><i
+                                        class="ti-save-alt mr-2"></i>Lưu và tiếp tục
+                                </button>
+                                <button type="submit" class="btn btn-outline-success" data-toggle="tooltip"
+                                        title="Lưu và quay về trang danh sách thuốc"><i
+                                        class="ti-save-alt mr-2"></i>Lưu và thoát
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Tên thuốc</label>
-                                    <input type="text" class="form-control" name="name" placeholder="Nhập tên thuốc" value="">
+                                    <input type="text" class="form-control" value="{{$medicine->name}}" name="name"
+                                           placeholder="Nhập tên thuốc">
+                                    @error('name')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
+
+                                <div class="form-group d-flex">
+                                    <div class="col-md-6 pl-0">
+                                        <label class="form-label">Hàm lượng</label>
+                                        <input type="text" class="form-control" value="{{$medicine->amount}}"
+                                               name="amount"
+                                               placeholder="Nhập hàm lượng">
+                                    </div>
+
+                                    <div class="col-md-6 pr-0">
+                                        <label class="form-label">Quy cách đóng gói</label>
+                                        <input type="text" class="form-control" value="{{$medicine->package}}"
+                                               name="package"
+                                               placeholder="Nhập quy cách đóng gói">
+                                    </div>
+                                </div>
+
                                 <div class="form-group d-flex">
                                     <div class="col-md-6 pl-0">
                                         <label class="form-label">Hạn sử dụng</label>
@@ -50,40 +79,67 @@
                                             </div>
                                             <input class="form-control fc-datepicker" name="exp"
                                                    placeholder="MM/DD/YYYY"
-                                                   type="text" value="">
+                                                   value="{{$medicine->exp}}"
+                                                   type="text">
                                         </div>
                                     </div>
-                                    <div class="col-md-6 pr-0">
-                                        <label class="form-label">Quy cách đóng gói</label>
-                                        <input type="text" class="form-control" name="name" value="" placeholder="Nhập quy cách đóng gói">
+                                    <div class="col-md-6 pr-0 text-right">
+                                        <div class="form-label">Trạng thái</div>
+                                        <label class="custom-switch">
+                                            <input type="checkbox" name="status"
+                                                   class="custom-switch-input" {{$medicine->status==1?'checked':''}}>
+                                            <span class="custom-switch-indicator"></span>
+                                        </label>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-md-6">
-                                <div class="form-group d-flex list_unit">
-                                    <div class="col-md-5 pl-0">
-                                        <label class="form-label">Đơn vị tính</label>
-                                        <input type="text" class="form-control" name="name"
-                                               placeholder="Nhập đơn vị tính">
-                                    </div>
-                                    <div class="col-md-5 pr-0">
-                                        <label class="form-label">Giá bán</label>
-                                        <input type="text" class="form-control" name="name" placeholder="Nhập giá bán">
-                                    </div>
+                                @if(count($prices)>0 && !empty($prices['unit']))
+                                    @foreach($prices['unit'] as $k=>$price)
+                                        <div class="form-group d-flex list_unit">
+                                            <div class="col-md-3">
+                                                <label class="form-label">Đơn vị tính</label>
+                                                <input type="text" class="form-control" name="unit[]"
+                                                       placeholder="Nhập đơn vị tính" value="{{$prices['unit'][$k]}}">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="form-label">Đơn vị quy đổi</label>
+                                                <input type="number" class="form-control" name="convert[]"
+                                                       placeholder="Nhập đơn vị quy đổi"
+                                                       value="{{$prices['convert'][$k]}}">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="form-label">Giá bán</label>
+                                                <input type="number" class="form-control" name="price[]"
+                                                       placeholder="Nhập giá bán" value="{{$prices['price'][$k]}}">
+                                            </div>
+                                            <div class="col-md-3 text-center">
+                                                <label class="form-label">Xóa</label>
+                                                <button type="button" class="btn btn-secondary delete_unit">
+                                                    <i class="ti-close"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @endif
+                                @error('unit')
+                                <div class="col-md-12">
+                                    <span class="text-danger">{{ $message }}</span>
                                 </div>
-                                <div class="col-md-12 p-0" id="add_unit_parent">
-                                    <button type="button" class="btn btn-secondary" id="add_unit" data-toggle="tooltip"
+                                @enderror
+                                <div class="col-md-12" id="add_unit_parent">
+                                    <button type="button" class="btn btn-secondary" id="add_unit"
                                             title="Thêm mới đơn vị tính">
                                         <i class="ti-plus mr-2"></i> Thêm mới
                                     </button>
+                                    <i class="text-danger">1 Đ.vị tính = Giá bán / Đơn vị quy đổi</i>
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" name="save_continue" hidden></button>
-                        <button type="submit" name="save_close" hidden></button>
-                    </form>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
     <!-- ROW-1 CLOSED -->
@@ -107,21 +163,26 @@
     <script src="{{ URL::asset('assets/plugins/time-picker/toggles.min.js') }}"></script>
     <script>
         $(document).ready(function () {
-            $("body").on('click', '#add_unit', function () {
+            $('body').on('click', '#add_unit', function () {
                 let html = '<div class="form-group d-flex list_unit">\n' +
-                    '                                    <div class="col-md-5 pl-0">\n' +
+                    '<div class="col-md-3">\n' +
                     '                                        <label class="form-label">Đơn vị tính</label>\n' +
-                    '                                        <input type="text" class="form-control" name="name"\n' +
+                    '                                        <input type="text" class="form-control" name="unit[]"\n' +
                     '                                               placeholder="Nhập đơn vị tính">\n' +
                     '                                    </div>\n' +
-                    '                                    <div class="col-md-5 pr-0">\n' +
-                    '                                        <label class="form-label">Giá bán</label>\n' +
-                    '                                        <input type="text" class="form-control" name="name" placeholder="Nhập giá bán">\n' +
+                    '                                    <div class="col-md-3">\n' +
+                    '                                        <label class="form-label">Đơn vị quy đổi</label>\n' +
+                    '                                        <input type="number" class="form-control" name="convert[]"\n' +
+                    '                                               placeholder="Nhập đơn vị quy đổi"  value="1">\n' +
                     '                                    </div>\n' +
-                    '                                    <div class="col-md-2 text-center">\n' +
+                    '                                    <div class="col-md-3">\n' +
+                    '                                        <label class="form-label">Giá bán</label>\n' +
+                    '                                        <input type="number" class="form-control" name="price[]"\n' +
+                    '                                               placeholder="Nhập giá bán" value="0">\n' +
+                    '                                    </div>' +
+                    '                                    <div class="col-md-3 text-center">\n' +
                     '                                        <label class="form-label">Xóa</label>\n' +
-                    '                                        <button type="button" class="btn btn-secondary delete_unit" data-toggle="tooltip"\n' +
-                    '                                                title="Xóa">\n' +
+                    '                                        <button type="button" class="btn btn-secondary delete_unit">\n' +
                     '                                            <i class="ti-close"></i>\n' +
                     '                                        </button>\n' +
                     '                                    </div>\n' +

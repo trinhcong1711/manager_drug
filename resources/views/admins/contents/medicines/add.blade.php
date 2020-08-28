@@ -39,11 +39,24 @@
                                 <div class="form-group">
                                     <label class="form-label">Tên thuốc</label>
                                     <input type="text" class="form-control" value="{{old('name')}}" name="name" placeholder="Nhập tên thuốc">
+                                    @error('name')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
-                                <div class="form-group">
-                                    <label class="form-label">Hàm lượng</label>
-                                    <input type="text" class="form-control" value="{{old('amount')}}" name="amount" placeholder="Nhập hàm lượng">
+                                <div class="form-group d-flex">
+                                    <div class="col-md-6 pl-0">
+                                        <label class="form-label">Hàm lượng</label>
+                                        <input type="text" class="form-control" value="{{old('amount')}}" name="amount"
+                                               placeholder="Nhập hàm lượng">
+                                    </div>
+
+                                    <div class="col-md-6 pr-0">
+                                        <label class="form-label">Quy cách đóng gói</label>
+                                        <input type="text" class="form-control" value="{{old('package')}}"
+                                               name="package"
+                                               placeholder="Nhập quy cách đóng gói">
+                                    </div>
                                 </div>
 
                                 <div class="form-group d-flex">
@@ -61,18 +74,13 @@
                                                    type="text">
                                         </div>
                                     </div>
-                                    <div class="col-md-6 pr-0">
-                                        <label class="form-label">Quy cách đóng gói</label>
-                                        <input type="text" class="form-control" value="{{old('package')}}" name="package"
-                                               placeholder="Nhập quy cách đóng gói">
+                                    <div class="col-md-6 pr-0 text-right">
+                                        <div class="form-label">Trạng thái</div>
+                                        <label class="custom-switch">
+                                            <input type="checkbox" name="status" class="custom-switch-input" checked>
+                                            <span class="custom-switch-indicator"></span>
+                                        </label>
                                     </div>
-                                </div>
-                                <div class="form-group text-right">
-                                    <div class="form-label">Trạng thái</div>
-                                    <label class="custom-switch">
-                                        <input type="checkbox" name="status" class="custom-switch-input" checked>
-                                        <span class="custom-switch-indicator"></span>
-                                    </label>
                                 </div>
                             </div>
 
@@ -94,13 +102,20 @@
                                                placeholder="Nhập giá bán" value="0">
                                     </div>
                                 </div>
+                                @error('unit')
+                                <div class="col-md-12">
+                                    <span class="text-danger">{{ $message }}</span>
+                                </div>
+                                @enderror
                                 <div class="col-md-12" id="add_unit_parent">
+
                                     <button type="button" class="btn btn-secondary" id="add_unit"
                                             title="Thêm mới đơn vị tính">
                                         <i class="ti-plus mr-2"></i> Thêm mới
                                     </button>
                                     <i class="text-danger">1 Đ.vị tính = Giá bán / Đơn vị quy đổi</i>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -156,9 +171,6 @@
                 $(this).parent("#add_unit_parent").before(html);
             });
             $("body").on('click', '.delete_unit', function () {
-                $(this).parent().parent('.list_unit').remove();
-            });
-            $('body').on('click', '.delete_unit', function () {
                 $(this).parent().parent('.list_unit').remove();
             });
         })

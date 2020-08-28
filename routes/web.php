@@ -24,6 +24,7 @@ Route::get('/medicine/add', 'Admins\MedicineController@getAdd')->name('admin.med
 Route::post('/medicine/add', 'Admins\MedicineController@postAdd')->name('admin.medicine.postAdd');
 Route::get('/medicine/data', 'Admins\MedicineController@data')->name('admin.medicine.data');
 Route::get('/medicine/{id}', 'Admins\MedicineController@getEdit')->name('admin.medicine.getEdit');
+Route::post('/medicine/{id}', 'Admins\MedicineController@postEdit')->name('admin.medicine.postEdit');
 Route::get('/medicine/delete/{id}', 'Admins\MedicineController@getDelete')->name('admin.medicine.getDelete');
 
 Route::get('/nhap-hang', function () {

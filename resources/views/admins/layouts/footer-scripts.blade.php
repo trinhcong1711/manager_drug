@@ -42,4 +42,3 @@
 		<script src="{{ URL::asset('assets/js/custom.js') }}"></script>
 
 
-
