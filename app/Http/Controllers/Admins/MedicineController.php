@@ -102,7 +102,7 @@ class MedicineController extends CURDController
     {
         if (isset($id)) {
             $delete = $medicines->delete($id);
-            if ($deletegit add .) {
+            if ($delete) {
                 Alert::success('Thành công', 'Xóa thành công');
                 return redirect(route('admin.medicine.getIndex'));
             } else {
