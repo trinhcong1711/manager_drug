@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\CURD;
 
-use Carbon\Carbon;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class CURDController extends Controller
@@ -23,7 +21,7 @@ class CURDController extends Controller
     }
 
     /*
-     * Hàm format Giá bán
+     * Hàm format Giá bán để hiển thị ra trang danh sách thuốc
      * $int : int
      * return: string
      */
@@ -98,7 +96,7 @@ class CURDController extends Controller
         if ($collection) {
             return '<th scope="row">
                         <label class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" name="select_id[]" value="' . $collection->id . '" checked="">
+                            <input type="checkbox" class="custom-control-input" name="select_row[]" value="' . $collection->id . '" checked="">
                             <span class="custom-control-label"></span>
                         </label>
                     </th>';

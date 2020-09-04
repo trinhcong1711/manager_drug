@@ -7,6 +7,7 @@ $('.dropify').dropify({
 	},
 	error: {
 		'fileSize': 'The file size is too big (2M max).'
+		// 'fileSize': 'File quá lớn.'
 	}
 });
-	
+

@@ -20,6 +20,8 @@ Route::get('/ban-hang', function () {
 });
 
 Route::get('/medicine', 'Admins\MedicineController@getIndex')->name('admin.medicine.getIndex');
+Route::get('/medicine/export', 'Admins\MedicineController@export')->name('admin.medicine.export');
+Route::post('/medicine/import', 'Admins\MedicineController@import')->name('admin.medicine.import');
 Route::get('/medicine/add', 'Admins\MedicineController@getAdd')->name('admin.medicine.getAdd');
 Route::post('/medicine/add', 'Admins\MedicineController@postAdd')->name('admin.medicine.postAdd');
 Route::get('/medicine/data', 'Admins\MedicineController@data')->name('admin.medicine.data');

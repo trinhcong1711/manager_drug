@@ -29,13 +29,8 @@
                                     <a href="{{route('admin.medicine.getIndex')}}" style="color: inherit;"><i
                                             class="icon icon-action-undo mr-2"></i>Quay lại</a>
                                 </button>
-                                <button type="submit" class="btn btn-outline-success" data-toggle="tooltip"
-                                        title="Lưu và tiếp tục sửa"><i
-                                        class="ti-save-alt mr-2"></i>Lưu và tiếp tục
-                                </button>
-                                <button type="submit" class="btn btn-outline-success" data-toggle="tooltip"
-                                        title="Lưu và quay về trang danh sách thuốc"><i
-                                        class="ti-save-alt mr-2"></i>Lưu và thoát
+                                <button type="submit" class="btn btn-primary"><i
+                                        class="ti-save-alt mr-2"></i>Lưu
                                 </button>
                             </div>
                         </div>
@@ -129,7 +124,7 @@
                                 </div>
                                 @enderror
                                 <div class="col-md-12" id="add_unit_parent">
-                                    <button type="button" class="btn btn-secondary" id="add_unit"
+                                    <button type="button" class="btn btn-primary" id="add_unit"
                                             title="Thêm mới đơn vị tính">
                                         <i class="ti-plus mr-2"></i> Thêm mới
                                     </button>
@@ -182,7 +177,7 @@
                     '                                    </div>' +
                     '                                    <div class="col-md-3 text-center">\n' +
                     '                                        <label class="form-label">Xóa</label>\n' +
-                    '                                        <button type="button" class="btn btn-secondary delete_unit">\n' +
+                    '                                        <button type="button" class="btn btn-primary delete_unit">\n' +
                     '                                            <i class="ti-close"></i>\n' +
                     '                                        </button>\n' +
                     '                                    </div>\n' +

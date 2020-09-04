@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Admins;
 use App\Http\Controllers\CURD\CURDController;
 use App\Http\Requests\AddMedicineRequest;
 use App\Http\Requests\EditMedicineRequest;
+use App\Imports\MedicineImport;
 use App\Repositories\MedicinesRepositoryEloquent;
 use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\DataTables\DataTables;
-
+use App\Exports\MedicineExport;
+use Maatwebsite\Excel\Facades\Excel;
 class MedicineController extends CURDController
 {
     protected function getIndex()
@@ -39,7 +41,16 @@ class MedicineController extends CURDController
                 return $this->showStatus($medicine->status);
             })->rawColumns(['checkbox', 'name', 'price', 'status'])->make(true);
     }
-
+    public function export()
+    {
+        return Excel::download(new MedicineExport, 'medicines.xlsx');
+    }
+    public function import()
+    {
+        Excel::import(new MedicineImport, request()->file('import_file'));
+        Alert::success('Thành công', 'Thêm dữ liệu thành công!');
+        return redirect()->back();
+    }
     protected function getAdd()
     {
         return view('admins.contents.medicines.add');
