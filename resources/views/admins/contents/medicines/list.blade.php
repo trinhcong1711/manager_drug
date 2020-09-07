@@ -38,19 +38,25 @@
                         <div class="btn-list text-right">
                             <div class="btn-group mt-2 mb-2">
                                 <button type="button" class="btn btn-info dropdown-toggle mr-2" data-toggle="dropdown">
-                                    <i class="ti-import mr-2"></i>Import
+                                    <i class="icon icon-rocket mr-2"></i>Excel
                                 </button>
                                 <div class="dropdown-menu ">
 
+                                    <a class="dropdown-item border-bottom" href="{{route('admin.medicine.export')}}"><i
+                                            class="ti-export mr-2"></i>Xuất excel</a>
                                     <form action="{{route('admin.medicine.import')}}" method="post"
-                                          enctype="multipart/form-data">
+                                          enctype="multipart/form-data" class="border-bottom">
                                         @csrf
                                         <div class="card-body text-center">
                                             <input type="file" name="import_file" class="dropify" data-height="100"/>
-                                            <button type="submit" class="btn btn-primary mt-2">Lưu</button>
+                                            <button type="submit" class="btn btn-primary mt-2"><i
+                                                    class="ti-plus mr-2"></i> Nhập từ file excel
+                                            </button>
                                         </div>
                                     </form>
-                                    <a class="dropdown-item text-center" href="javascript:void(0)">Tải file excel mẫu</a>
+                                    <a class="dropdown-item text-center"
+                                       href="{{route('admin.medicine.exportDefaultFile')}}"><i
+                                            class="ti-import mr-2"></i>Tải file mẫu</a>
                                 </div>
                             </div>
                             <div class="btn-group mt-2 mb-2">
@@ -58,8 +64,7 @@
                                     <i class="fe fe-calendar mr-2"></i>Hành động
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="javascript:void(0)">Xóa tất cả</a>
-                                    <a class="dropdown-item" href="{{route('admin.medicine.export')}}">Xuất excel</a>
+                                    <a class="dropdown-item" id="delete_selected" href="#">Xóa tất cả</a>
                                 </div>
                             </div>
                         </div>
@@ -71,7 +76,12 @@
                         <table id="medicine_datatable" class="table card-table table-vcenter text-nowrap">
                             <thead>
                             <tr>
-                                <th>#</th>
+                                <th scope="row">
+                                    <label class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="select_all_row">
+                                        <span class="custom-control-label"></span>
+                                    </label>
+                                </th>
                                 <th>STT</th>
                                 <th>Tên</th>
                                 <th>Hàm lượng</th>
@@ -98,19 +108,43 @@
     <script src="{{ asset('assets/plugins/fileuploads/js/fileupload.js')}}"></script>
     <script src="{{ asset('assets/plugins/fileuploads/js/file-upload.js')}}"></script>
     <script>
-        $('.dropify').dropify({
-            messages: {
-                'default': 'Chọn file',
-                'replace': 'Xóa file',
-                'remove': 'Xóa',
-                'error': 'Có lỗi'
-            },
-            error: {
-                'fileSize': 'The file size is too big (2M max).'
-            }
-        });
         $('body').ready(function () {
+            //Selected all checkbox
+            $('input[name=select_all_row]').click(function () {
+                let status = $(this).is(":checked");
+                if (status) {
+                    $('.select_row').prop("checked", true);
+                } else {
+                    $('.select_row').prop("checked", false);
+                }
+            });
+            //delete multil
+            $('#delete_selected').click(function () {
+                // let selected = $('.select_row').is('checked');
+                let checkboxValues = [];
+                $('input[name=select_row]:checked').each(function () {
+                    checkboxValues.push($(this).val());
+                });
+                let ids = checkboxValues;
+                if (!jQuery.isEmptyObject(ids)){
+                    $.ajax({
+                        url: "{{route('admin.medicine.getDeleteMultil')}}",
+                        method: 'get',
+                        data: {
+                            ids: ids
+                        },
+                        success: function (result) {
+                            if(result.status){
+                                window.location.reload();
+                            }
+                        }
+                    })
+                }else {
+                    alert('ádasd')
+                }
 
+            });
+            //Datatable
             $('#medicine_datatable').DataTable({
                 processing: true,
                 serverSide: true,

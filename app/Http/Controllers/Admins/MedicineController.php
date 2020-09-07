@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admins;
 
+use App\Exports\MedicineDefaultExport;
 use App\Http\Controllers\CURD\CURDController;
 use App\Http\Requests\AddMedicineRequest;
 use App\Http\Requests\EditMedicineRequest;
 use App\Imports\MedicineImport;
 use App\Repositories\MedicinesRepositoryEloquent;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\DataTables\DataTables;
@@ -44,6 +46,10 @@ class MedicineController extends CURDController
     public function export()
     {
         return Excel::download(new MedicineExport, 'medicines.xlsx');
+    }
+    public function exportDefaultFile()
+    {
+        return Excel::download(new MedicineDefaultExport, 'medicines_default.xlsx');
     }
     public function import()
     {
@@ -119,6 +125,23 @@ class MedicineController extends CURDController
             } else {
                 Alert::error('Lỗi', 'Có lỗi xảy ra!');
                 return redirect()->back();
+            }
+        }
+    }
+    public function getDeleteMultil(Request $request, MedicinesRepositoryEloquent $medicines)
+    {
+        if (!empty($request->ids)) {
+            $delete = $medicines->destroy($request->ids);
+            if ($delete) {
+                Alert::success('Thành công', 'Xóa thành công');
+                return response()->json([
+                    'status'=>true,
+                ]);
+            } else {
+                Alert::error('Lỗi', 'Có lỗi xảy ra!');
+                return response()->json([
+                    'status'=>false,
+                ]);
             }
         }
     }

@@ -96,7 +96,7 @@ class CURDController extends Controller
         if ($collection) {
             return '<th scope="row">
                         <label class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" name="select_row[]" value="' . $collection->id . '" checked="">
+                            <input type="checkbox" class="custom-control-input select_row" name="select_row" value="' . $collection->id . '">
                             <span class="custom-control-label"></span>
                         </label>
                     </th>';

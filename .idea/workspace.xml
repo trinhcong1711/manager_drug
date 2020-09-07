@@ -2,19 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b4f10b91-2a09-4a3d-bd43-235e16b4caed" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/exports/medicine.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/onsenvillashoabinh.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/onsenvillashoabinh.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Exports/MedicineDefaultExport.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admins/exports/medicine_default.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Exports/MedicineExport.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exports/MedicineExport.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admins/MedicineController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admins/MedicineController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CURD/CURDController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CURD/CURDController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/plugins/fileuploads/js/file-upload.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/plugins/fileuploads/js/file-upload.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/plugins/fileuploads/js/fileupload.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/plugins/fileuploads/js/fileupload.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/medicines/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/medicines/add.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/medicines/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/medicines/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Imports/MedicineImport.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Imports/MedicineImport.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/medicines/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/medicines/list.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
@@ -153,19 +147,19 @@
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\laragon\www\manager_drug\app\Exports" />
+      <recent name="C:\laragon\www\manager_drug\resources\views\admins\exports" />
+      <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents" />
+      <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\bills" />
+      <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\inventory" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\laragon\www\manager_drug\public\excel_default" />
       <recent name="C:\laragon\www\manager_drug\app\Http\Controllers\Admin" />
       <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\inventory" />
       <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\import_product" />
       <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\employees" />
-      <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\bills" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents" />
-      <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\bills" />
-      <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\inventory" />
-      <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\import_product" />
-      <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\products" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -237,7 +231,12 @@
       <workItem from="1599146270930" duration="168000" />
       <workItem from="1599147808591" duration="1113000" />
       <workItem from="1599184086844" duration="98000" />
-      <workItem from="1599227446417" duration="10541000" />
+      <workItem from="1599227446417" duration="11739000" />
+      <workItem from="1599272940280" duration="1954000" />
+      <workItem from="1599276582264" duration="1261000" />
+      <workItem from="1599279272675" duration="1906000" />
+      <workItem from="1599287874129" duration="91000" />
+      <workItem from="1599487887364" duration="6565000" />
     </task>
     <servers />
   </component>
@@ -267,7 +266,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/admins/contents/medicines/list.blade.php</url>
-          <line>69</line>
+          <line>74</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
