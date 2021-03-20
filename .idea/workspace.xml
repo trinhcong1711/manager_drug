@@ -2,14 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b4f10b91-2a09-4a3d-bd43-235e16b4caed" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Exports/MedicineDefaultExport.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/exports/medicine_default.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admins/ajax/search_list_medicine.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Exports/MedicineExport.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exports/MedicineExport.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admins/MedicineController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admins/MedicineController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CURD/CURDController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CURD/CURDController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Imports/MedicineImport.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Imports/MedicineImport.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_16_140244_create_medicines_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_16_140244_create_medicines_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_23_082352_create_medicines_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/custom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/js/customs.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/js/customs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/import_medicines/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/import_medicines/add.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/medicines/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/medicines/add.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/medicines/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/medicines/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/medicines/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/medicines/list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/passwords/email.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/email.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/verify.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/verify.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -236,7 +248,14 @@
       <workItem from="1599276582264" duration="1261000" />
       <workItem from="1599279272675" duration="1906000" />
       <workItem from="1599287874129" duration="91000" />
-      <workItem from="1599487887364" duration="6565000" />
+      <workItem from="1599487887364" duration="6811000" />
+      <workItem from="1599529028895" duration="1919000" />
+      <workItem from="1599899651891" duration="414000" />
+      <workItem from="1600565688575" duration="8820000" />
+      <workItem from="1600652247037" duration="493000" />
+      <workItem from="1601353743045" duration="625000" />
+      <workItem from="1601362453611" duration="386000" />
+      <workItem from="1616245198450" duration="11365000" />
     </task>
     <servers />
   </component>
@@ -266,7 +285,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/admins/contents/medicines/list.blade.php</url>
-          <line>74</line>
+          <line>69</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>

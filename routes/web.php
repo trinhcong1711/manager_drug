@@ -31,14 +31,17 @@ Route::get('/medicine/delete/{id}', 'Admins\MedicineController@getDelete')->name
 Route::get('/medicine/{id}', 'Admins\MedicineController@getEdit')->name('admin.medicine.getEdit');
 Route::post('/medicine/{id}', 'Admins\MedicineController@postEdit')->name('admin.medicine.postEdit');
 
-Route::get('/nhap-hang', function () {
-    return view('admins.contents.import_product.import');
-});
+//Nhập hàng
+
+Route::get('/import-medicine', 'Admins\ImportMedicineController@getIndex')->name('admin.import_medicine.getIndex');
+Route::get('/import-medicine/ajax-search-medicine', 'Admins\ImportMedicineController@ajaxSearchMedicine')->name('admin.import_medicine.ajaxSearchMedicine');
+
+
 Route::get('/nhap-hang/them', function () {
-    return view('admins.contents.import_product.add');
+    return view('admins.contents.import_medicines.add');
 });
 Route::get('/nhap-hang/{id}', function () {
-    return view('admins.contents.import_product.edit');
+    return view('admins.contents.import_medicines.edit');
 });
 
 
@@ -81,3 +84,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 //Route::get('/setting', 'Admin\HomeController@getIndex')->name('home1');
 //Route::get('/', 'HomeController@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

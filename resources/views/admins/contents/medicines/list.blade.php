@@ -5,23 +5,18 @@
 @section('page-header')
     <!-- PAGE-HEADER -->
     <div class="btn-list">
-        <button type="button" class="btn btn-outline-secondary" data-toggle="tooltip" title="Thêm thuốc thủ công">
-            <a href="{{route('admin.medicine.getAdd')}}" style="color: inherit;"><i class="fe fe-plus mr-2"></i>Thêm
-                thuốc</a>
-        </button>
-        <button type="button" class="btn btn-outline-secondary" data-toggle="tooltip" title="Thêm thuốc bằng mã vạch"><i
-                class="fa fa-barcode"></i>
-        </button>
-        <button type="button" class="btn btn-outline-secondary" data-toggle="tooltip" title="Thêm thuốc bằng excel">
-            <i class="fa fa-file-excel-o"></i>
-        </button>
-        <button type="button" class="btn btn-outline-secondary" data-toggle="tooltip"
-                title="Tạo phiếu nhập theo bộ lọc">
-            <i class="fe fe-plus mr-2"></i>Tạo phiếu nhập
-        </button>
-        <button type="button" class="btn btn-outline-secondary" data-toggle="tooltip" title="Tạo phiếu kiểm kho">
-            <i class="fe fe-plus mr-2"></i>Tạo phiếu kiểm kho
-        </button>
+        <a class="mr-2" href="{{route('admin.medicine.getAdd')}}" style="color: inherit;">
+            <button type="button" class="btn btn-outline-secondary" data-toggle="tooltip" title="Thêm thuốc thủ công">
+                <i class="fe fe-plus"></i>Tạo
+                mới
+            </button>
+        </a>
+        <a href="{{route('admin.medicine.getAdd')}}" style="color: inherit;">
+            <button type="button" class="btn btn-outline-secondary" data-toggle="tooltip"
+                    title="Thêm thuốc bằng mã vạch"><i
+                    class="fa fa-barcode"></i>Thêm bằng mã vạch
+            </button>
+        </a>
     </div>
     <!-- PAGE-HEADER END -->
 @endsection
@@ -82,15 +77,14 @@
                                         <span class="custom-control-label"></span>
                                     </label>
                                 </th>
-                                <th>STT</th>
+                                <th>ID</th>
                                 <th>Tên</th>
-                                <th>Hàm lượng</th>
-                                <th>HSD</th>
+                                <th>Giá nhập</th>
+                                <th>Giá bán</th>
                                 <th>Quy cách</th>
                                 <th>Tồn kho</th>
                                 <th>Đã bán</th>
-                                <th>Giá nhập</th>
-                                <th>Giá bán</th>
+                                <th>HSD</th>
                                 <th>Trạng thái</th>
                             </tr>
                             </thead>
@@ -126,23 +120,52 @@
                     checkboxValues.push($(this).val());
                 });
                 let ids = checkboxValues;
-                if (!jQuery.isEmptyObject(ids)){
-                    $.ajax({
-                        url: "{{route('admin.medicine.getDeleteMultil')}}",
-                        method: 'get',
-                        data: {
-                            ids: ids
-                        },
-                        success: function (result) {
-                            if(result.status){
-                                window.location.reload();
-                            }
-                        }
-                    })
-                }else {
-                    alert('ádasd')
-                }
 
+                if (!jQuery.isEmptyObject(ids)) {
+                    Swal.fire({
+                        title: 'Bạn có muốn xóa không?',
+                        type: 'warning',
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Xóa'
+                    }).then((result) => {
+                        if (result.value) {
+                            $.ajax({
+                                url: "{{route('admin.medicine.getDeleteMultil')}}",
+                                method: 'get',
+                                data: {
+                                    ids: ids
+                                },
+                                success: function (data) {
+                                    if (data.status) {
+                                        swal.fire({
+                                            title: data.message,
+                                            type: "success",
+                                            icon: 'success',
+                                            timer: 1500
+                                        }).then(function () {
+                                            location.reload();
+                                        });
+                                    } else {
+                                        swal.fire({
+                                            title: 'Lỗi...',
+                                            type: 'error',
+                                            timer: '1500'
+                                        })
+                                    }
+                                }
+                            });
+                        }
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Warning',
+                        text: 'Bạn chưa chọn bane ghi nào !!!',
+                    })
+                }
             });
             //Datatable
             $('#medicine_datatable').DataTable({
@@ -153,13 +176,12 @@
                     {data: 'checkbox', name: 'checkbox', orderable: false, searchable: false},
                     {data: 'id', name: 'id'},
                     {data: 'name', name: 'name'},
-                    {data: 'amount', name: 'amount'},
-                    {data: 'exp', name: 'exp'},
+                    {data: 'price_import', name: 'price_import'},
+                    {data: 'price', name: 'price'},
                     {data: 'package', name: 'package'},
                     {data: 'inventory', name: 'inventory'},
                     {data: 'sold', name: 'sold'},
-                    {data: 'price_import', name: 'price_import'},
-                    {data: 'price', name: 'price'},
+                    {data: 'exp_id', name: 'exp'},
                     {data: 'status', name: 'status'},
                 ]
             });

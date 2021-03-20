@@ -29,7 +29,7 @@ class CURDController extends Controller
     {
         if ($json) {
             $prices = (array)json_decode($json);
-            $html='';
+            $html = '';
             if (count($prices) > 0 && !empty($prices['unit'])) {
                 $html = '<table>';
                 foreach ($prices['unit'] as $k => $price) {
@@ -136,4 +136,6 @@ class CURDController extends Controller
             return '';
         }
     }
+
+
 }

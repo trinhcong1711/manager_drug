@@ -64,16 +64,14 @@ class MedicineController extends CURDController
 
     protected function postAdd(AddMedicineRequest $request, MedicinesRepositoryEloquent $medicines)
     {
-        $price = $this->formatPriceSave($request->unit, $request->convert, $request->price);
-        $exp = $this->jsonDateSave($request->exp);
-        $data = array_merge($request->only('name', 'slug', 'package', 'amount', 'inventory', 'price_import'), [
-            'slug' => Str::slug($request->get('name')),
-            'price' => $price,
-            'exp' => $exp,
+
+        $data = array_merge($request->only('name', 'package', 'inventory'), [
             'status' => $request->get('status') == 'on' ? 1 : 0,
         ]);
-        $save = $medicines->create($data);
-        if ($save) {
+        $medicine = $medicines->create($data);
+        if ($medicine) {
+            $exp =
+            $unit = $this->formatPriceSave($request->unit, $request->convert, $request->price);
             Alert::success('Thành công', 'Thêm mới thành công');
             return redirect(route('admin.medicine.getIndex'));
         } else {
@@ -133,17 +131,18 @@ class MedicineController extends CURDController
         if (!empty($request->ids)) {
             $delete = $medicines->destroy($request->ids);
             if ($delete) {
-                Alert::success('Thành công', 'Xóa thành công');
                 return response()->json([
                     'status'=>true,
+                    'message'=>'Xóa thành công!!!',
                 ]);
             } else {
-                Alert::error('Lỗi', 'Có lỗi xảy ra!');
                 return response()->json([
                     'status'=>false,
+                    'message'=>'Có lỗi xảy ra!',
                 ]);
             }
         }
     }
+
 
 }

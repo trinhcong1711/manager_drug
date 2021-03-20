@@ -106,7 +106,12 @@
             <div class="card">
                 <div class="card-body">
                     <div class="card-header">
-                        <h3 class="card-title">Danh sách thuốc</h3>
+                        <div class="w-20">
+                            <h3 class="card-title">Danh sách thuốc có số lượng <=</h3>
+                        </div>
+                        <div class="w-15" id="search-medicine">
+                            <input type="number" class="form-control" name="inventory_medicine" placeholder="Nhập số lượng tồn kho...">
+                        </div>
                     </div>
                     <div class="table-responsive">
                         <table class="table card-table table-vcenter text-nowrap">
@@ -120,40 +125,8 @@
                                 <th>Hành động</th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="result_inventory">
 
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td contenteditable="true"></td>
-                                <td contenteditable="true"></td>
-                                <td contenteditable="true"></td>
-                                <td>
-                                    <button type="button" class="btn btn-icon  btn-purple" data-toggle="tooltip"
-                                            data-title="Lưu & Thêm mới"><i class="ti-plus"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" name="example-checkbox1"
-                                               value="option1" checked="">
-                                        <span class="custom-control-label"></span>
-                                    </label>
-                                </th>
-                                <td>1</td>
-                                <td contenteditable="true">Panadol</td>
-                                <td contenteditable="true">Không có thì lấy mẫu khác</td>
-                                <td contenteditable="true">10</td>
-                                <td>
-                                    <div class="btn-list">
-                                        <button type="button" class="btn btn-icon  btn-gray" data-toggle="tooltip"
-                                                data-title="Sửa & Lưu"><i class="ti-pencil-alt"></i></button>
-                                        <button type="button" class="btn btn-icon  btn-red" data-toggle="tooltip"
-                                                data-title="Xóa"><i class="ti-close"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -182,6 +155,20 @@
     <script src="{{ URL::asset('assets/plugins/time-picker/toggles.min.js') }}"></script>
     <script>
         $(document).ready(function () {
+                $('body').on("keyup", "input[name='inventory_medicine']", function () {
+                    let value = $(this).val();
+                    if (value !== "") {
+                        $.ajax({
+                            url: "{{route('admin.import_medicine.ajaxSearchMedicine')}}",
+                            method: 'get',
+                            data: {
+                                inventory: value
+                            }, success: function (result) {
+                                $('#result_inventory').html(result)
+                            }
+                        });
+                    }
+                });
             $("body").on('click', '#add_unit', function () {
                 let html = '<div class="form-group d-flex list_unit">\n' +
                     '                                    <div class="col-md-5 pl-0">\n' +

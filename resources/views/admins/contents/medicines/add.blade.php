@@ -35,7 +35,7 @@
                     <div class="card-body">
 
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="form-label">Tên thuốc</label>
                                     <input type="text" class="form-control" value="{{old('name')}}" name="name" placeholder="Nhập tên thuốc">
@@ -43,24 +43,21 @@
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
-
                                 <div class="form-group d-flex">
-                                    <div class="col-md-6 pl-0">
-                                        <label class="form-label">Hàm lượng</label>
-                                        <input type="text" class="form-control" value="{{old('amount')}}" name="amount"
-                                               placeholder="Nhập hàm lượng">
+                                    <div class="col-md-4 pl-0">
+                                        <label class="form-label">Số lượng</label>
+                                        <input type="number" class="form-control" value="{{old('inventory')}}"
+                                               name="inventory"
+                                               placeholder="Nhập số lượng">
                                     </div>
-
-                                    <div class="col-md-6 pr-0">
+                                    <div class="col-md-4 pr-0">
                                         <label class="form-label">Quy cách đóng gói</label>
                                         <input type="text" class="form-control" value="{{old('package')}}"
                                                name="package"
                                                placeholder="Nhập quy cách đóng gói">
                                     </div>
-                                </div>
 
-                                <div class="form-group d-flex">
-                                    <div class="col-md-6 pl-0">
+                                    <div class="col-md-4 pr-0">
                                         <label class="form-label">Hạn sử dụng</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
@@ -74,29 +71,22 @@
                                                    type="text">
                                         </div>
                                     </div>
-                                    <div class="col-md-6 pr-0 text-right">
-                                        <div class="form-label">Trạng thái</div>
-                                        <label class="custom-switch">
-                                            <input type="checkbox" name="status" class="custom-switch-input" checked>
-                                            <span class="custom-switch-indicator"></span>
-                                        </label>
-                                    </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group d-flex list_unit">
-                                    <div class="col-md-3">
-                                        <label class="form-label">Đơn vị tính</label>
+                                    <div class="col-md-3 pl-0">
+                                        <label class="form-label">Đ/v tính</label>
                                         <input type="text" class="form-control" name="unit[]"
-                                               placeholder="Nhập đơn vị tính">
+                                               placeholder="Nhập đ/v tính">
                                     </div>
-                                    <div class="col-md-3">
-                                        <label class="form-label">Đơn vị quy đổi</label>
+                                    <div class="col-md-3 pl-0">
+                                        <label class="form-label">Đ/v Q.đổi</label>
                                         <input type="number" class="form-control" name="convert[]"
-                                               placeholder="Nhập đơn vị quy đổi" value="1">
+                                               placeholder="Nhập đ/v Q.đổi" value="1">
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-4 pr-0">
                                         <label class="form-label">Giá bán</label>
                                         <input type="number" class="form-control" name="price[]"
                                                placeholder="Nhập giá bán" value="0">
@@ -115,7 +105,14 @@
                                     </button>
                                     <i class="text-danger">1 Đ.vị tính = Giá bán / Đơn vị quy đổi</i>
                                 </div>
+                            </div>
 
+                            <div class="col-md-12 text-center">
+                                <div class="form-label">Trạng thái</div>
+                                <label class="custom-switch">
+                                    <input type="checkbox" name="status" class="custom-switch-input" checked>
+                                    <span class="custom-switch-indicator"></span>
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -146,22 +143,22 @@
         $(document).ready(function () {
             $('body').on('click', '#add_unit', function () {
                 let html = '<div class="form-group d-flex list_unit">\n' +
-                    '<div class="col-md-3">\n' +
+                    '<div class="col-md-3 pl-0">\n' +
                     '                                        <label class="form-label">Đơn vị tính</label>\n' +
                     '                                        <input type="text" class="form-control" name="unit[]"\n' +
-                    '                                               placeholder="Nhập đơn vị tính">\n' +
+                    '                                               placeholder="Nhập đ/v tính">\n' +
                     '                                    </div>\n' +
-                    '                                    <div class="col-md-3">\n' +
+                    '                                    <div class="col-md-3 pl-0">\n' +
                     '                                        <label class="form-label">Đơn vị quy đổi</label>\n' +
                     '                                        <input type="number" class="form-control" name="convert[]"\n' +
-                    '                                               placeholder="Nhập đơn vị quy đổi"  value="1">\n' +
+                    '                                               placeholder="Nhập đ/v quy đổi"  value="1">\n' +
                     '                                    </div>\n' +
-                    '                                    <div class="col-md-3">\n' +
+                    '                                    <div class="col-md-4 pr-0">\n' +
                     '                                        <label class="form-label">Giá bán</label>\n' +
                     '                                        <input type="number" class="form-control" name="price[]"\n' +
                     '                                               placeholder="Nhập giá bán" value="0">\n' +
                     '                                    </div>' +
-                    '                                    <div class="col-md-3 text-center">\n' +
+                    '                                    <div class="col-md-2 text-center">\n' +
                     '                                        <label class="form-label">Xóa</label>\n' +
                     '                                        <button type="button" class="btn btn-primary delete_unit">\n' +
                     '                                            <i class="ti-close"></i>\n' +

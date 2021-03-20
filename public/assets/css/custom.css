@@ -34,3 +34,13 @@ input.price_customer{
 .tool_tip_item_name a:last-child{
     border-right: none
 }
+
+#search-medicine{
+    position: relative;
+}
+#list-medicines{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+}
