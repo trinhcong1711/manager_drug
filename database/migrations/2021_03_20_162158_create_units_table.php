@@ -16,7 +16,7 @@ class CreateUnitsTable extends Migration
         Schema::create('units', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger("medicine_id");
-            $table->string("name");
+            $table->string("name")->comment("Đơn vị tính");
             $table->integer("convert")->default(1)->comment("Đơn vị quy đổi");
             $table->integer("price")->default(0)->comment("Giá bán");
             $table->tinyInteger("status")->default(1);

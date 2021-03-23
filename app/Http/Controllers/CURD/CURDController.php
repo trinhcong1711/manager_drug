@@ -25,18 +25,18 @@ class CURDController extends Controller
      * $int : int
      * return: string
      */
-    protected function formatPrice($json)
+    protected function formatPrice($prices)
     {
-        if ($json) {
-            $prices = (array)json_decode($json);
+        if ($prices) {
+
             $html = '';
-            if (count($prices) > 0 && !empty($prices['unit'])) {
+            if (count($prices) > 0 && !empty($prices)) {
                 $html = '<table>';
-                foreach ($prices['unit'] as $k => $price) {
+                foreach ($prices as $k => $price) {
                     $html .= '<tr>
-                            <td class="border-top-0 p-0">' . $this->formatNumber($prices['convert'][$k]) . '</td>
-                            <td class="border-top-0 p-0 pr-1 text-capitalize">' . $prices['unit'][$k] . ':</td>
-                            <td class="border-top-0 p-0">' . $this->formatNumber($prices['price'][$k]) . '</td>
+                            <td class="border-top-0 p-0">' . $this->formatNumber($price->convert) . ' </td>
+                            <td class="border-top-0 p-0 pr-1 text-capitalize">' . $price->name . ':</td>
+                            <td class="border-top-0 p-0">' . $this->formatNumber($price->price) . '</td>
                         </tr>';
                 }
                 $html .= '</table>';

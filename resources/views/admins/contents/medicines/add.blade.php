@@ -75,35 +75,34 @@
                             </div>
 
                             <div class="col-md-12">
-                                <div class="form-group d-flex list_unit">
-                                    <div class="col-md-3 pl-0">
-                                        <label class="form-label">Đ/v tính</label>
-                                        <input type="text" class="form-control" name="unit[]"
-                                               placeholder="Nhập đ/v tính">
-                                    </div>
-                                    <div class="col-md-3 pl-0">
-                                        <label class="form-label">Đ/v Q.đổi</label>
-                                        <input type="number" class="form-control" name="convert[]"
-                                               placeholder="Nhập đ/v Q.đổi" value="1">
-                                    </div>
-                                    <div class="col-md-4 pr-0">
-                                        <label class="form-label">Giá bán</label>
-                                        <input type="number" class="form-control" name="price[]"
-                                               placeholder="Nhập giá bán" value="0">
-                                    </div>
-                                </div>
-                                @error('unit')
-                                <div class="col-md-12">
-                                    <span class="text-danger">{{ $message }}</span>
-                                </div>
-                                @enderror
-                                <div class="col-md-12" id="add_unit_parent">
+{{--                                <div class="form-group d-flex list_unit">--}}
+{{--                                    <div class="col-md-3 pl-0">--}}
+{{--                                        <label class="form-label">Đ/v tính</label>--}}
+{{--                                        <input type="text" class="form-control" name="unit[]"--}}
+{{--                                               placeholder="Nhập đ/v tính">--}}
+{{--                                    </div>--}}
+{{--                                    <div class="col-md-3 pl-0">--}}
+{{--                                        <label class="form-label">Đ/v Q.đổi</label>--}}
+{{--                                        <input type="number" class="form-control" name="convert[]"--}}
+{{--                                               placeholder="Nhập đ/v Q.đổi">--}}
+{{--                                    </div>--}}
+{{--                                    <div class="col-md-4 pr-0">--}}
+{{--                                        <label class="form-label">Giá bán</label>--}}
+{{--                                        <input type="number" class="form-control" name="price[]"--}}
+{{--                                               placeholder="Nhập giá bán">--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                @error('unit')--}}
+{{--                                <div class="col-md-12">--}}
+{{--                                    <span class="text-danger">{{ $message }}</span>--}}
+{{--                                </div>--}}
+{{--                                @enderror--}}
+                                <div class="col-md-12 pl-0" id="add_unit_parent">
 
                                     <button type="button" class="btn btn-primary" id="add_unit"
                                             title="Thêm mới đơn vị tính">
-                                        <i class="ti-plus mr-2"></i> Thêm mới
+                                        <i class="ti-plus mr-2"></i> Thêm mới đ/vị tính
                                     </button>
-                                    <i class="text-danger">1 Đ.vị tính = Giá bán / Đơn vị quy đổi</i>
                                 </div>
                             </div>
 
@@ -151,12 +150,12 @@
                     '                                    <div class="col-md-3 pl-0">\n' +
                     '                                        <label class="form-label">Đơn vị quy đổi</label>\n' +
                     '                                        <input type="number" class="form-control" name="convert[]"\n' +
-                    '                                               placeholder="Nhập đ/v quy đổi"  value="1">\n' +
+                    '                                               placeholder="Nhập đ/v quy đổi">\n' +
                     '                                    </div>\n' +
                     '                                    <div class="col-md-4 pr-0">\n' +
                     '                                        <label class="form-label">Giá bán</label>\n' +
                     '                                        <input type="number" class="form-control" name="price[]"\n' +
-                    '                                               placeholder="Nhập giá bán" value="0">\n' +
+                    '                                               placeholder="Nhập giá bán">\n' +
                     '                                    </div>' +
                     '                                    <div class="col-md-2 text-center">\n' +
                     '                                        <label class="form-label">Xóa</label>\n' +

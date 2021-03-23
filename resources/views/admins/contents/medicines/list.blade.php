@@ -84,7 +84,6 @@
                                 <th>Quy cách</th>
                                 <th>Tồn kho</th>
                                 <th>Đã bán</th>
-                                <th>HSD</th>
                                 <th>Trạng thái</th>
                             </tr>
                             </thead>
@@ -181,7 +180,6 @@
                     {data: 'package', name: 'package'},
                     {data: 'inventory', name: 'inventory'},
                     {data: 'sold', name: 'sold'},
-                    {data: 'exp_id', name: 'exp'},
                     {data: 'status', name: 'status'},
                 ]
             });
