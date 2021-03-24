@@ -94,6 +94,12 @@
                                                 <input type="number" class="form-control" name="price[]" value="{{$unit->price}}"
                                                        placeholder="Nhập giá bán">
                                             </div>
+                                            <div class="col-md-2 text-center">
+                                                <label class="form-label">Xóa</label>
+                                                <button type="button" class="btn btn-primary delete_unit">
+                                                    <i class="ti-close"></i>
+                                                </button>
+                                            </div>
                                         </div>
                                     @endforeach
                                 @endif

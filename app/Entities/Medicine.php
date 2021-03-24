@@ -8,6 +8,6 @@ class Medicine extends Model
 {
     protected $guarded = [];
     public function units(){
-        return $this->hasMany(Unit::class);
+        return $this->hasMany(Unit::class)->where('status',1);
     }
 }

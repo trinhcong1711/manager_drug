@@ -17,8 +17,8 @@ class CreateUnitsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger("medicine_id");
             $table->string("name")->comment("Đơn vị tính");
-            $table->integer("convert")->default(1)->comment("Đơn vị quy đổi");
-            $table->integer("price")->default(0)->comment("Giá bán");
+            $table->integer("convert")->nullable()->default(1)->comment("Đơn vị quy đổi");
+            $table->integer("price")->nullable()->default(0)->comment("Giá bán");
             $table->tinyInteger("status")->default(1);
             $table->timestamps();
         });
