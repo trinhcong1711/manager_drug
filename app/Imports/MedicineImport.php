@@ -4,13 +4,11 @@ namespace App\Imports;
 
 use App\Entities\Medicine;
 use App\Entities\Unit;
-use Illuminate\Support\Str;
-use Maatwebsite\Excel\Concerns\ToModel;
+use App\Http\Controllers\CURD\CURDController;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use App\Http\Controllers\CURD\CURDController;
 
 
 class MedicineImport extends CURDController implements WithHeadingRow, WithChunkReading, ToCollection
@@ -30,7 +28,7 @@ class MedicineImport extends CURDController implements WithHeadingRow, WithChunk
                     [
                         'name' => $row['ten'],
                         'package' => $row['quy_cach_dong_goi'],
-                        'inventory' => $row['ton_kho']
+                        'inventory' => is_int($row['ton_kho']) ? $row['ton_kho'] : 0,
                     ]
                 );
                 if ($create) {
@@ -41,19 +39,18 @@ class MedicineImport extends CURDController implements WithHeadingRow, WithChunk
                             Unit::create([
                                 'medicine_id' => $create->id,
                                 'name' => $uni[1],
-                                'convert' => $uni[0] ?? 1,
+                                'convert' => $uni[0] ?? 0,
                                 'price' => $uni[2] ?? 0,
                             ]);
                         }
                     }
                 }
             } else {
-
                 $medicine->update(
                     [
                         'name' => $row['ten'],
                         'package' => $row['quy_cach_dong_goi'],
-                        'inventory' => $row['ton_kho']
+                        'inventory' => is_int($row['ton_kho']) ? $row['ton_kho'] : 0,
                     ]
                 );
                 $unitsExcel = explode(',', str_replace(" ", "", $row['don_vi_quy_doi']));
@@ -72,7 +69,7 @@ class MedicineImport extends CURDController implements WithHeadingRow, WithChunk
                             Unit::create([
                                 'medicine_id' => $medicine->id,
                                 'name' => $uni[1],
-                                'convert' => $uni[0] ?? 1,
+                                'convert' => $uni[0] ?? 0,
                                 'price' => $uni[2] ?? 0,
                             ]);
                         }
@@ -86,8 +83,9 @@ class MedicineImport extends CURDController implements WithHeadingRow, WithChunk
                         $updateUnit = Unit::where([
                             'medicine_id' => $medicine->id,
                             'name' => $uni[1],
-                            'convert' => $uni[0] ?? 1,
+                            'convert' => $uni[0] ?? 0,
                             'price' => $uni[2] ?? 0,
+                            'status' => 1,
                         ])->first();
                         if (is_object($updateUnit)) {
                             $updateUnit->update(['status' => 0]);

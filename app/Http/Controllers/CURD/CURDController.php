@@ -28,7 +28,6 @@ class CURDController extends Controller
     protected function formatPrice($prices)
     {
         if ($prices) {
-
             $html = '';
             if (count($prices) > 0 && !empty($prices)) {
                 $html = '<table>';
@@ -109,19 +108,33 @@ class CURDController extends Controller
      *Hàm hiển thị nút thêm sửa xóa.
      * return: string
      */
-    protected function actionCurd($collection, $nameRouteEdit, $nameRouteDelete)
+    protected function actionCurd($collection, $nameRouteEdit, $nameRouteDelete = "", $relation = false)
     {
         if ($collection) {
-            return '<div class="item_name">
-                        <a href="' . route($nameRouteEdit, $collection->id) . '">' . $collection->name . '</a>
+            $delete = "";
+            if ($nameRouteDelete != "") {
+                $delete = " <a href=\"' . route($nameRouteDelete, $collection->id) . '\">Xóa</a>";
+            }
+            if ($relation) {
+                $name = $relation && is_object($collection->{$relation}) ? $collection->{$relation}->name : 'Không rõ';
+                return '<div class="item_name">
+                        <a href="' . route($nameRouteEdit, $collection->id) . '">' . $name . '</a>
                         <span class="tool_tip_item_name">
                             <a href="' . route($nameRouteEdit, $collection->id) . '">Sửa</a>
-                            <a href="' . route($nameRouteDelete, $collection->id) . '">Xóa</a>
+                            ' . $delete . '
                         </span>
                     </div>';
-        } else {
-            return '';
+            }
+            return '<div class="item_name">
+                        <a href="' . route($nameRouteEdit, $collection->id) . '">' . $relation ? $collection->name : $collection->name . '</a>
+                        <span class="tool_tip_item_name">
+                            <a href="' . route($nameRouteEdit, $collection->id) . '">Sửa</a>
+                            ' . $delete . '
+                        </span>
+                    </div>';
+
         }
+        return '';
     }
 
     /*

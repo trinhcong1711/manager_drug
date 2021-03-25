@@ -100,51 +100,9 @@
     </div>
     <!-- ROW-1 CLOSED -->
 
-    <!-- Start Add medicine -->
-    <div class="row">
-        <div class="col-md-12 col-lg-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-header">
-                        <div class="w-20">
-                            <h3 class="card-title">Danh sách thuốc có số lượng <=</h3>
-                        </div>
-                        <div class="w-15" id="search-medicine">
-                            <input type="number" class="form-control" name="inventory_medicine" placeholder="Nhập số lượng tồn kho...">
-                        </div>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table card-table table-vcenter text-nowrap">
-                            <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>STT</th>
-                                <th>Tên thuốc</th>
-                                <th>Ghi chú</th>
-                                <th>Số lượng</th>
-                                <th>Hành động</th>
-                            </tr>
-                            </thead>
-                            <tbody id="result_inventory">
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Add medicine -->
 @endsection
 
 @section('js')
-    <!-- FILE UPLOADES JS -->
-    <script src="{{URL::asset('assets/plugins/fileuploads/js/fileupload.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/fileuploads/js/file-upload.js')}}"></script>
-
-    <!-- SELECT2 JS -->
-    <script src="{{URL::asset('assets/plugins/select2/select2.full.min.js')}}"></script>
-
     <!-- FORMELEMENTS JS -->
     <script src="{{ URL::asset('assets/js/form-elements.js')}}"></script>
     <script src="{{ URL::asset('assets/plugins/bootstrap-daterangepicker/moment.min.js') }}"></script>
@@ -153,45 +111,4 @@
     <script src="{{ URL::asset('assets/plugins/date-picker/jquery-ui.js') }}"></script>
     <script src="{{ URL::asset('assets/plugins/time-picker/jquery.timepicker.js') }}"></script>
     <script src="{{ URL::asset('assets/plugins/time-picker/toggles.min.js') }}"></script>
-    <script>
-        $(document).ready(function () {
-                $('body').on("keyup", "input[name='inventory_medicine']", function () {
-                    let value = $(this).val();
-                    if (value !== "") {
-                        $.ajax({
-                            url: "{{route('admin.import_medicine.ajaxSearchMedicine')}}",
-                            method: 'get',
-                            data: {
-                                inventory: value
-                            }, success: function (result) {
-                                $('#result_inventory').html(result)
-                            }
-                        });
-                    }
-                });
-            $("body").on('click', '#add_unit', function () {
-                let html = '<div class="form-group d-flex list_unit">\n' +
-                    '                                    <div class="col-md-5 pl-0">\n' +
-                    '                                        <label class="form-label">Đơn vị tính</label>\n' +
-                    '                                        <input type="text" class="form-control" name="name"\n' +
-                    '                                               placeholder="Nhập đơn vị tính">\n' +
-                    '                                    </div>\n' +
-                    '                                    <div class="col-md-5 pr-0">\n' +
-                    '                                        <label class="form-label">Giá bán</label>\n' +
-                    '                                        <input type="text" class="form-control" name="name" placeholder="Nhập giá bán">\n' +
-                    '                                    </div>\n' +
-                    '                                    <div class="col-md-2 text-center">\n' +
-                    '                                        <label class="form-label">Xóa</label>\n' +
-                    '                                        <button type="button" class="btn btn-secondary delete_unit">\n' +
-                    '                                            <i class="ti-close"></i>\n' +
-                    '                                        </button>\n' +
-                    '                                    </div>\n' +
-                    '                                </div>';
-                $(this).parent("#add_unit_parent").before(html);
-            });
-            $("body").on('click', '.delete_unit', function () {
-                $(this).parent().parent('.list_unit').remove();
-            });
-        })
-    </script>
 @endsection

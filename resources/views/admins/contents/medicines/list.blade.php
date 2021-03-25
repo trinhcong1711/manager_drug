@@ -79,7 +79,6 @@
                                 </th>
                                 <th>ID</th>
                                 <th>Tên</th>
-                                <th>Giá nhập</th>
                                 <th>Giá bán</th>
                                 <th>Quy cách</th>
                                 <th>Tồn kho</th>
@@ -175,13 +174,13 @@
                     {data: 'checkbox', name: 'checkbox', orderable: false, searchable: false},
                     {data: 'id', name: 'id'},
                     {data: 'name', name: 'name'},
-                    {data: 'price_import', name: 'price_import'},
-                    {data: 'price', name: 'price'},
+                    {data: 'price', name: 'price', orderable: false, searchable: false},
                     {data: 'package', name: 'package'},
                     {data: 'inventory', name: 'inventory'},
                     {data: 'sold', name: 'sold'},
                     {data: 'status', name: 'status'},
-                ]
+                ],
+
             });
         });
     </script>

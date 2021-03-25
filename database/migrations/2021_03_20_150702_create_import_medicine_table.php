@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMedicineImportTable extends Migration
+class CreateImportMedicineTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateMedicineImportTable extends Migration
      */
     public function up()
     {
-        Schema::create('medicine_import', function (Blueprint $table) {
+        Schema::create('import_medicine', function (Blueprint $table) {
             $table->bigInteger('medicine_id');
             $table->bigInteger('import_id');
             $table->integer('price')->nullable()->comment("Giá nhập");

@@ -34,6 +34,12 @@ Route::post('/medicine/{id}', 'Admins\MedicineController@postEdit')->name('admin
 //Nhập hàng
 
 Route::get('/import-medicine', 'Admins\ImportMedicineController@getIndex')->name('admin.import_medicine.getIndex');
+Route::get('/import-medicine/data', 'Admins\ImportMedicineController@data')->name('admin.import_medicine.data');
+Route::get('/import-medicine/add', 'Admins\ImportMedicineController@getAdd')->name('admin.import_medicine.getAdd');
+Route::post('/import-medicine/add', 'Admins\ImportMedicineController@postAdd')->name('admin.import_medicine.postAdd');
+Route::get('/import-medicine/{id}', 'Admins\ImportMedicineController@getEdit')->name('admin.import_medicine.getEdit');
+Route::post('/import-medicine/{id}', 'Admins\ImportMedicineController@postEdit')->name('admin.import_medicine.postEdit');
+
 Route::get('/import-medicine/ajax-search-medicine', 'Admins\ImportMedicineController@ajaxSearchMedicine')->name('admin.import_medicine.ajaxSearchMedicine');
 
 

@@ -42,8 +42,8 @@ class MedicineController extends CURDController
                 return $this->formatNumber($medicine->inventory);
             })->editColumn('sold', function ($medicine) {
                 return $this->formatNumber($medicine->sold);
-            })->editColumn('price_import', function ($medicine) {
-                return $this->formatNumber($medicine->price_import);
+//            })->editColumn('price_import', function ($medicine) {
+//                return $this->formatNumber($medicine->price_import);
             })->editColumn('price', function ($medicine) {
                 return $this->formatPrice($medicine->units);
             })->editColumn('status', function ($medicine) {
