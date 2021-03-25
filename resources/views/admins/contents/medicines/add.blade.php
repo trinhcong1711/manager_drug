@@ -57,20 +57,20 @@
                                                placeholder="Nhập quy cách đóng gói">
                                     </div>
 
-                                    <div class="col-md-4 pr-0">
-                                        <label class="form-label">Hạn sử dụng</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">
-                                                    <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
-                                                </div>
-                                            </div>
-                                            <input class="form-control fc-datepicker" name="exp"
-                                                   placeholder="MM/DD/YYYY"
-                                                   value="{{old('exp')}}"
-                                                   type="text">
-                                        </div>
-                                    </div>
+{{--                                    <div class="col-md-4 pr-0">--}}
+{{--                                        <label class="form-label">Hạn sử dụng</label>--}}
+{{--                                        <div class="input-group">--}}
+{{--                                            <div class="input-group-prepend">--}}
+{{--                                                <div class="input-group-text">--}}
+{{--                                                    <i class="fa fa-calendar tx-16 lh-0 op-6"></i>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                            <input class="form-control fc-datepicker" name="exp"--}}
+{{--                                                   placeholder="MM/DD/YYYY"--}}
+{{--                                                   value="{{old('exp')}}"--}}
+{{--                                                   type="text">--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
                                 </div>
                             </div>
 
