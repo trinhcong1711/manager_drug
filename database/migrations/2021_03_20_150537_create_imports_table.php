@@ -18,7 +18,7 @@ class CreateImportsTable extends Migration
             $table->text('user_id')->comment("Người tạo hóa đơn nhập!");
             $table->text('note')->nullable();
             $table->dateTime('checked_at')->nullable()->comment("Ngày kiểm phiếu");
-            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('status')->default(0)->comment("0 => Chưa kiểm | 1 => Đã kiểm");
             $table->timestamps();
         });
     }

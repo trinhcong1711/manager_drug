@@ -50,6 +50,12 @@
                                                name="inventory"
                                                placeholder="Nhập số lượng">
                                     </div>
+                                    <div class="col-md-4 pl-0">
+                                        <label class="form-label">Định mức tồn</label>
+                                        <input type="number" class="form-control" value="{{old('rest')}}"
+                                               name="rest"
+                                               placeholder="Nhập định mức tồn">
+                                    </div>
                                     <div class="col-md-4 pr-0">
                                         <label class="form-label">Quy cách đóng gói</label>
                                         <input type="text" class="form-control" value="{{old('package')}}"

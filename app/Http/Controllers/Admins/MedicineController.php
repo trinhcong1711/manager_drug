@@ -42,8 +42,8 @@ class MedicineController extends CURDController
                 return $this->formatNumber($medicine->inventory);
             })->editColumn('sold', function ($medicine) {
                 return $this->formatNumber($medicine->sold);
-//            })->editColumn('price_import', function ($medicine) {
-//                return $this->formatNumber($medicine->price_import);
+            })->editColumn('rest', function ($medicine) {
+                return $this->formatNumber($medicine->rest);
             })->editColumn('price', function ($medicine) {
                 return $this->formatPrice($medicine->units);
             })->editColumn('status', function ($medicine) {
@@ -75,7 +75,7 @@ class MedicineController extends CURDController
 
     protected function postAdd(AddMedicineRequest $request, MedicinesRepositoryEloquent $medicines)
     {
-        $data = array_merge($request->only('name', 'package', 'inventory'), [
+        $data = array_merge($request->only('name', 'package', 'inventory', 'rest'), [
             'status' => $request->get('status') == 'on' ? 1 : 0,
         ]);
         $medicine = $medicines->create($data);
@@ -122,7 +122,7 @@ class MedicineController extends CURDController
 
     protected function postEdit(EditMedicineRequest $request, $id, MedicinesRepositoryEloquent $medicines)
     {
-        $data = array_merge($request->only('name', 'package', 'inventory'), [
+        $data = array_merge($request->only('name', 'package', 'inventory', 'rest'), [
             'status' => $request->get('status') == 'on' ? 1 : 0,
         ]);
         $medicine = $medicines->update($data, $id);
@@ -160,9 +160,9 @@ class MedicineController extends CURDController
     public function getDeleteMultil(Request $request, MedicinesRepositoryEloquent $medicines)
     {
         if (!empty($request->ids)) {
-            $medicine = $medicines->findWhereIn('id',$request->ids)->pluck('id');
+            $medicine = $medicines->findWhereIn('id', $request->ids)->pluck('id');
             if (count($medicine) > 0) {
-                $units = Unit::whereIn('medicine_id',$medicine)->pluck('id');
+                $units = Unit::whereIn('medicine_id', $medicine)->pluck('id');
                 Unit::destroy($units);
                 $delete = $medicines->destroy($medicine);
                 if ($delete) {

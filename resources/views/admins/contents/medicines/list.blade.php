@@ -82,6 +82,7 @@
                                 <th>Giá bán</th>
                                 <th>Quy cách</th>
                                 <th>Tồn kho</th>
+                                <th>Định mức tồn</th>
                                 <th>Đã bán</th>
                                 <th>Trạng thái</th>
                             </tr>
@@ -177,6 +178,7 @@
                     {data: 'price', name: 'price', orderable: false, searchable: false},
                     {data: 'package', name: 'package'},
                     {data: 'inventory', name: 'inventory'},
+                    {data: 'rest', name: 'rest'},
                     {data: 'sold', name: 'sold'},
                     {data: 'status', name: 'status'},
                 ],

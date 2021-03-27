@@ -25,7 +25,7 @@ class Import extends Model implements Transformable
 
     public function medicines()
     {
-        return $this->belongsToMany(Medicine::class);
+        return $this->belongsToMany(Medicine::class)->withPivot('price','amount', 'unit','note');
     }
     public function user()
     {

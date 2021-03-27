@@ -17,8 +17,6 @@ class CreateExportMedicineTable extends Migration
             $table->bigInteger('medicine_id');
             $table->bigInteger('export_id');
             $table->integer('amount')->default(0)->comment("Số lượng");
-            $table->tinyInteger('status')->default(0)->comment("0 => Chờ xuất | 1 => Đã xuất");
-            $table->timestamps();
         });
     }
 
@@ -29,6 +27,6 @@ class CreateExportMedicineTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('medicine_export');
+        Schema::dropIfExists('export_medicine');
     }
 }

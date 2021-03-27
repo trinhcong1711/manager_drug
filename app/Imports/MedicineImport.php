@@ -29,6 +29,7 @@ class MedicineImport extends CURDController implements WithHeadingRow, WithChunk
                         'name' => $row['ten'],
                         'package' => $row['quy_cach_dong_goi'],
                         'inventory' => is_int($row['ton_kho']) ? $row['ton_kho'] : 0,
+                        'rest' => is_int($row['dinh_muc_ton']) ? $row['dinh_muc_ton'] : 1,
                     ]
                 );
                 if ($create) {
@@ -51,6 +52,7 @@ class MedicineImport extends CURDController implements WithHeadingRow, WithChunk
                         'name' => $row['ten'],
                         'package' => $row['quy_cach_dong_goi'],
                         'inventory' => is_int($row['ton_kho']) ? $row['ton_kho'] : 0,
+                        'rest' => is_int($row['dinh_muc_ton']) ? $row['dinh_muc_ton'] : 1,
                     ]
                 );
                 $unitsExcel = explode(',', str_replace(" ", "", $row['don_vi_quy_doi']));

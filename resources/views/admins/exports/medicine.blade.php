@@ -4,6 +4,7 @@
         <th>Tên</th>
         <th>Quy cách đóng gói</th>
         <th>Tồn kho</th>
+        <th>Định mức tồn</th>
         <th>Đơn vị quy đổi</th>
         <th>Số lượng đã bán</th>
         <th>Trạng thái</th>

@@ -51,27 +51,19 @@
                                                name="inventory"
                                                placeholder="Nhập số lượng">
                                     </div>
+
+                                    <div class="col-md-4 pl-0">
+                                        <label class="form-label">Định mức tồn</label>
+                                        <input type="number" class="form-control" value="{{$medicine->rest}}"
+                                               name="rest"
+                                               placeholder="Nhập định mức tồn">
+                                    </div>
                                     <div class="col-md-4 pr-0">
                                         <label class="form-label">Quy cách đóng gói</label>
                                         <input type="text" class="form-control" value="{{$medicine->package}}"
                                                name="package"
                                                placeholder="Nhập quy cách đóng gói">
                                     </div>
-
-                                    {{--                                    <div class="col-md-4 pr-0">--}}
-                                    {{--                                        <label class="form-label">Hạn sử dụng</label>--}}
-                                    {{--                                        <div class="input-group">--}}
-                                    {{--                                            <div class="input-group-prepend">--}}
-                                    {{--                                                <div class="input-group-text">--}}
-                                    {{--                                                    <i class="fa fa-calendar tx-16 lh-0 op-6"></i>--}}
-                                    {{--                                                </div>--}}
-                                    {{--                                            </div>--}}
-                                    {{--                                            <input class="form-control fc-datepicker" name="exp"--}}
-                                    {{--                                                   placeholder="MM/DD/YYYY"--}}
-                                    {{--                                                   value="{{old('exp')}}"--}}
-                                    {{--                                                   type="text">--}}
-                                    {{--                                        </div>--}}
-                                    {{--                                    </div>--}}
                                 </div>
                             </div>
 

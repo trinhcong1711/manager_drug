@@ -17,7 +17,8 @@ class CreateMedicinesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('package')->nullable()->comment('Quy cách đóng gói');
-            $table->integer('inventory')->nullable()->comment('Tồn kho(Số lượng thuốc còn lại trong kho)');
+            $table->integer('inventory')->nullable()->comment('Tồn kho(Số lượng thuốc còn lại trong kho tính theo đơn vị tính nhỏ nhất)');
+            $table->integer('rest')->nullable()->comment('Số lượng ít nhất được phép còn lại trong kho tính theo đơn vị tính nhỏ nhất');
             $table->bigInteger('sold')->default(0)->comment('Số lượng đã bán');
             $table->tinyInteger('status')->default(1)->comment('Trạng thái hoạt động của thuốc');
             $table->timestamps();

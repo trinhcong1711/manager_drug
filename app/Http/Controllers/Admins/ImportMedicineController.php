@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admins;
 
+use App\Entities\Medicine;
 use App\Http\Controllers\CURD\CURDController;
 use App\Repositories\ImportRepositoryEloquent;
 use App\Repositories\MedicinesRepositoryEloquent;
@@ -26,23 +27,27 @@ class ImportMedicineController extends CURDController
             })->editColumn('checked_at', function ($import) {
                 return $this->formatDate($import->checked_at);
             })->editColumn('price', function ($import) {
-                return number_format(count($import->medicines), 0, "", ",");
+                return number_format(123, 0, "", ",");
             })->editColumn('status', function ($import) {
                 return $import->status == 0 ? "Chưa kiểm" : "Đã kiểm";
             })->rawColumns(['user_id', 'price', 'status'])->make(true);
     }
 
-    protected function getAdd()
+    protected function getAdd(MedicinesRepositoryEloquent $medicinesRepository)
     {
-        return view('admins.contents.import_medicines.add');
+        $data['medicines'] = Medicine::rests()->with('units')->get();
+
+        return view('admins.contents.import_medicines.add',$data);
     }
 
-    protected function postAdd(ImportRepositoryEloquent $importRepository)
+    protected function postAdd(Request $request, ImportRepositoryEloquent $importRepository)
     {
         $importMedicine = $importRepository->create([
             'user_id' => 1,
         ]);
         if ($importMedicine) {
+            $dataAttach = array_combine($request->get("medicine_id"),$request->get("import_medicine"));
+            $importMedicine->medicines()->attach($dataAttach);
             Alert::success('Thành công', 'Thêm mới thành công');
             return redirect(route('admin.import_medicine.getIndex'));
         } else {

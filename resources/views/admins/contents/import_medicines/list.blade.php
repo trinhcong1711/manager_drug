@@ -2,12 +2,15 @@
 @section('page-header')
     <!-- PAGE-HEADER -->
         <div class="btn-list">
-            <form action="{{route("admin.import_medicine.postAdd")}}" method="post">
-                @csrf
+{{--            <form action="{{route("admin.import_medicine.postAdd")}}" method="post">--}}
+{{--                @csrf--}}
+            <a href="{{route("admin.import_medicine.getAdd")}}">
                 <button type="submit" class="btn btn-outline-secondary">
                     <i class="fe fe-plus mr-2"></i>Tạo phiếu nhập
                 </button>
-            </form>
+            </a>
+
+{{--            </form>--}}
         </div>
     <!-- PAGE-HEADER END -->
 @endsection

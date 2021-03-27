@@ -18,7 +18,7 @@ class CreateExportsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('import_id');
             $table->text('note')->nullable();
-            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('status')->default(0)->comment("0 => Chờ xuất | 1 => Đã xuất");
             $table->timestamps();
         });
     }

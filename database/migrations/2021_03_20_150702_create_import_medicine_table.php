@@ -19,9 +19,7 @@ class CreateImportMedicineTable extends Migration
             $table->integer('price')->nullable()->comment("Giá nhập");
             $table->integer('amount')->default(0)->comment("Số lượng");
             $table->string('unit')->comment("Đơn vị nhập");
-//            $table->bigInteger('exp_id')->nullable()->comment("Hạn xử dụng");
-            $table->tinyInteger('status')->default(0)->comment("0 => Chưa kiểm | 1 => Đã kiểm");
-            $table->timestamps();
+            $table->text('note')->nullable()->comment("Ghi chú");
         });
     }
 
@@ -32,6 +30,6 @@ class CreateImportMedicineTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('medicine_import');
+        Schema::dropIfExists('import_medicine');
     }
 }
