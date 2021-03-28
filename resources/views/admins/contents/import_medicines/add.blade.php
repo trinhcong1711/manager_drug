@@ -73,27 +73,25 @@
                                 <table id="import_datatable" class="table card-table table-vcenter text-nowrap">
                                     <thead>
                                     <tr>
-                                        <th>STT</th>
-                                        <th>Tên</th>
+                                        <th>Tên thuốc</th>
                                         <th>Số lượng</th>
-                                        <th>Số lượng</th>
+                                        <th>đơn vị tính</th>
                                         <th>Ghi chú</th>
                                         <th>Xóa</th>
                                     </tr>
                                     </thead>
                                     <tbody class="list_medicine">
-                                    @foreach($medicines as $k=>$medicine)
-                                        <tr class="row-medicine" data-k_array="{{$k}}">
-                                            <th>{{$k+1}}<input type="number" name="medicine_id[]"
-                                                               value="{{$medicine->id}}" hidden></th>
-                                            <th>{{$medicine->name}}</th>
+                                    @foreach($medicines as $medicine)
+                                        <tr class="row-medicine">
+                                            <th>{{$medicine->name}}<input type="number" name="medicine_id[]"
+                                                                          value="{{$medicine->id}}" hidden></th>
                                             <th>
                                                 <input type="number" class="form-control"
-                                                       name="import_medicine[{{$k}}][amount]"
+                                                       name="amounts[]"
                                                        value=1>
                                             </th>
                                             <th>
-                                                <select name="import_medicine[{{$k}}][unit]"
+                                                <select name="units[]"
                                                         class="form-control select2 custom-select"
                                                         data-placeholder="Chọn đơn vị tính">
                                                     <option label="Chọn đơn vị tính"></option>
@@ -105,14 +103,12 @@
                                                 </select>
                                             </th>
                                             <th>
-                                                <textarea class="form-control" name="import_medicine[{{$k}}][note]"
+                                                <textarea class="form-control" name="notes[]"
                                                           rows="1"></textarea>
                                             </th>
                                             <th>
                                                 <div class="btn-list">
-                                                    <button type="button" class="btn btn-icon  btn-red"
-                                                            data-toggle="tooltip"
-                                                            data-title="Xóa"><i class="ti-close"></i></button>
+                                                    <button type="button" class="btn btn-icon remove_medicine btn-red"><i class="ti-close"></i></button>
                                                 </div>
                                             </th>
                                         </tr>
@@ -145,31 +141,43 @@
         $(document).ready(function () {
             $("#add_medicine").keyup(function () {
                 let keyword = $(this).val();
-                $.ajax({
-                    url: "{{route("admin.import_medicine.ajaxSearchMedicine")}}",
-                    method: "get",
-                    data: {
-                        keyword: keyword
-                    },
-                    success: function (result) {
-                        $(".search-result").html(result);
-                    }
-                })
+                if (keyword === "") {
+                    $(".search-result").hide();
+                } else {
+                    $.ajax({
+                        url: "{{route("admin.import_medicine.ajaxSearchMedicine")}}",
+                        method: "get",
+                        data: {
+                            keyword: keyword
+                        },
+                        success: function (result) {
+                            $(".search-result").html(result);
+                            $(".search-result").show();
+                        }
+                    })
+                }
+
             });
             $("body").on('click', ".row-search", function () {
                 let medicine_id = $(this).data("medicine_id");
-                let k_array = $(".row-medicine").last().data("k_array");
-                $.ajax({
-                    url: "{{route("admin.import_medicine.ajaxAddImportMedicine")}}",
-                    method: "get",
-                    data: {
-                        id: medicine_id,
-                        k: k_array
-                    },
-                    success: function (result) {
-                        $(".list_medicine").append(result);
-                    }
-                })
+                let selected = $(this).data("selected");
+                let that = $(this);
+                if(selected ===0){
+                    $.ajax({
+                        url: "{{route("admin.import_medicine.ajaxAddImportMedicine")}}",
+                        method: "get",
+                        data: {
+                            id: medicine_id
+                        },
+                        success: function (result) {
+                            $(".list_medicine").before(result);
+                            that.data("selected",1);
+                        }
+                    });
+                }
+            });
+            $("body").on('click', ".remove_medicine", function () {
+               $(this).parents(".row-medicine").remove()
             });
         })
     </script>

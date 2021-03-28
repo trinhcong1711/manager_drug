@@ -9,11 +9,9 @@
             </thead>
             <tbody>
             @foreach($medicines as $medicine)
-                <tr class="row-search" data-medicine_id="{{$medicine->id}}">
+                <tr class="row-search" data-medicine_id="{{$medicine->id}}" data-selected="0">
                     <td class="medicine_name">{{$medicine->name}}</td>
                     <td>{{number_format($medicine->inventory,0,"",",")}}</td>
-                    <td>{{number_format($medicine->inventory,0,"",",")}}</td>
-
                 </tr>
             @endforeach
             </tbody>

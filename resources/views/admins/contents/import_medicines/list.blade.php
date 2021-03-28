@@ -34,6 +34,7 @@
                                 <th>Ghi chú</th>
                                 <th>Tổng giá</th>
                                 <th>Trạng thái</th>
+                                <th>Tải về</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -61,9 +62,10 @@
                     {data: 'user_id', name: 'user_id'},
                     {data: 'created_at', name: 'created_at'},
                     {data: 'checked_at', name: 'checked_at'},
-                    {data: 'note', name: 'name'},
+                    {data: 'note', name: 'note'},
                     {data: 'price', name: 'price', orderable: false, searchable: false},
-                    {data: 'status', name: 'package'},
+                    {data: 'status', name: 'status'},
+                    {data: 'export', name: 'export'},
                 ],
             });
         });

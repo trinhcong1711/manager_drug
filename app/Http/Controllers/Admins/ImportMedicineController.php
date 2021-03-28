@@ -29,7 +29,9 @@ class ImportMedicineController extends CURDController
                 return number_format(123, 0, "", ",");
             })->editColumn('status', function ($import) {
                 return $import->status == 0 ? "Chưa kiểm" : "Đã kiểm";
-            })->rawColumns(['user_id', 'price', 'status'])->make(true);
+            })->editColumn('export', function ($import) {
+                return '<i class="ti-import "></i>';
+            })->rawColumns(['user_id','export' ,'price', 'status'])->make(true);
     }
 
     protected function getAdd(MedicinesRepositoryEloquent $medicinesRepository)
@@ -44,7 +46,20 @@ class ImportMedicineController extends CURDController
             'user_id' => 1,
         ]);
         if ($importMedicine) {
-            $dataAttach = array_combine($request->get("medicine_id"),$request->get("import_medicine"));
+            $amounts = $request->get("amounts");
+            $units = $request->get("units");
+            $notes = $request->get("notes");
+            $import_medicines =[];
+            if (!empty($amounts)){
+                foreach($amounts as $key=>$amount){
+                    $import_medicines[]=[
+                        'amount'=>$amount,
+                        'unit'=>$units[$key],
+                        'note'=>$notes[$key]
+                    ];
+                }
+            }
+            $dataAttach = array_combine($request->get("medicine_id"),$import_medicines);
             $importMedicine->medicines()->attach($dataAttach);
             Alert::success('Thành công', 'Thêm mới thành công');
             return redirect(route('admin.import_medicine.getIndex'));
@@ -101,15 +116,13 @@ class ImportMedicineController extends CURDController
     protected function ajaxAddImportMedicine(Request $request, MedicinesRepositoryEloquent $medicines)
     {
         $data = [];
-        if ($request->has('id') && $request->has('k')) {
+        if ($request->has('id')) {
             $id = $request->get('id');
-            $k = $request->get('k');
-            $medicine = $medicines->select('name', 'inventory', 'id')->with('units')
+            $medicine = $medicines->select('name', 'inventory', 'status', 'id')->with('units')
                 ->find($id);
-//            if (is_object($medicine) && $medicine->status == 1) {
+            if (is_object($medicine) && ($medicine->status == 1)) {
                 $data['medicine'] = $medicine;
-                $data['k'] = $k + 1;
-//            }
+            }
         }
         return view('admins.ajax.add_medicine_to_import',$data);
     }
