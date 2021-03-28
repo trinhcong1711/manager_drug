@@ -5,6 +5,38 @@
 
     <!-- SELECT2 CSS -->
     <link href="{{URL::asset('assets/plugins/select2/select2.min.css')}}" rel="stylesheet"/>
+    <style>
+        .search {
+            width: 100%;
+            position: relative;
+        }
+
+        .search-result {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 9;
+            width: 100%;
+            background: #ccc;
+        }
+
+        tr.row-search:hover {
+            background: #efa0b8;
+        }
+
+        tr.row-search {
+            cursor: pointer;
+        }
+    </style>
+@endsection
+@section('page-header')
+    <div class="search">
+        <input type="text" name="search" class="form-control" id="add_medicine"
+               placeholder="Nhập tên thuốc muốn thêm vào danh sách nhập....">
+        <div class="search-result"></div>
+    </div>
+
+
 @endsection
 @section('content')
 
@@ -32,7 +64,9 @@
                                     </button>
                                 </div>
                             </div>
+
                         </div>
+
                         <div class="card-body">
 
                             <div class="row">
@@ -47,9 +81,9 @@
                                         <th>Xóa</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody class="list_medicine">
                                     @foreach($medicines as $k=>$medicine)
-                                        <tr>
+                                        <tr class="row-medicine" data-k_array="{{$k}}">
                                             <th>{{$k+1}}<input type="number" name="medicine_id[]"
                                                                value="{{$medicine->id}}" hidden></th>
                                             <th>{{$medicine->name}}</th>
@@ -107,4 +141,36 @@
     <script src="{{ URL::asset('assets/plugins/date-picker/jquery-ui.js') }}"></script>
     <script src="{{ URL::asset('assets/plugins/time-picker/jquery.timepicker.js') }}"></script>
     <script src="{{ URL::asset('assets/plugins/time-picker/toggles.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $("#add_medicine").keyup(function () {
+                let keyword = $(this).val();
+                $.ajax({
+                    url: "{{route("admin.import_medicine.ajaxSearchMedicine")}}",
+                    method: "get",
+                    data: {
+                        keyword: keyword
+                    },
+                    success: function (result) {
+                        $(".search-result").html(result);
+                    }
+                })
+            });
+            $("body").on('click', ".row-search", function () {
+                let medicine_id = $(this).data("medicine_id");
+                let k_array = $(".row-medicine").last().data("k_array");
+                $.ajax({
+                    url: "{{route("admin.import_medicine.ajaxAddImportMedicine")}}",
+                    method: "get",
+                    data: {
+                        id: medicine_id,
+                        k: k_array
+                    },
+                    success: function (result) {
+                        $(".list_medicine").append(result);
+                    }
+                })
+            });
+        })
+    </script>
 @endsection

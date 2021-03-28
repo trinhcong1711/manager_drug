@@ -2,7 +2,6 @@
 
 namespace App\Entities;
 
-use App\Repositories\MedicinesRepositoryEloquent;
 use Illuminate\Database\Eloquent\Model;
 
 class Medicine extends Model
@@ -17,7 +16,7 @@ class Medicine extends Model
 //    Lấy danh sách thuốc cần nhập thêm
     public function scopeRests($query)
     {
-        return $query->where('status', 1)->where('rest', '>', 'inventory');
+        return $query->where('status', 1)->where('rest', '>=', 'inventory')->orderBy("id", "desc");
     }
 
     public function imports()

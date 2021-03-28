@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admins;
 
-use App\Entities\Medicine;
 use App\Http\Controllers\CURD\CURDController;
 use App\Repositories\ImportRepositoryEloquent;
 use App\Repositories\MedicinesRepositoryEloquent;
@@ -18,7 +17,7 @@ class ImportMedicineController extends CURDController
 
     protected function data(ImportRepositoryEloquent $imports)
     {
-        $import = $imports->select('*');
+        $import = $imports->orderBy("id", "desc")->select('*');
         return Datatables::of($import)
             ->editColumn('user_id', function ($import) {
                 return $this->actionCurd($import, 'admin.import_medicine.getEdit', '', 'user');
@@ -35,8 +34,7 @@ class ImportMedicineController extends CURDController
 
     protected function getAdd(MedicinesRepositoryEloquent $medicinesRepository)
     {
-        $data['medicines'] = Medicine::rests()->with('units')->get();
-
+        $data['medicines'] = $medicinesRepository->rests()->with('units')->get();
         return view('admins.contents.import_medicines.add',$data);
     }
 
@@ -82,20 +80,38 @@ class ImportMedicineController extends CURDController
 
     }
 //  Hàm tìm kiếm thuốc
-    protected function ajaxSearchMedicine(Request $request, MedicinesRepositoryEloquent $medicines)
+    protected function ajaxSearchMedicine(Request $request, MedicinesRepositoryEloquent $medicinesRepository)
     {
-        if ($request->has('inventory')){
-                $inventory = $request->get('inventory');
-                $medicine = $medicines->select('name', 'amount', 'id')
-                                        ->where('inventory', '<=',  $inventory)
-                                        ->where('status', 1)->get();
+        if ($request->has('keyword')) {
+            $keyword = $request->get('keyword');
+            $medicineRestId = $medicinesRepository->rests()->with('units')->pluck("id");
+            $medicine = $medicinesRepository->select('name', 'inventory', 'id')
+                ->where('name', 'like', "%" . $keyword . "%")
+//                ->whereNotIn('id', $medicineRestId)
+                ->where('status', 1)->get();
                 $data['medicines']=[];
                 if ($medicine->count() > 0) {
                     $data['medicines'] = $medicine;
                 }
                 return view('admins.ajax.search_list_medicine',$data);
-
         }
+    }
+
+//  Hàm thêm thuốc vào danh sách nhập hàng
+    protected function ajaxAddImportMedicine(Request $request, MedicinesRepositoryEloquent $medicines)
+    {
+        $data = [];
+        if ($request->has('id') && $request->has('k')) {
+            $id = $request->get('id');
+            $k = $request->get('k');
+            $medicine = $medicines->select('name', 'inventory', 'id')->with('units')
+                ->find($id);
+//            if (is_object($medicine) && $medicine->status == 1) {
+                $data['medicine'] = $medicine;
+                $data['k'] = $k + 1;
+//            }
+        }
+        return view('admins.ajax.add_medicine_to_import',$data);
     }
 
 }

@@ -2,29 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b4f10b91-2a09-4a3d-bd43-235e16b4caed" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/views/admins/ajax/add_medicine_to_import.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/framework/laravel-excel/laravel-excel-cG9ASBNx6uNEyXJlqRU6NLuaJj74fl70.tmp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Entities/Import.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Entities/Import.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Entities/Medicine.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Entities/Medicine.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Exports/MedicineExport.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exports/MedicineExport.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admins/ImportMedicineController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admins/ImportMedicineController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admins/MedicineController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admins/MedicineController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CURD/CURDController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CURD/CURDController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Imports/MedicineImport.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Imports/MedicineImport.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_16_140244_create_medicines_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_16_140244_create_medicines_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_20_150537_create_imports_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_20_150537_create_imports_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_20_150553_create_exports_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_20_150553_create_exports_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_20_150702_create_import_medicine_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_20_150702_create_import_medicine_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_20_150843_create_export_medicine_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_20_150843_create_export_medicine_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admins/ajax/search_list_medicine.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/ajax/search_list_medicine.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/import_medicines/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/import_medicines/add.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/import_medicines/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/import_medicines/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/import_medicines/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/import_medicines/list.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/medicines/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/medicines/add.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/medicines/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/medicines/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/medicines/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/medicines/list.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admins/exports/medicine.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/exports/medicine.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admins/exports/medicine_default.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/exports/medicine_default.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admins/layouts/app-sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/layouts/app-sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,7 +19,9 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution />
+    <execution>
+      <executable />
+    </execution>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -166,19 +155,12 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/admins/ajax" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\laragon\www\test" />
-      <recent name="C:\laragon\www\manager_drug\app\Exports" />
-      <recent name="C:\laragon\www\manager_drug\resources\views\admins\exports" />
-      <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents" />
-      <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\bills" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\laragon\www\manager_drug\public\excel_default" />
       <recent name="C:\laragon\www\manager_drug\app\Http\Controllers\Admin" />
@@ -186,6 +168,25 @@
       <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\import_product" />
       <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\employees" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\laragon\www\manager_drug\resources\views\admins\ajax" />
+      <recent name="C:\laragon\www\test" />
+      <recent name="C:\laragon\www\manager_drug\app\Exports" />
+      <recent name="C:\laragon\www\manager_drug\resources\views\admins\exports" />
+      <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -193,7 +194,7 @@
       <method v="2" />
     </configuration>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -261,6 +262,8 @@
       <workItem from="1616398342852" duration="7643000" />
       <workItem from="1616407090796" duration="652000" />
       <workItem from="1616639471560" duration="4964000" />
+      <workItem from="1616854990147" duration="5084000" />
+      <workItem from="1616931367789" duration="2847000" />
     </task>
     <servers />
   </component>
@@ -272,12 +275,13 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

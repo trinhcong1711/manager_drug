@@ -1,26 +1,40 @@
 @if(!empty($medicines))
+    <div class="table-responsive">
+        <table class="table card-table table-vcenter text-nowrap table-secondary">
+            <thead  class="bg-secondary text-white">
+            <tr>
+                <th class="text-white">Tên</th>
+                <th class="text-white">Tồn</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($medicines as $medicine)
+                <tr class="row-search" data-medicine_id="{{$medicine->id}}">
+                    <td class="medicine_name">{{$medicine->name}}</td>
+                    <td>{{number_format($medicine->inventory,0,"",",")}}</td>
+                    <td>{{number_format($medicine->inventory,0,"",",")}}</td>
 
-    @foreach($medicines as $medicine)
-    <tr>
-        <th scope="row">
-            <label class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" name="example-checkbox1"
-                       value="option1" checked="">
-                <span class="custom-control-label"></span>
-            </label>
-        </th>
-        <td>1</td>
-        <td contenteditable="true">{{ $medicine->name . ' - ' . $medicine->amount }}</td>
-        <td contenteditable="true"></td>
-        <td contenteditable="true">0</td>
-        <td>
-            <div class="btn-list">
-                <button type="button" class="btn btn-icon  btn-gray" data-toggle="tooltip"
-                        data-title="Sửa & Lưu"><i class="ti-pencil-alt"></i></button>
-                <button type="button" class="btn btn-icon  btn-red" data-toggle="tooltip"
-                        data-title="Xóa"><i class="ti-close"></i></button>
-            </div>
-        </td>
-    </tr>
-    @endforeach
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
+    @else
+    <div class="table-responsive">
+        <table class="table card-table table-vcenter text-nowrap table-secondary">
+            <thead>
+            <tr>
+                <th>Tên</th>
+                <th>Tồn</th>
+            </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td colspan="2">Không tìm thấy!</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 @endif
+
