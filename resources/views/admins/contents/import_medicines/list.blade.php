@@ -68,6 +68,11 @@
                     {data: 'export', name: 'export'},
                 ],
             });
+            $("body").on('click', ".export_hd", function () {
+                let import_id = $(this).data("import_id");
+                let url_export = "{{route("admin.import_medicine.export")}}" + "?id=" + import_id;
+                window.location.href = url_export;
+            });
         });
     </script>
 @endsection

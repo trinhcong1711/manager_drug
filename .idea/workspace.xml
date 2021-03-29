@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b4f10b91-2a09-4a3d-bd43-235e16b4caed" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/views/admins/exports/import_medicine.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Entities/ImportMedicine.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Entities/ImportMedicine.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admins/ImportMedicineController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admins/ImportMedicineController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admins/ajax/add_medicine_to_import.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/ajax/add_medicine_to_import.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admins/ajax/search_list_medicine.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/ajax/search_list_medicine.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/import_medicines/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/import_medicines/add.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/import_medicines/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/import_medicines/list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -153,25 +153,25 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/admins/ajax" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/admins/exports" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\laragon\www\manager_drug\resources\views\admins\exports" />
+      <recent name="C:\laragon\www\manager_drug\resources\views\admins\ajax" />
+      <recent name="C:\laragon\www\test" />
+      <recent name="C:\laragon\www\manager_drug\app\Exports" />
+      <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\laragon\www\manager_drug\public\excel_default" />
       <recent name="C:\laragon\www\manager_drug\app\Http\Controllers\Admin" />
       <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\inventory" />
       <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\import_product" />
       <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents\employees" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\laragon\www\manager_drug\resources\views\admins\ajax" />
-      <recent name="C:\laragon\www\test" />
-      <recent name="C:\laragon\www\manager_drug\app\Exports" />
-      <recent name="C:\laragon\www\manager_drug\resources\views\admins\exports" />
-      <recent name="C:\xampp\htdocs\manager_drug\resources\views\admins\contents" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -262,7 +262,9 @@
       <workItem from="1616639471560" duration="4964000" />
       <workItem from="1616854990147" duration="5084000" />
       <workItem from="1616931367789" duration="3068000" />
-      <workItem from="1616940390080" duration="5399000" />
+      <workItem from="1616940390080" duration="5488000" />
+      <workItem from="1617021392671" duration="1430000" />
+      <workItem from="1617025403833" duration="3672000" />
     </task>
     <servers />
   </component>

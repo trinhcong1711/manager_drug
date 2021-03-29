@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admins;
 
+use App\Exports\ImPortMedicineExport;
 use App\Http\Controllers\CURD\CURDController;
 use App\Repositories\ImportRepositoryEloquent;
 use App\Repositories\MedicinesRepositoryEloquent;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\DataTables\DataTables;
 
@@ -30,7 +32,7 @@ class ImportMedicineController extends CURDController
             })->editColumn('status', function ($import) {
                 return $import->status == 0 ? "Chưa kiểm" : "Đã kiểm";
             })->editColumn('export', function ($import) {
-                return '<i class="ti-import "></i>';
+                return '<i class="ti-import export_hd" style="cursor:pointer" data-import_id="'.$import->id.'"></i>';
             })->rawColumns(['user_id','export' ,'price', 'status'])->make(true);
     }
 
@@ -93,6 +95,25 @@ class ImportMedicineController extends CURDController
     protected function postEdit()
     {
 
+    }
+
+    public function export(Request $request,ImportRepositoryEloquent $importRepository)
+    {
+        if ($request->has('id')){
+            $import = $importRepository->with('medicines')->find($request->get('id'));
+            if (is_object($import)){
+                $listExports = $import->medicines;
+                if (count($listExports)>0){
+                    $data['listExports'] = $listExports;
+                    $data['import'] = $import;
+                    return Excel::download(new ImPortMedicineExport($data), "HĐ_nhập_".$import->created_at->format('d_m_Y').'.xlsx');
+                }
+            }
+        }
+        else{
+            Alert::success('Thất bại!', 'Không tìm thấy hóa đơn nhập!');
+            return redirect(route('admin.import_medicine.getIndex'));
+        }
     }
 //  Hàm tìm kiếm thuốc
     protected function ajaxSearchMedicine(Request $request, MedicinesRepositoryEloquent $medicinesRepository)

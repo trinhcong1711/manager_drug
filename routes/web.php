@@ -35,6 +35,7 @@ Route::post('/medicine/{id}', 'Admins\MedicineController@postEdit')->name('admin
 
 Route::get('/import-medicine/ajax-search-medicine', 'Admins\ImportMedicineController@ajaxSearchMedicine')->name('admin.import_medicine.ajaxSearchMedicine');
 Route::get('/import-medicine/ajax-add-import-medicine', 'Admins\ImportMedicineController@ajaxAddImportMedicine')->name('admin.import_medicine.ajaxAddImportMedicine');
+Route::get('/import-medicine/export-medicine', 'Admins\ImportMedicineController@export')->name('admin.import_medicine.export');
 
 Route::get('/import-medicine', 'Admins\ImportMedicineController@getIndex')->name('admin.import_medicine.getIndex');
 Route::get('/import-medicine/data', 'Admins\ImportMedicineController@data')->name('admin.import_medicine.data');
