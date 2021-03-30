@@ -59,13 +59,13 @@
                 ajax: '{{ route('admin.import_medicine.data') }}',
                 columns: [
                     {data: 'id', name: 'id'},
-                    {data: 'user_id', name: 'user_id'},
+                    {data: 'user_id', name: 'user_id', orderable: false, searchable: false},
                     {data: 'created_at', name: 'created_at'},
                     {data: 'checked_at', name: 'checked_at'},
-                    {data: 'note', name: 'note'},
+                    {data: 'note', name: 'note', orderable: false, searchable: false},
                     {data: 'price', name: 'price', orderable: false, searchable: false},
                     {data: 'status', name: 'status'},
-                    {data: 'export', name: 'export'},
+                    {data: 'export', name: 'export', orderable: false, searchable: false},
                 ],
             });
             $("body").on('click', ".export_hd", function () {

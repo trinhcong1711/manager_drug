@@ -35,8 +35,6 @@
                placeholder="Nhập tên thuốc muốn thêm vào danh sách nhập....">
         <div class="search-result"></div>
     </div>
-
-
 @endsection
 @section('content')
 
@@ -55,7 +53,7 @@
                                 <div class="btn-list text-right">
                                     <button type="button" class="btn btn-outline-default" data-toggle="tooltip"
                                             title="Quay về trang danh sách thuốc">
-                                        <a href="{{route('admin.medicine.getIndex')}}" style="color: inherit;"><i
+                                        <a href="{{route('admin.import_medicine.getIndex')}}" style="color: inherit;"><i
                                                 class="icon icon-action-undo mr-2"></i>Quay lại</a>
                                     </button>
                                     <button type="submit" class="btn btn-primary"

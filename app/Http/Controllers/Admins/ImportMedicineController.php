@@ -6,6 +6,7 @@ use App\Exports\ImPortMedicineExport;
 use App\Http\Controllers\CURD\CURDController;
 use App\Repositories\ImportRepositoryEloquent;
 use App\Repositories\MedicinesRepositoryEloquent;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -19,7 +20,7 @@ class ImportMedicineController extends CURDController
 
     protected function data(ImportRepositoryEloquent $imports)
     {
-        $import = $imports->orderBy("id", "desc")->select('*');
+        $import = $imports->with('medicines')->orderBy("id", "desc")->select('*');
         return Datatables::of($import)
             ->editColumn('user_id', function ($import) {
                 return $this->actionCurd($import, 'admin.import_medicine.getEdit', '', 'user');
@@ -28,11 +29,18 @@ class ImportMedicineController extends CURDController
             })->editColumn('checked_at', function ($import) {
                 return $this->formatDate($import->checked_at);
             })->editColumn('price', function ($import) {
-                return number_format(123, 0, "", ",");
+                $price=0;
+                $lists = $import->medicines;
+                if (count($lists)>0){
+                    foreach ($lists as $list) {
+                        $price += $list->pivot->price;
+                    }
+                }
+                return number_format($price, 0, "", ",");
             })->editColumn('status', function ($import) {
                 return $import->status == 0 ? "Chưa kiểm" : "Đã kiểm";
             })->editColumn('export', function ($import) {
-                return '<i class="ti-import export_hd" style="cursor:pointer" data-import_id="'.$import->id.'"></i>';
+                return '<i class="ti-import export_hd btn btn-success" title="Tải xuống" style="cursor:pointer" data-import_id="'.$import->id.'"></i>';
             })->rawColumns(['user_id','export' ,'price', 'status'])->make(true);
     }
 
@@ -92,9 +100,40 @@ class ImportMedicineController extends CURDController
         }
     }
 
-    protected function postEdit()
+    protected function postEdit($id, Request $request, ImportRepositoryEloquent $importRepository)
     {
-
+        $importMedicine = $importRepository->find($id);
+        if ($importMedicine) {
+            $amounts = $request->get("amounts");
+            $units = $request->get("units");
+            $notes = $request->get("notes");
+            $prices = $request->get("prices");
+            $import_medicines =[];
+            if (!empty($amounts)){
+                foreach($amounts as $key=>$amount){
+                    $import_medicines[]=[
+                        'amount'=>$amount,
+                        'unit'=>$units[$key],
+                        'note'=>$notes[$key],
+                        'price'=>$prices[$key]
+                    ];
+                }
+            }
+            $dataSync = array_combine($request->get("medicine_id"),$import_medicines);
+            $save = $importMedicine->medicines()->sync($dataSync);
+            if ($save){
+                if ($request->has("check_invoice") && $request->get("check_invoice")==1){
+                    $importMedicine->update(['checked_at'=>Carbon::now(), 'status'=>1]);
+                    Alert::success('Kiểm hàng hoàn tất!');
+                    return redirect(route('admin.import_medicine.getIndex'));
+                }
+            }
+            Alert::success('Thành công', 'Chỉnh sửa thành công');
+            return redirect(route('admin.import_medicine.getIndex'));
+        } else {
+            Alert::error('Lỗi', 'Có lỗi xảy ra!');
+            return redirect()->back();
+        }
     }
 
     public function export(Request $request,ImportRepositoryEloquent $importRepository)
@@ -123,7 +162,7 @@ class ImportMedicineController extends CURDController
             $medicineRestId = $medicinesRepository->rests()->with('units')->pluck("id");
             $medicine = $medicinesRepository->select('name', 'inventory', 'id')
                 ->where('name', 'like', "%" . $keyword . "%")
-//                ->whereNotIn('id', $medicineRestId)
+                ->whereNotIn('id', $medicineRestId)
                 ->where('status', 1)->get();
                 $data['medicines']=[];
                 if ($medicine->count() > 0) {
@@ -144,6 +183,12 @@ class ImportMedicineController extends CURDController
             if (is_object($medicine) && ($medicine->status == 1)) {
                 $data['medicine'] = $medicine;
             }
+        }
+        if ($request->has('price')){
+            $data['price'] = true;
+        }
+        if ($request->has('status_import')){
+            $data['status_import'] = $request->get('status_import');
         }
         return view('admins.ajax.add_medicine_to_import',$data);
     }

@@ -15,9 +15,9 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/ban-hang', function () {
-    return view('admins.contents.cart');
-});
+Route::get('/sell',  'Sells\SellController@getIndex')->name('sell.getIndex');
+Route::get('/sell/ajax-search-medicine',  'Sells\SellController@ajaxSearchMedicine')->name('sell.ajax.ajaxSearchMedicine');
+Route::get('/sell/ajax-sell-add-medicine',  'Sells\SellController@ajaxSellAddMedicine')->name('sell.ajax.ajaxSellAddMedicine');
 
 Route::get('/medicine', 'Admins\MedicineController@getIndex')->name('admin.medicine.getIndex');
 Route::get('/medicine/export', 'Admins\MedicineController@export')->name('admin.medicine.export');

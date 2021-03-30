@@ -8,6 +8,29 @@
 
     <!-- SELECT2 CSS -->
     <link href="{{URL::asset('assets/plugins/select2/select2.min.css')}}" rel="stylesheet"/>
+    <style>
+        .search {
+            width: 100%;
+            position: relative;
+        }
+
+        .search_medicine_result {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 9;
+            width: 100%;
+            background: #ccc;
+        }
+
+        tr.row-search:hover {
+            background: #efa0b8;
+        }
+
+        tr.row-search {
+            cursor: pointer;
+        }
+    </style>
 @endsection
 @section('page-header')
     <!-- PAGE-HEADER -->
@@ -28,58 +51,24 @@
                     <h3 class="card-title">Thông tin đơn hàng</h3>
                 </div>
                 <div class="card-body">
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="input"
+                    <div class="form-group search">
+                        <input type="text" class="form-control" id="search_medicine" name="search_medicine"
                                placeholder="Tìm kiếm theo tên thuốc, mã vạch">
+                        <div class="search_medicine_result"></div>
                     </div>
-
                     <div class="table-responsive">
                         <table class="table card-table table-vcenter text-nowrap">
                             <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Tên Thuốc</th>
-                                <th>Hạn Sử Dụng</th>
-                                <th>Đơn Vị Tính</th>
                                 <th>S.Lượng</th>
-                                <th>Giá Bán</th>
+                                <th>Giá Bán / Đ.Vị Tính</th>
                                 <th>Thành Tiền</th>
                                 <th></th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>
-                                    <p class="title_product">Joan Powell </p>
-                                    <span class="specification_product">3g x 10 hộp x 10 gói</span>
-                                </td>
-                                <td>15/06/2022</td>
-                                <td>
-                                    <select class="form-control select2 custom-select"
-                                            data-placeholder="Chọn đơn vị tính">
-                                        <option label="Chọn đơn vị tính">
-                                        </option>
-                                        <option value="1">Viên</option>
-                                        <option value="2">Vỉ</option>
-                                        <option value="3">Hộp</option>
-                                        <option value="4">Gói</option>
-                                        <option value="5">Lọ</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <input type="text" class="price_customer border-0" name="input"
-                                           placeholder="Nhập số lượng...">
-                                </td>
-                                <td>
-                                    <input type="text" class="price_customer border-0" name="input"
-                                           placeholder="Nhập giá bán...">
-                                </td>
-                                <td>100000</td>
-                                <td>
-                                    <i class="ti-close"></i>
-                                </td>
-                            </tr>
+                            <tbody class="list_medicines">
                             </tbody>
                         </table>
                     </div>
@@ -232,4 +221,49 @@
     <script src="{{ URL::asset('assets/plugins/date-picker/jquery-ui.js') }}"></script>
     <script src="{{ URL::asset('assets/plugins/time-picker/jquery.timepicker.js') }}"></script>
     <script src="{{ URL::asset('assets/plugins/time-picker/toggles.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $("#search_medicine").keyup(function () {
+                let keyword = $(this).val();
+                if (keyword === "") {
+                    $(".search_medicine_result").hide();
+                } else {
+                    $.ajax({
+                        url: "{{route("sell.ajax.ajaxSearchMedicine")}}",
+                        method: "get",
+                        data: {
+                            keyword: keyword
+                        },
+                        success: function (result) {
+                            $(".search_medicine_result").html(result);
+                            $(".search_medicine_result").show();
+                        }
+                    })
+                }
+
+            });
+            $("body").on('click', ".row-search", function () {
+                let medicine_id = $(this).data("medicine_id");
+                let selected = $(this).data("selected");
+                console.log(selected);
+                let that = $(this);
+                if (selected === 0) {
+                    $.ajax({
+                        url: "{{route("sell.ajax.ajaxSellAddMedicine")}}",
+                        method: "get",
+                        data: {
+                            id: medicine_id
+                        },
+                        success: function (result) {
+                            $(".list_medicines").before(result);
+                            that.attr("data-select", 1);
+                        }
+                    });
+                }
+            });
+            $("body").on('click', ".remove_medicine", function () {
+                $(this).parents(".row_sell").remove()
+            });
+        })
+    </script>
 @endsection
