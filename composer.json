@@ -12,7 +12,7 @@
         "ext-json": "*",
         "barryvdh/laravel-debugbar": "^3.4",
         "fideloper/proxy": "^4.0",
-        "laravel/framework": "5.8.*",
+        "laravel/framework": "6.20.*",
         "laravel/tinker": "^1.0",
         "maatwebsite/excel": "^3.1",
         "prettus/l5-repository": "^2.6",
