@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/sell',  'Sells\SellController@getIndex')->name('sell.getIndex');
+Route::post('/sell',  'Sells\SellController@postSell')->name('sell.postSell');
 Route::get('/sell/ajax-search-medicine',  'Sells\SellController@ajaxSearchMedicine')->name('sell.ajax.ajaxSearchMedicine');
 Route::get('/sell/ajax-sell-add-medicine',  'Sells\SellController@ajaxSellAddMedicine')->name('sell.ajax.ajaxSellAddMedicine');
 

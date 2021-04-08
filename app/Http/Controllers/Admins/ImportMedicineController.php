@@ -6,6 +6,7 @@ use App\Exports\ImPortMedicineExport;
 use App\Http\Controllers\CURD\CURDController;
 use App\Repositories\ImportRepositoryEloquent;
 use App\Repositories\MedicinesRepositoryEloquent;
+use App\Repositories\UnitRepositoryEloquent;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -100,10 +101,11 @@ class ImportMedicineController extends CURDController
         }
     }
 
-    protected function postEdit($id, Request $request, ImportRepositoryEloquent $importRepository)
+    protected function postEdit($id, Request $request, ImportRepositoryEloquent $importRepository, UnitRepositoryEloquent $unitRepository, MedicinesRepositoryEloquent $medicinesRepository)
     {
         $importMedicine = $importRepository->find($id);
-        if ($importMedicine) {
+        if ($importMedicine && $importMedicine->status != 1) {
+            $medicine_ids = $request->get("medicine_id");
             $amounts = $request->get("amounts");
             $units = $request->get("units");
             $notes = $request->get("notes");
@@ -119,19 +121,31 @@ class ImportMedicineController extends CURDController
                     ];
                 }
             }
-            $dataSync = array_combine($request->get("medicine_id"),$import_medicines);
+            $dataSync = array_combine($medicine_ids, $import_medicines);
             $save = $importMedicine->medicines()->sync($dataSync);
             if ($save){
                 if ($request->has("check_invoice") && $request->get("check_invoice")==1){
                     $importMedicine->update(['checked_at'=>Carbon::now(), 'status'=>1]);
+                    if (!empty($dataSync)) {
+                        foreach ($dataSync as $medicine_id => $value) {
+                            $medicine = $medicinesRepository->find($medicine_id);
+                            if (is_object($medicine)) {
+                                $unit = $medicine->units()->find($value['unit']);
+                                if (is_object($unit)) {
+                                    $total_amount = $medicine->inventory + $value['amount'] * $unit->convert;
+                                    $medicine->update(['inventory' => $total_amount]);
+                                }
+                            }
+                        }
+                    }
                     Alert::success('Kiểm hàng hoàn tất!');
                     return redirect(route('admin.import_medicine.getIndex'));
                 }
             }
-            Alert::success('Thành công', 'Chỉnh sửa thành công');
+            Alert::success('Kiểm hàng thành công!');
             return redirect(route('admin.import_medicine.getIndex'));
         } else {
-            Alert::error('Lỗi', 'Có lỗi xảy ra!');
+            Alert::error('Phiếu nhập đã được kiểm rồi');
             return redirect()->back();
         }
     }
@@ -159,10 +173,11 @@ class ImportMedicineController extends CURDController
     {
         if ($request->has('keyword')) {
             $keyword = $request->get('keyword');
-            $medicineRestId = $medicinesRepository->rests()->with('units')->pluck("id");
+            $medicine_ids = $request->get('medicine_ids');
+//            $medicineRestId = $medicinesRepository->rests()->with('units')->pluck("id");
             $medicine = $medicinesRepository->select('name', 'inventory', 'id')
                 ->where('name', 'like', "%" . $keyword . "%")
-                ->whereNotIn('id', $medicineRestId)
+                ->whereNotIn('id', $medicine_ids)
                 ->where('status', 1)->get();
                 $data['medicines']=[];
                 if ($medicine->count() > 0) {
@@ -178,10 +193,14 @@ class ImportMedicineController extends CURDController
         $data = [];
         if ($request->has('id')) {
             $id = $request->get('id');
-            $medicine = $medicines->select('name', 'inventory', 'status', 'id')->with('units')
-                ->find($id);
-            if (is_object($medicine) && ($medicine->status == 1)) {
-                $data['medicine'] = $medicine;
+            $id_selected = $request->get('id_selected');
+            $check_exits = strpos($id_selected, "|" . $id . "|");
+            if ($check_exits === false) {
+                $medicine = $medicines->select('name', 'inventory', 'status', 'id')->with('units')
+                    ->find($id);
+                if (is_object($medicine) && ($medicine->status == 1)) {
+                    $data['medicine'] = $medicine;
+                }
             }
         }
         if ($request->has('price')){

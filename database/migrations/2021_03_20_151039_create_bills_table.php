@@ -15,8 +15,8 @@ class CreateBillsTable extends Migration
     {
         Schema::create('bills', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('user_id')->nullable()->comment("Bán cho ai?");
-            $table->bigInteger('admin_id')->nullable()->comment("Ai là người bán?");
+            $table->bigInteger('member_id')->nullable()->comment("Bán cho ai?");
+            $table->bigInteger('user_id')->nullable()->comment("Ai là người bán?");
             $table->bigInteger('total')->nullable()->comment("Tổng tiền");
             $table->text('note')->nullable();
             $table->tinyInteger('status')->default(1);

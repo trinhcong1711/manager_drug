@@ -1,6 +1,6 @@
 @if(isset($medicine))
     <tr class="row-medicine">
-        <th>{{$medicine->name}}<input type="number" name="medicine_id[]"
+        <th>{{$medicine->name}}<input type="number" name="medicine_id[]" class="medicine_id"
                                       value="{{$medicine->id}}" hidden></th>
         <th>
             <input type="number" class="form-control"

@@ -90,10 +90,12 @@
                                     </tr>
                                     </thead>
                                     <tbody class="list_medicine">
+                                    @if(!empty($medicines))
                                     @foreach($medicines as $medicine)
                                         @if($import->status!=1)
                                         <tr class="row-medicine">
                                             <th>{{$medicine->name}}<input type="number" name="medicine_id[]"
+                                                                          class="medicine_id"
                                                                           value="{{$medicine->id}}" hidden></th>
                                             <th>
                                                 <input type="number" class="form-control"
@@ -150,6 +152,7 @@
                                             </tr>
                                         @endif
                                     @endforeach
+                                    @endif
                                     </tbody>
                                 </table>
                             </div>
@@ -178,8 +181,12 @@
     @if($import->status!=1)
         <script>
             $(document).ready(function () {
-                $("#add_medicine").keyup(function () {
+                $("body").on('keyup', "#add_medicine",function () {
                     let keyword = $(this).val();
+                    let medicine_ids = [];
+                    $(".medicine_id").each(function () {
+                        medicine_ids.push($(this).val())
+                    });
                     if (keyword === "") {
                         $(".search-result").hide();
                     } else {
@@ -187,7 +194,8 @@
                             url: "{{route("admin.import_medicine.ajaxSearchMedicine")}}",
                             method: "get",
                             data: {
-                                keyword: keyword
+                                keyword: keyword,
+                                medicine_ids: medicine_ids,
                             },
                             success: function (result) {
                                 $(".search-result").html(result);
@@ -200,6 +208,11 @@
                 $("body").on('click', ".row-search", function () {
                     let medicine_id = $(this).data("medicine_id");
                     let selected = $(this).data("selected");
+                    let id_selected = "|";
+                    $(".row_sell").each(function () {
+                        id_selected += $(this).data("id_selected") + "|";
+                    });
+                    $(this).data("selected", 1);
                     let that = $(this);
                     if (selected === 0) {
                         $.ajax({
@@ -211,8 +224,8 @@
                                 status_import: "{{$import->status}}"
                             },
                             success: function (result) {
-                                $(".list_medicine").before(result);
-                                that.data("selected", 1);
+                                $(".list_medicine").prepend(result);
+                                that.hide();
                             }
                         });
                     }

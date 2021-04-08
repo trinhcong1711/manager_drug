@@ -17,12 +17,9 @@ class CreateBillMedicineTable extends Migration
             $table->bigInteger('bill_id');
             $table->bigInteger('medicine_id');
             $table->integer('amount')->nullable()->comment("Số lượng");
-            $table->bigInteger('unit_id')->nullable()->comment("Đơn vị tính");
+            $table->string('unit_name')->nullable()->comment("Đơn vị tính");
             $table->integer('price')->nullable()->comment("Giá bán");
-            $table->bigInteger('exp')->nullable()->comment("Hạn xử dụng");
             $table->integer('total_price')->default(0)->comment("Thành tiền");
-            $table->tinyInteger('status')->default(1);
-            $table->timestamps();
         });
     }
 
