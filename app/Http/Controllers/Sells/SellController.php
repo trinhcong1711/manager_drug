@@ -18,6 +18,7 @@ class SellController extends Controller
                              BillRepositoryEloquent $billRepository,
                              MedicinesRepositoryEloquent $medicinesRepository)
     {
+
         $amounts = $request->get("amount");
         $units = $request->get("unit_id");
         $medicine_id = $request->get("medicine_id");
