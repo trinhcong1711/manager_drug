@@ -15,9 +15,10 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/ban-hang', function () {
-    return view('admins.contents.cart');
-});
+Route::get('/sell',  'Sells\SellController@getIndex')->name('sell.getIndex');
+Route::post('/sell',  'Sells\SellController@postSell')->name('sell.postSell');
+Route::get('/sell/ajax-search-medicine',  'Sells\SellController@ajaxSearchMedicine')->name('sell.ajax.ajaxSearchMedicine');
+Route::get('/sell/ajax-sell-add-medicine',  'Sells\SellController@ajaxSellAddMedicine')->name('sell.ajax.ajaxSellAddMedicine');
 
 Route::get('/medicine', 'Admins\MedicineController@getIndex')->name('admin.medicine.getIndex');
 Route::get('/medicine/export', 'Admins\MedicineController@export')->name('admin.medicine.export');
@@ -33,6 +34,10 @@ Route::post('/medicine/{id}', 'Admins\MedicineController@postEdit')->name('admin
 
 //Nhập hàng
 
+Route::get('/import-medicine/ajax-search-medicine', 'Admins\ImportMedicineController@ajaxSearchMedicine')->name('admin.import_medicine.ajaxSearchMedicine');
+Route::get('/import-medicine/ajax-add-import-medicine', 'Admins\ImportMedicineController@ajaxAddImportMedicine')->name('admin.import_medicine.ajaxAddImportMedicine');
+Route::get('/import-medicine/export-medicine', 'Admins\ImportMedicineController@export')->name('admin.import_medicine.export');
+
 Route::get('/import-medicine', 'Admins\ImportMedicineController@getIndex')->name('admin.import_medicine.getIndex');
 Route::get('/import-medicine/data', 'Admins\ImportMedicineController@data')->name('admin.import_medicine.data');
 Route::get('/import-medicine/add', 'Admins\ImportMedicineController@getAdd')->name('admin.import_medicine.getAdd');
@@ -42,8 +47,6 @@ Route::post('/import-medicine/check/{id}', 'Admins\ImportMedicineController@post
 Route::post('/import-medicine/add', 'Admins\ImportMedicineController@postAdd')->name('admin.import_medicine.postAdd');
 Route::get('/import-medicine/{id}', 'Admins\ImportMedicineController@getEdit')->name('admin.import_medicine.getEdit');
 Route::post('/import-medicine/{id}', 'Admins\ImportMedicineController@postEdit')->name('admin.import_medicine.postEdit');
-
-Route::get('/import-medicine/ajax-search-medicine', 'Admins\ImportMedicineController@ajaxSearchMedicine')->name('admin.import_medicine.ajaxSearchMedicine');
 
 
 Route::get('/nhap-hang/them', function () {

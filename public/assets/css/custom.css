@@ -10,6 +10,7 @@ input.price_customer{
     border-bottom: 1px solid #c2cad8!important;
     border-radius: 0;
     outline: 0!important;
+    width: 120px;
 }
 .tool_tip_item_name {
     display: none;

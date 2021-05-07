@@ -34,6 +34,7 @@
                                 <th>Ghi chú</th>
                                 <th>Tổng giá</th>
                                 <th>Trạng thái</th>
+                                <th>Tải về</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -58,13 +59,19 @@
                 ajax: '{{ route('admin.import_medicine.data') }}',
                 columns: [
                     {data: 'id', name: 'id'},
-                    {data: 'user_id', name: 'user_id'},
+                    {data: 'user_id', name: 'user_id', orderable: false, searchable: false},
                     {data: 'created_at', name: 'created_at'},
                     {data: 'checked_at', name: 'checked_at'},
-                    {data: 'note', name: 'name'},
+                    {data: 'note', name: 'note', orderable: false, searchable: false},
                     {data: 'price', name: 'price', orderable: false, searchable: false},
-                    {data: 'status', name: 'package'},
+                    {data: 'status', name: 'status'},
+                    {data: 'export', name: 'export', orderable: false, searchable: false},
                 ],
+            });
+            $("body").on('click', ".export_hd", function () {
+                let import_id = $(this).data("import_id");
+                let url_export = "{{route("admin.import_medicine.export")}}" + "?id=" + import_id;
+                window.location.href = url_export;
             });
         });
     </script>

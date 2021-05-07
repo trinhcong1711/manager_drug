@@ -2,17 +2,16 @@
 
 namespace App\Entities;
 
-use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
 /**
- * Class Import.
+ * Class Bill.
  *
  * @package namespace App\Entities;
  */
-class Import extends Model implements Transformable
+class Bill extends Model implements Transformable
 {
     use TransformableTrait;
 
@@ -21,14 +20,10 @@ class Import extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = ["user_id", "note", "checked_at","status"];
-
+    protected $guarded = [];
     public function medicines()
     {
-        return $this->belongsToMany(Medicine::class)->withPivot('price','amount', 'unit','note');
+        return $this->belongsToMany(Medicine::class)->withPivot('price','amount', 'total_price','unit_name');
     }
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+
 }
