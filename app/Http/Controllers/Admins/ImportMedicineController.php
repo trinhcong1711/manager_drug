@@ -48,7 +48,7 @@ class ImportMedicineController extends CURDController
         if ($importMedicine) {
             $dataAttach = array_combine($request->get("medicine_id"),$request->get("import_medicine"));
             $importMedicine->medicines()->attach($dataAttach);
-            Alert::success('Thành công', 'Thêm mới thành công');
+            Alert::success('Thêm mới thành công');
             return redirect(route('admin.import_medicine.getIndex'));
         } else {
             Alert::error('Lỗi', 'Có lỗi xảy ra!');
@@ -77,9 +77,18 @@ class ImportMedicineController extends CURDController
         }
     }
 
-    protected function postEdit()
+    protected function postEdit($id,Request $request, ImportRepositoryEloquent $importRepository)
     {
-
+        $importMedicine = $importRepository->find($id);
+        if ($importMedicine) {
+            $dataAttach = array_combine($request->get("medicine_id"),$request->get("import_medicine"));
+            $importMedicine->medicines()->sync($dataAttach);
+            Alert::success('Chỉnh thành công');
+            return redirect(route('admin.import_medicine.getIndex'));
+        } else {
+            Alert::error('Lỗi', 'Có lỗi xảy ra!');
+            return redirect()->back();
+        }
     }
 //  Hàm tìm kiếm thuốc
     protected function ajaxSearchMedicine(Request $request, MedicinesRepositoryEloquent $medicines)

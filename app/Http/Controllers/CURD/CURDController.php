@@ -120,7 +120,9 @@ class CURDController extends Controller
                 return '<div class="item_name">
                         <a href="' . route($nameRouteEdit, $collection->id) . '">' . $name . '</a>
                         <span class="tool_tip_item_name">
-                            <a href="' . route($nameRouteEdit, $collection->id) . '">Sửa</a>' . $delete . '
+                            <a href="' . route($nameRouteEdit, $collection->id) . '">Sửa</a>
+                            <a href="' . route('admin.import_medicine.getCheckMedicine', $collection->id) . '">Kiểm hàng</a>
+                            ' . $delete . '
                         </span>
                     </div>';
             }
@@ -132,9 +134,9 @@ class CURDController extends Controller
                         </span>
                     </div>';
 
-        }else{
+        } else {
             dd(12);
-            return  "";
+            return "";
         }
     }
 
