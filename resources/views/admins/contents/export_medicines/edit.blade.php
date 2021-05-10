@@ -60,17 +60,10 @@
                                         <a href="{{route('admin.export_medicine.getIndex')}}" style="color: inherit;"><i
                                                 class="icon icon-action-undo mr-2"></i>Quay lại</a>
                                     </button>
-                                    <button type="submit" class="btn btn-primary" name="check_invoice" value="1"
-                                            id="add_continue"><i
-                                            class="ti-save-alt mr-2"></i>Kiểm hàng
+                                    <button type="submit" class="btn btn-primary"><i
+                                            class="ti-save-alt mr-2"></i>Cập nhật
                                     </button>
 
-                                    @if($export->status!=1)
-                                        <button type="submit" class="btn btn-primary"
-                                                id="add_continue"><i
-                                                class="ti-save-alt mr-2"></i>Lưu
-                                        </button>
-                                    @endif
                                 </div>
                             </div>
 
@@ -112,7 +105,8 @@
                                                     <input type="checkbox" name="status"
                                                            {{$export->status==1?"checked":""}} class="custom-switch-input">
                                                     <span class="custom-switch-indicator"></span>
-                                                    <span class="custom-switch-description">{{show_status([0=>'Chưa thanh toán', 1=>"Đã thanh toán"],$export->status)}}</span>
+                                                    <span
+                                                        class="custom-switch-description">{{show_status([0=>'Chưa thanh toán', 1=>"Đã thanh toán"],$export->status)}}</span>
                                                 </label>
                                             </th>
                                         </tr>
@@ -124,6 +118,7 @@
                                 <table id="import_datatable" class="table card-table table-vcenter text-nowrap">
                                     <thead>
                                     <tr>
+                                        <th>STT</th>
                                         <th>Tên thuốc</th>
                                         <th>Số lượng</th>
                                         <th>đơn vị tính</th>
@@ -132,49 +127,9 @@
                                     </thead>
                                     <tbody class="list_medicine">
                                     @if(!empty($medicines))
-                                        @foreach($medicines as $medicine)
-                                            {{--                                            @if($export->status!=1)--}}
-                                            {{--                                                <tr class="row-medicine">--}}
-                                            {{--                                                    <th>{{$medicine->name}}<input type="number" name="medicine_id[]"--}}
-                                            {{--                                                                                  class="medicine_id"--}}
-                                            {{--                                                                                  value="{{$medicine->id}}" hidden></th>--}}
-                                            {{--                                                    <th>--}}
-                                            {{--                                                        <input type="number" class="form-control"--}}
-                                            {{--                                                               name="amounts[]"--}}
-                                            {{--                                                               value={{$medicine->pivot->amount}}>--}}
-                                            {{--                                                    </th>--}}
-                                            {{--                                                    <th>--}}
-                                            {{--                                                        <select name="units[]"--}}
-                                            {{--                                                                class="form-control select2 custom-select"--}}
-                                            {{--                                                                data-placeholder="Chọn đơn vị tính">--}}
-                                            {{--                                                            <option label="Chọn đơn vị tính"></option>--}}
-                                            {{--                                                            @if(count($units = $medicine->units)>0)--}}
-                                            {{--                                                                @foreach($units as $unit)--}}
-                                            {{--                                                                    <option--}}
-                                            {{--                                                                        {{$medicine->pivot->unit == $unit->id?"selected":""}} value="{{$unit->id}}">{{$unit->name}}</option>--}}
-                                            {{--                                                                @endforeach--}}
-                                            {{--                                                            @endif--}}
-                                            {{--                                                        </select>--}}
-                                            {{--                                                    </th>--}}
-                                            {{--                                                    <th>--}}
-                                            {{--                                                <textarea class="form-control" name="notes[]"--}}
-                                            {{--                                                          rows="1">{{$medicine->pivot->note}}</textarea>--}}
-                                            {{--                                                    </th>--}}
-                                            {{--                                                    <th>--}}
-                                            {{--                                                        <input class="form-control" name="prices[]"--}}
-                                            {{--                                                               value="{{$medicine->pivot->price??0}}">--}}
-                                            {{--                                                    </th>--}}
-
-                                            {{--                                                    <th>--}}
-                                            {{--                                                        <div class="btn-list">--}}
-                                            {{--                                                            <button type="button"--}}
-                                            {{--                                                                    class="btn btn-icon remove_medicine btn-red">--}}
-                                            {{--                                                                <i class="ti-close"></i></button>--}}
-                                            {{--                                                        </div>--}}
-                                            {{--                                                    </th>--}}
-                                            {{--                                                </tr>--}}
-                                            {{--                                            @else--}}
+                                        @foreach($medicines as $k=>$medicine)
                                             <tr class="row-medicine">
+                                                <th>{{$k+1}}</th>
                                                 <th>{{$medicine->name}}</th>
                                                 <th>
                                                     {{number_format($medicine->pivot->amount??0,0,"",",")}}
@@ -186,7 +141,6 @@
                                                     {{number_format($medicine->pivot->price??0,0,"",",")}}
                                                 </th>
                                             </tr>
-                                            {{--                                            @endif--}}
                                         @endforeach
                                     @endif
                                     </tbody>
@@ -226,18 +180,18 @@
                     if (keyword === "") {
                         $(".search-result").hide();
                     } else {
-                        {{--$.ajax({--}}
-                        {{--    url: "{{route("admin.export_medicine.ajaxSearchMedicine")}}",--}}
-                        {{--    method: "get",--}}
-                        {{--    data: {--}}
-                        {{--        keyword: keyword,--}}
-                        {{--        medicine_ids: medicine_ids,--}}
-                        {{--    },--}}
-                        {{--    success: function (result) {--}}
-                        {{--        $(".search-result").html(result);--}}
-                        {{--        $(".search-result").show();--}}
-                        {{--    }--}}
-                        {{--})--}}
+                        $.ajax({
+                            url: "{{route("admin.import_medicine.ajaxSearchMedicine")}}",
+                            method: "get",
+                            data: {
+                                keyword: keyword,
+                                medicine_ids: medicine_ids,
+                            },
+                            success: function (result) {
+                                $(".search-result").html(result);
+                                $(".search-result").show();
+                            }
+                        })
                     }
 
                 });
@@ -252,7 +206,7 @@
                     let that = $(this);
                     if (selected === 0) {
                         $.ajax({
-                            {{--                            url: "{{route("admin.export_medicine.ajaxAddImportMedicine")}}",--}}
+                            url: "{{route("admin.export_medicine.ajaxAddExportMedicine")}}",
                             method: "get",
                             data: {
                                 id: medicine_id,

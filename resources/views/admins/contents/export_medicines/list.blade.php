@@ -21,7 +21,7 @@
                     <table id="export_datatable" class="table card-table table-vcenter text-nowrap">
                         <thead>
                         <tr>
-                            <th>STT</th>
+                            <th>ID</th>
                             <th>Người tạo</th>
                             <th>Người nhận</th>
                             <th>Ngày tạo phiếu</th>
@@ -52,13 +52,13 @@
                 ajax: '{{ route('admin.export_medicine.data') }}',
                 columns: [
                     {data: 'id', name: 'id'},
-                    {data: 'user_id', name: 'user_id', orderable: false, searchable: false},
-                    {data: 'member_id', name: 'member_id', orderable: false, searchable: false},
+                    {data: 'user_id', name: 'user_id'},
+                    {data: 'member_id', name: 'member_id'},
                     {data: 'created_at', name: 'created_at'},
                     {data: 'total_money', name: 'total_money'},
-                    {data: 'note', name: 'note', orderable: false, searchable: true},
-                    {data: 'type', name: 'type', searchable: false},
-                    {data: 'status', name: 'status', searchable: false},
+                    {data: 'note', name: 'note'},
+                    {data: 'type', name: 'type'},
+                    {data: 'status', name: 'status'},
                 ],
             });
             {{--$("body").on('click', ".export_hd", function () {--}}
