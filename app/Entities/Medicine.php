@@ -3,12 +3,14 @@
 namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Medicine extends Model
 {
     protected $guarded = [];
 
-    public function units()
+    public function units(): HasMany
     {
         return $this->hasMany(Unit::class)->where('status', 1);
     }
@@ -19,11 +21,16 @@ class Medicine extends Model
         return $query->where('status', 1)->where('rest', '>=', 'inventory')->orderBy("id", "desc");
     }
 
-    public function imports()
+    public function imports(): BelongsToMany
     {
         return $this->belongsToMany(Import::class)->withPivot('price','amount', 'unit','note');
     }
-    public function formatPrice($prices)
+
+    public function exports(): BelongsToMany
+    {
+        return $this->belongsToMany(Export::class);
+    }
+    public function formatPrice($prices): string
     {
         if ($prices) {
             $html = '';

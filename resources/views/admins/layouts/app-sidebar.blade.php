@@ -64,7 +64,7 @@
             <ul class="slide-menu">
                 <li><a class="slide-item" href="{{route('admin.medicine.getIndex')}}"><span>Thuốc</span></a></li>
                 <li><a class="slide-item" href="{{route('admin.import_medicine.getIndex')}}"><span>Nhập Hàng</span></a></li>
-                <li><a class="slide-item" href="/xuat-hang"><span>Xuất Hàng</span></a></li>
+                <li><a class="slide-item" href="{{route('admin.export_medicine.getIndex')}}"><span>Xuất Hàng</span></a></li>
                 <li><a class="slide-item" href="/kiem-kho"><span>Kiểm kho</span></a></li>
             </ul>
         </li>

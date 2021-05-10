@@ -104,7 +104,7 @@ class ImportMedicineController extends CURDController
     protected function postEdit($id, Request $request, ImportRepositoryEloquent $importRepository, UnitRepositoryEloquent $unitRepository, MedicinesRepositoryEloquent $medicinesRepository)
     {
         $importMedicine = $importRepository->find($id);
-        if ($importMedicine && $importMedicine->status != 1) {
+        if ($importMedicine->status != 1) {
             $medicine_ids = $request->get("medicine_id");
             $amounts = $request->get("amounts");
             $units = $request->get("units");
@@ -142,7 +142,7 @@ class ImportMedicineController extends CURDController
                     return redirect(route('admin.import_medicine.getIndex'));
                 }
             }
-            Alert::success('Kiểm hàng thành công!');
+            Alert::success('Lưu thành công!');
             return redirect(route('admin.import_medicine.getIndex'));
         } else {
             Alert::error('Phiếu nhập đã được kiểm rồi');

@@ -48,7 +48,7 @@ function totalPrice() {
 
 function totalPriceRefundCustomer(price_customer) {
     let total_price = totalPrice();
-    price_customer = price_customer.replaceAll(',', '');
+    price_customer = price_customer.replaceAll(',');
     if (price_customer > total_price) {
         return price_customer - total_price;
     }

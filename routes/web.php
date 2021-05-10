@@ -42,11 +42,23 @@ Route::get('/import-medicine', 'Admins\ImportMedicineController@getIndex')->name
 Route::get('/import-medicine/data', 'Admins\ImportMedicineController@data')->name('admin.import_medicine.data');
 Route::get('/import-medicine/add', 'Admins\ImportMedicineController@getAdd')->name('admin.import_medicine.getAdd');
 Route::post('/import-medicine/add', 'Admins\ImportMedicineController@postAdd')->name('admin.import_medicine.postAdd');
-Route::get('/import-medicine/check/{id}', 'Admins\ImportMedicineController@getCheckMedicine')->name('admin.import_medicine.getCheckMedicine');
-Route::post('/import-medicine/check/{id}', 'Admins\ImportMedicineController@postCheckMedicine')->name('admin.import_medicine.postCheckMedicine');
 Route::post('/import-medicine/add', 'Admins\ImportMedicineController@postAdd')->name('admin.import_medicine.postAdd');
 Route::get('/import-medicine/{id}', 'Admins\ImportMedicineController@getEdit')->name('admin.import_medicine.getEdit');
 Route::post('/import-medicine/{id}', 'Admins\ImportMedicineController@postEdit')->name('admin.import_medicine.postEdit');
+
+//Xuất hàng
+Route::get('/export-medicine/ajax-add-export-medicine', 'Admins\ExportMedicineController@ajaxAddExportMedicine')->name('admin.export_medicine.ajaxAddExportMedicine');
+Route::get('/export-medicine/export-medicine', 'Admins\ExportMedicineController@export')->name('admin.export_medicine.export');
+Route::get('/export-medicine', 'Admins\ExportMedicineController@getIndex')->name('admin.export_medicine.getIndex');
+Route::get('/export-medicine/data', 'Admins\ExportMedicineController@data')->name('admin.export_medicine.data');
+Route::get('/export-medicine/add', 'Admins\ExportMedicineController@getAdd')->name('admin.export_medicine.getAdd');
+Route::post('/export-medicine/add', 'Admins\ExportMedicineController@postAdd')->name('admin.export_medicine.postAdd');
+Route::get('/export-medicine/{id}', 'Admins\ExportMedicineController@getEdit')->name('admin.export_medicine.getEdit');
+Route::post('/export-medicine/{id}', 'Admins\ExportMedicineController@postEdit')->name('admin.export_medicine.postEdit');
+
+
+
+
 
 
 Route::get('/nhap-hang/them', function () {
