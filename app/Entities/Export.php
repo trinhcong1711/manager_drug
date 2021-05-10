@@ -34,6 +34,6 @@ class Export extends Model implements Transformable
     }
     public function medicines(): BelongsToMany
     {
-        return $this->belongsToMany(Medicine::class);
+        return $this->belongsToMany(Medicine::class)->withPivot('price','amount', 'unit_id');
     }
 }

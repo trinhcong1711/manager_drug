@@ -21,7 +21,6 @@
                     <table id="export_datatable" class="table card-table table-vcenter text-nowrap">
                         <thead>
                         <tr>
-                            <th>#</th>
                             <th>STT</th>
                             <th>Người tạo</th>
                             <th>Người nhận</th>
@@ -33,31 +32,6 @@
                         </tr>
                         </thead>
                         <tbody>
-
-{{--                        <tr>--}}
-{{--                            <th scope="row">--}}
-{{--                                <label class="custom-control custom-checkbox">--}}
-{{--                                    <input type="checkbox" class="custom-control-input" name="example-checkbox1"--}}
-{{--                                           value="option1" checked="">--}}
-{{--                                    <span class="custom-control-label"></span>--}}
-{{--                                </label>--}}
-{{--                            </th>--}}
-{{--                            <td>1</td>--}}
-{{--                            <td>--}}
-{{--                                <div class="item_name">--}}
-{{--                                    <a href="#0">Trịnh Thị Nguyên</a>--}}
-{{--                                    <span class="tool_tip_item_name">--}}
-{{--                                        <a href="/xuất-hang/1">Sửa</a>--}}
-{{--                                    </span>--}}
-{{--                                </div>--}}
-{{--                            </td>--}}
-{{--                            <td>Trịnh Thị Nhàn</td>--}}
-{{--                            <td>19/09/2020</td>--}}
-{{--                            <td>12.000.000</td>--}}
-{{--                            <td>Hết hạn sử dụng</td>--}}
-{{--                            <td>Hệ thống / Trình dược / Chợ thuốc</td>--}}
-{{--                            <td>Đã trả tiền / Chưa trả tiền</td>--}}
-{{--                        </tr>--}}
 
                         </tbody>
                     </table>

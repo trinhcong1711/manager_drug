@@ -120,21 +120,21 @@ class CURDController extends Controller
                 return '<div class="item_name">
                         <a href="' . route($nameRouteEdit, $collection->id) . '">' . $name . '</a>
                         <span class="tool_tip_item_name">
-                            <a href="' . route($nameRouteEdit, $collection->id) . '">Sửa | Kiểm hàng</a>
+                            <a href="' . route($nameRouteEdit, $collection->id) . '">Sửa</a>
                             ' . $delete . '
                         </span>
                     </div>';
             }
-            return '<div class="item_name">
+            $html = '<div class="item_name">
                         <a href="' . route($nameRouteEdit, $collection->id) . '">' . $relation ? $collection->name : $collection->name . '</a>
                         <span class="tool_tip_item_name">
                             <a href="' . route($nameRouteEdit, $collection->id) . '">Sửa</a>
                             ' . $delete . '
                         </span>
                     </div>';
+            return $html;
 
         } else {
-            dd(12);
             return "";
         }
     }

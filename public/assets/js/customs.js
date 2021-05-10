@@ -40,7 +40,16 @@ function totalPrice() {
     let total_cost = 0;
     let cost = 0;
     $(".total_price").each(function () {
-        cost = $(this).text().replaceAll(',', '');
+        cost = $(this).text().replaceAll(',');
+        total_cost = total_cost + parseInt(cost);
+    });
+    return total_cost;
+}
+function totalPrices(select) {
+    let total_cost = 0;
+    let cost = 0;
+    $(select).each(function () {
+        cost = $(this).val().replaceAll(',',"");
         total_cost = total_cost + parseInt(cost);
     });
     return total_cost;

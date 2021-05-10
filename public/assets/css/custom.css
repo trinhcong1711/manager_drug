@@ -6,7 +6,7 @@ p.title_product{
 span.specification_product {
     color: #999;
 }
-input.price_customer{
+input.price_customer, input.price_row{
     border-bottom: 1px solid #c2cad8!important;
     border-radius: 0;
     outline: 0!important;

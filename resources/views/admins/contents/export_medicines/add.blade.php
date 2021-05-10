@@ -36,7 +36,9 @@
     <!-- PAGE-HEADER -->
     <div>
         <div class="btn-list">
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#add_invoice_back"><i class="fe fe-plus mr-2"></i>Tạo phiếu khách trả</button>
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#add_invoice_back"><i
+                    class="fe fe-plus mr-2"></i>Tạo phiếu khách trả
+            </button>
         </div>
     </div>
     <!-- PAGE-HEADER END -->
@@ -44,7 +46,7 @@
 @section('content')
     <div class="card">
         <div class="row">
-            <form action="" method="post" class="d-flex">
+            <form action="{{route('admin.export_medicine.postAdd')}}" method="post" class="d-flex w-100">
                 @csrf
                 <div class="col-md-9">
                     <div class="card-header">
@@ -96,11 +98,11 @@
                                                 <option value="1">Trịnh thị nguyên</option>
                                                 <option value="1">Trịnh thị nguyên</option>
                                                 <option value="1">Trịnh thị nguyên</option>
-{{--                                                @if(count($units = $medicine->units)>0)--}}
-{{--                                                    @foreach($units as $unit)--}}
-{{--                                                        <option value="{{$unit->id}}">{{$unit->name}}</option>--}}
-{{--                                                    @endforeach--}}
-{{--                                                @endif--}}
+                                                {{--                                                @if(count($units = $medicine->units)>0)--}}
+                                                {{--                                                    @foreach($units as $unit)--}}
+                                                {{--                                                        <option value="{{$unit->id}}">{{$unit->name}}</option>--}}
+                                                {{--                                                    @endforeach--}}
+                                                {{--                                                @endif--}}
                                             </select>
                                         </li>
                                         <li class="form-group">
@@ -128,7 +130,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6 text-left">
-                                <button type="submit" class="btn btn-info">Xuất</button>
+                                <button type="submit" class="btn btn-info">Tạo đơn xuất</button>
                             </div>
                         </div>
                     </div>
@@ -206,8 +208,7 @@
                             let amounts = $(".amount_medicine").val();
                             let prices = unit_prices * amounts;
                             $(".total_price").first().text(formatPrice(prices));
-                            $(".total_price_bill").text(formatPrice(totalPrice()));
-                            // $(".refund_customer").text(formatPrice(totalPriceRefundCustomer(price_customer)));
+                            $(".total_price_bill").text(formatPrice(totalPrices(".price_row")));
                             that.hide();
                         }
                     });
@@ -215,14 +216,14 @@
             });
             $("body").on('click', ".remove_medicine", function () {
                 $(this).parents(".row_sell").remove();
-                $(".total_price_bill").text(formatPrice(totalPrice()));
-                // let price_customer = $("#price_customer").val();
-                // $(".refund_customer").text(formatPrice(totalPriceRefundCustomer(price_customer)));
+                $(".total_price_bill").text(formatPrice(totalPrices(".price_row")));
             });
-            $(".price_customer").keyup(function () {
-                let price_customer = $(this).val();
-                $(this).val(formatPrice(price_customer));
-                // $(".refund_customer").text(formatPrice(totalPriceRefundCustomer(price_customer)));
+
+            $("body").on('keyup', ".price_row", function () {
+                let price_row = $(this).val();
+                $(this).val(formatPrice(price_row));
+                let total_cost = totalPrices(".price_row");
+                $(".total_price_bill").text(formatPrice(total_cost));
             });
         })
     </script>

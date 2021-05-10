@@ -32,3 +32,16 @@ if (!function_exists('select_medicine_from_search_box')) {
         return $data;
     }
 }
+//  Hiển thị giá trị trạng thái
+if (!function_exists('show_status')) {
+    function show_status($status = [], $check = null): string
+    {
+        $html = "";
+        if (!empty($status)) {
+            if (array_key_exists($check,$status)) {
+                $html = $status[$check];
+            }
+        }
+        return $html;
+    }
+}
