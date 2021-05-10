@@ -20,7 +20,7 @@ class ExportMedicineController extends CURDController
 
     protected function data(ExportRepositoryEloquent $exports)
     {
-        $export = $exports->with('medicines')->orderBy("id", "desc")->select('*');
+        $export = $exports->with(['medicines','member','user'])->orderBy("id", "desc")->select('*');
         try {
             return Datatables::of($export)
                 ->editColumn('user_id', function ($export) {
