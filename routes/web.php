@@ -58,6 +58,17 @@ Route::post('/export-medicine/{id}', 'Admins\ExportMedicineController@postEdit')
 
 
 
+//Đơn hàng
+Route::get('/bill', 'Admins\BillController@getIndex')->name('admin.bill.getIndex');
+Route::get('/bill/data', 'Admins\BillController@data')->name('admin.bill.data');
+Route::get('/bill_detail/data/{id}', 'Admins\BillController@dataDetail')->name('admin.bill_detail.dataDetail');
+Route::get('/bill/add', 'Admins\BillController@getAdd')->name('admin.bill.getAdd');
+Route::post('/bill/add', 'Admins\BillController@postAdd')->name('admin.bill.postAdd');
+Route::get('/bill/{id}', 'Admins\BillController@getEdit')->name('admin.bill.getEdit');
+Route::post('/bill/{id}', 'Admins\BillController@postEdit')->name('admin.bill.postEdit');
+
+
+
 
 
 

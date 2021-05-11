@@ -2,7 +2,10 @@
 
 namespace App\Entities;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
@@ -21,9 +24,17 @@ class Bill extends Model implements Transformable
      * @var array
      */
     protected $guarded = [];
-    public function medicines()
+    public function medicines(): BelongsToMany
     {
-        return $this->belongsToMany(Medicine::class)->withPivot('price','amount', 'total_price','unit_name');
+        return $this->belongsToMany(Medicine::class)->withPivot('price','amount', 'total_price','unit_id');
+    }
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function member(): BelongsTo
+    {
+        return $this->belongsTo(Member::class);
     }
 
 }

@@ -69,7 +69,7 @@
         </li>
         {{--Quản Lý Hóa Đơn--}}
         <li class="slide">
-            <a class="side-menu__item" href="/hoa-don">
+            <a class="side-menu__item" href="{{route('admin.bill.getIndex')}}">
                 <i class="side-menu__icon ti-home"></i>
                 <span class="side-menu__label">Quản lý hóa đơn</span>
             </a>
