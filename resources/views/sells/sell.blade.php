@@ -44,7 +44,7 @@
 @section('content')
     <div class="card">
         <div class="row">
-            <form action="" method="post" class="d-flex">
+            <form action="" method="post" class="d-flex w-100">
                 @csrf
                 <div class="col-md-9">
                     <div class="card-header">
@@ -116,7 +116,7 @@
                                         <li class="form-group">
                                             <div class="form-group mb-0">
                                                 <label class="form-label">Ghi chú</label>
-                                                <textarea class="form-control" name="note" rows="5"
+                                                <textarea class="form-control" id="note_bill" name="note" rows="5"
                                                           placeholder="Nhập ghi chú..."></textarea>
                                             </div>
                                         </li>
@@ -124,7 +124,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6 text-left">
-                                <button type="submit" class="btn btn-info">Thanh toán</button>
+                                <button type="button" class="btn btn-info" id="payment">Thanh toán</button>
                             </div>
                             <div class="col-md-6 text-right">
                                 <button type="submit" name="invoice" class="btn btn-primary">TT & in HĐ</button>
@@ -225,6 +225,32 @@
     <script src="{{ URL::asset('assets/js/customs.js') }}"></script>
     <script>
         $(document).ready(function () {
+            $("#payment").click(function (){
+                let medicine_id = $(".medicine_id").map(function() {
+                    return this.value;
+                }).get();
+                let amount = $(".amount_medicine").map(function() {
+                    return this.value;
+                }).get();
+                let unit_id = $(".units_select").map(function() {
+                    return this.value;
+                }).get();
+                let note = $("#note_bill").val();
+                $.ajax({
+                    url: "{{route("sell.postSell")}}",
+                    method: "post",
+                    data: {
+                        _token:"{{csrf_token()}}",
+                        medicine_id: medicine_id,
+                        amount: amount,
+                        unit_id: unit_id,
+                        note: note,
+                    },
+                    success: function (result) {
+                        alert(result.msg);
+                    }
+                })
+            });
             // let price_customer = $(".price_customer").val();
             $("#search_medicine").keyup(function () {
                 let keyword = $(this).val();

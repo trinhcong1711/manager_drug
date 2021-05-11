@@ -24,6 +24,7 @@
             <td>{{ $medicine->name }}</td>
             <td>{{ $medicine->package }}</td>
             <td>{{ $medicine->inventory }}</td>
+            <td>{{ $medicine->rest }}</td>
             <td>{{ $str }}</td>
             <td>{{ $medicine->sold }}</td>
             <td>{{ $medicine->status }}</td>

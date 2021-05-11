@@ -27,22 +27,24 @@ class MedicineImport extends CURDController implements WithHeadingRow, WithChunk
                 $create = Medicine::create(
                     [
                         'name' => $row['ten'],
-                        'package' => $row['quy_cach_dong_goi'],
+                        'package' => $row['quy_cach_dong_goi'] ?? null,
                         'inventory' => is_int($row['ton_kho']) ? $row['ton_kho'] : 0,
-                        'rest' => is_int($row['dinh_muc_ton']) ? $row['dinh_muc_ton'] : 1,
+                        'rest' => isset($row['dinh_muc_ton']) && is_int($row['dinh_muc_ton']) ? $row['dinh_muc_ton'] : 1,
                     ]
                 );
                 if ($create) {
-                    $units = explode(',', str_replace(" ", "", $row['don_vi_quy_doi']));
-                    foreach ($units as $unit) {
-                        $uni = explode("-", $unit);
-                        if (!empty($uni[1])) {
-                            Unit::create([
-                                'medicine_id' => $create->id,
-                                'name' => $uni[1],
-                                'convert' => $uni[0] ?? 0,
-                                'price' => $uni[2] ?? 0,
-                            ]);
+                    if (!empty($row['don_vi_quy_doi'])) {
+                        $units = explode(',', str_replace(" ", "", $row['don_vi_quy_doi']));
+                        foreach ($units as $unit) {
+                            $uni = explode("-", $unit);
+                            if (!empty($uni[1])) {
+                                Unit::create([
+                                    'medicine_id' => $create->id,
+                                    'name' => $uni[1],
+                                    'convert' => $uni[0] ?? 0,
+                                    'price' => $uni[2] ?? 0,
+                                ]);
+                            }
                         }
                     }
                 }
@@ -50,55 +52,53 @@ class MedicineImport extends CURDController implements WithHeadingRow, WithChunk
                 $medicine->update(
                     [
                         'name' => $row['ten'],
-                        'package' => $row['quy_cach_dong_goi'],
+                        'package' => $row['quy_cach_dong_goi'] ?? $medicine->package,
                         'inventory' => is_int($row['ton_kho']) ? $row['ton_kho'] : 0,
-                        'rest' => is_int($row['dinh_muc_ton']) ? $row['dinh_muc_ton'] : 1,
+                        'rest' => isset($row['dinh_muc_ton']) && is_int($row['dinh_muc_ton']) ? $row['dinh_muc_ton'] : $medicine->rest,
                     ]
                 );
-                $unitsExcel = explode(',', str_replace(" ", "", $row['don_vi_quy_doi']));
-                $units = $medicine->units;
-                $a = [];
-                foreach ($units as $unit) {
-                    $price = $unit->price != 0 ? "-" . $unit->price : "";
-                    $a[] = $unit->convert . "-" . $unit->name . $price;
-                }
+                if (!empty($row['don_vi_quy_doi'])) {
+                    $unitsExcel = explode(',', str_replace(" ", "", $row['don_vi_quy_doi']));
+                    $units = $medicine->units;
+                    $a = [];
+                    foreach ($units as $unit) {
+                        $price = $unit->price != 0 ? "-" . $unit->price : "";
+                        $a[] = $unit->convert . "-" . $unit->name . $price;
+                    }
 //              Tạo mới những đơn vị tính chưa có
-                $dataUnitCreate = array_diff($unitsExcel, $a);
-                if (!empty($dataUnitCreate)) {
-                    foreach ($dataUnitCreate as $unit) {
-                        $uni = explode("-", $unit);
-                        if (!empty($uni[1])) {
-                            Unit::create([
+                    $dataUnitCreate = array_diff($unitsExcel, $a);
+                    if (!empty($dataUnitCreate)) {
+                        foreach ($dataUnitCreate as $unit) {
+                            $uni = explode("-", $unit);
+                            if (!empty($uni[1])) {
+                                Unit::create([
+                                    'medicine_id' => $medicine->id,
+                                    'name' => $uni[1],
+                                    'convert' => $uni[0] ?? 0,
+                                    'price' => $uni[2] ?? 0,
+                                ]);
+                            }
+                        }
+                    }
+//                Cập nhật status lại những đợn vị tính không dùng nữa
+                    $dataUnitUpdate = array_diff($a, $unitsExcel);
+                    if (!empty($dataUnitUpdate)) {
+                        foreach ($dataUnitUpdate as $unit) {
+                            $uni = explode("-", $unit);
+                            $updateUnit = Unit::where([
                                 'medicine_id' => $medicine->id,
                                 'name' => $uni[1],
                                 'convert' => $uni[0] ?? 0,
                                 'price' => $uni[2] ?? 0,
-                            ]);
+                                'status' => 1,
+                            ])->first();
+                            if (is_object($updateUnit)) {
+                                $updateUnit->update(['status' => 0]);
+                            }
                         }
                     }
                 }
-//                Cập nhật status lại những đợn vị tính không dùng nữa
-                $dataUnitUpdate = array_diff($a, $unitsExcel);
-                if (!empty($dataUnitUpdate)) {
-                    foreach ($dataUnitUpdate as $unit) {
-                        $uni = explode("-", $unit);
-                        $updateUnit = Unit::where([
-                            'medicine_id' => $medicine->id,
-                            'name' => $uni[1],
-                            'convert' => $uni[0] ?? 0,
-                            'price' => $uni[2] ?? 0,
-                            'status' => 1,
-                        ])->first();
-                        if (is_object($updateUnit)) {
-                            $updateUnit->update(['status' => 0]);
-                        }
-                    }
-                }
-
-
             }
-
-
         }
     }
 //    public function model(array $row)

@@ -40,7 +40,7 @@ function totalPrice() {
     let total_cost = 0;
     let cost = 0;
     $(".total_price").each(function () {
-        cost = $(this).text().replaceAll(',');
+        cost = $(this).text().replaceAll(',','');
         total_cost = total_cost + parseInt(cost);
     });
     return total_cost;
@@ -57,7 +57,7 @@ function totalPrices(select) {
 
 function totalPriceRefundCustomer(price_customer) {
     let total_price = totalPrice();
-    price_customer = price_customer.replaceAll(',');
+    price_customer = price_customer.replaceAll(',','');
     if (price_customer > total_price) {
         return price_customer - total_price;
     }

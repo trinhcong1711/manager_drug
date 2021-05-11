@@ -33,8 +33,7 @@ class CURDController extends Controller
                 $html = '<table>';
                 foreach ($prices as $k => $price) {
                     $html .= '<tr>
-                            <td class="border-top-0 p-0">' . $this->formatNumber($price->convert) . ' </td>
-                            <td class="border-top-0 p-0 pr-1 text-capitalize">' . $price->name . ':</td>
+                            <td class="border-top-0 p-0 pr-1 text-caitalize">' . $price->name . ':</td>
                             <td class="border-top-0 p-0">' . $this->formatNumber($price->price) . '</td>
                         </tr>';
                 }
@@ -126,7 +125,7 @@ class CURDController extends Controller
                     </div>';
             }
             return '<div class="item_name">
-                        <a href="' . route($nameRouteEdit, $collection->id) . '">' . $relation ? $collection->name : $collection->name . '</a>
+                        <a href="' . route($nameRouteEdit, $collection->id) . '">' . $collection->name . '</a>
                         <span class="tool_tip_item_name">
                             <a href="' . route($nameRouteEdit, $collection->id) . '">Sửa</a>
                             ' . $delete . '

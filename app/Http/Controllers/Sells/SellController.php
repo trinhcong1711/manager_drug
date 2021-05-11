@@ -10,7 +10,8 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class SellController extends Controller
 {
-    public function getIndex(){
+    public function getIndex()
+    {
         return view('sells.sell');
     }
 
@@ -18,7 +19,6 @@ class SellController extends Controller
                              BillRepositoryEloquent $billRepository,
                              MedicinesRepositoryEloquent $medicinesRepository)
     {
-
         $amounts = $request->get("amount");
         $units = $request->get("unit_id");
         $medicine_id = $request->get("medicine_id");
@@ -32,15 +32,29 @@ class SellController extends Controller
                     $id_units = $medicine->units()->pluck('id')->toArray();
                     if (in_array($units[$k], $id_units)) {
                         $unit = $medicine->units()->find($units[$k]);
-                        $difference = $unit->convert * $amounts[$k];
-                        $total += $unit->price * $amounts[$k];
-                        $data[$medicine->id]['amount'] = $amounts[$k];
-                        $data[$medicine->id]['unit_name'] = $unit->name;
+                        $amount = (!empty($amounts[$k]) && is_numeric($amounts[$k]) && $amounts[$k] > 0) ? $amounts[$k] : 1;
+                        $difference = $unit->convert * $amount;
+                        $total += $unit->price * $amount;
+                        $data[$medicine->id]['amount'] = $amount;
+                        $data[$medicine->id]['unit_id'] = $unit->id;
                         $data[$medicine->id]['price'] = $unit->price;
-                        $data[$medicine->id]['total_price'] = $unit->price * $amounts[$k];
+
+                        $data[$medicine->id]['total_price'] = $unit->price * $amount;
                     }
                     $inventory = $medicine->inventory - $difference;
-                    $medicine->update(['inventory' => $inventory]);
+                    if ($inventory >= 0) {
+                        $medicine->update(['inventory' => $inventory, 'sold' => $medicine->sold + $difference]);
+                    } else {
+                        return response()->json([
+                            'status' => false,
+                            'msg' => "Thuốc " . $medicine->name . "! Có số lượng bán vượt quá số lượng tồn trong kho!",
+                        ]);
+                    }
+                } else {
+                    return response()->json([
+                        'status' => false,
+                        'msg' => "Có thuốc không tồn tại trong kho!",
+                    ]);
                 }
             }
 //        Tạo bill
@@ -54,22 +68,25 @@ class SellController extends Controller
                 ]);
                 if ($bill) {
                     $bill->medicines()->attach($data);
-
-                    Alert::success('Tạo đơn thành công!');
-                    return redirect()->back();
+                    return response()->json([
+                        'status' => true,
+                        'msg' => "Tạo đơn thành công!",
+                    ]);
                 }
             }
         }
-        Alert::error('Tạo đơn thất bại!');
-        return redirect()->back();
+        return response()->json([
+            'status' => true,
+            'msg' => "Tạo đơn thất bại!",
+        ]);
     }
 
     //  Hàm tìm kiếm thuốc
     protected function ajaxSearchMedicine(Request $request, MedicinesRepositoryEloquent $medicinesRepository)
     {
         if ($request->has('keyword') && !empty($request->get('keyword'))) {
-            $data = search_medicine($request->get('keyword'),$medicinesRepository);
-            return view('sells.ajax.search_list_medicine',$data);
+            $data = search_medicine($request->get('keyword'), $medicinesRepository);
+            return view('sells.ajax.search_list_medicine', $data);
         }
     }
 

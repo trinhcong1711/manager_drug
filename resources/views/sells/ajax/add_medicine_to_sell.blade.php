@@ -1,6 +1,6 @@
 @if(isset($medicine))
     <tr class="row_sell" data-id_selected="{{$medicine->id}}">
-        <input type="hidden" value="{{$medicine->id}}" name="medicine_id[]">
+        <input type="hidden" value="{{$medicine->id}}" class="medicine_id" name="medicine_id[]">
         <th scope="row">1</th>
         <td>
             <p class="title_product">{{$medicine->name}} </p>

@@ -49,7 +49,7 @@
     <ul class="side-menu">
 
         <li class="slide">
-            <a class="side-menu__item" href="/ban-hang">
+            <a class="side-menu__item" href="{{route('sell.getIndex')}}">
                 <i class="side-menu__icon ti-shopping-cart"></i>
                 <span class="side-menu__label">Bán hàng</span>
             </a>
@@ -65,7 +65,6 @@
                 <li><a class="slide-item" href="{{route('admin.medicine.getIndex')}}"><span>Thuốc</span></a></li>
                 <li><a class="slide-item" href="{{route('admin.import_medicine.getIndex')}}"><span>Nhập Hàng</span></a></li>
                 <li><a class="slide-item" href="{{route('admin.export_medicine.getIndex')}}"><span>Xuất Hàng</span></a></li>
-                <li><a class="slide-item" href="/kiem-kho"><span>Kiểm kho</span></a></li>
             </ul>
         </li>
         {{--Quản Lý Hóa Đơn--}}
