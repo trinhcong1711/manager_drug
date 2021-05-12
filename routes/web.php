@@ -62,11 +62,15 @@ Route::post('/export-medicine/{id}', 'Admins\ExportMedicineController@postEdit')
 Route::get('/bill', 'Admins\BillController@getIndex')->name('admin.bill.getIndex');
 Route::get('/bill/data', 'Admins\BillController@data')->name('admin.bill.data');
 Route::get('/bill_detail/data/{id}', 'Admins\BillController@dataDetail')->name('admin.bill_detail.dataDetail');
-Route::get('/bill/add', 'Admins\BillController@getAdd')->name('admin.bill.getAdd');
-Route::post('/bill/add', 'Admins\BillController@postAdd')->name('admin.bill.postAdd');
 Route::get('/bill/{id}', 'Admins\BillController@getEdit')->name('admin.bill.getEdit');
-Route::post('/bill/{id}', 'Admins\BillController@postEdit')->name('admin.bill.postEdit');
 
+
+//Đơn trả lại
+Route::get('/refund', 'Admins\RefundController@getIndex')->name('admin.refund.getIndex');
+Route::get('/refund/data', 'Admins\RefundController@data')->name('admin.refund.data');
+Route::get('/refund/add', 'Admins\RefundController@getAdd')->name('admin.refund.getAdd');
+Route::post('/refund/add', 'Admins\RefundController@postAdd')->name('admin.refund.postAdd');
+Route::get('/refund/{id}', 'Admins\RefundController@getEdit')->name('admin.refund.getEdit');
 
 
 

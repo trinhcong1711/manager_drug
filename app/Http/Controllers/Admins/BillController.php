@@ -73,4 +73,6 @@ class BillController extends CURDController
             return view('admins.contents.bills.edit', $data);
         }
     }
+
+
 }

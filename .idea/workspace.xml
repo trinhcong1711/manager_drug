@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b4f10b91-2a09-4a3d-bd43-235e16b4caed" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admins/BillController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/bills/list_copy.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admins/RefundController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/refunds/edit.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/refunds/list.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Entities/Bill.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Entities/Bill.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/AddMedicineRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/AddMedicineRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/bills/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/bills/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/bills/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/bills/list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/bills/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/refunds/add.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/bills/list_copy.blade.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admins/layouts/app-sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/layouts/app-sidebar.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
@@ -154,18 +153,18 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/admins/contents/bills" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/admins/contents" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\laragon\www\test\resources\views\admins\contents\bills" />
+      <recent name="C:\laragon\www\test\resources\views\admins\contents" />
       <recent name="C:\laragon\www\test\app\Http\Controllers\Admins" />
+      <recent name="C:\laragon\www\test\resources\views\admins\contents\bills" />
       <recent name="C:\laragon\www\test\resources\views\admins\contents\export_medicines" />
       <recent name="C:\laragon\www\manager_drug\resources\views\sells" />
-      <recent name="C:\laragon\www\manager_drug\resources\views\admins\exports" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\laragon\www\manager_drug\resources\views" />
@@ -274,7 +273,9 @@
       <workItem from="1620654451615" duration="7954000" />
       <workItem from="1620700314454" duration="606000" />
       <workItem from="1620719792453" duration="11711000" />
-      <workItem from="1620742281954" duration="8886000" />
+      <workItem from="1620742281954" duration="9022000" />
+      <workItem from="1620786175972" duration="63000" />
+      <workItem from="1620787348013" duration="2299000" />
     </task>
     <servers />
   </component>
