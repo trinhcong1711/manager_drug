@@ -68,8 +68,8 @@ Route::get('/bill/{id}', 'Admins\BillController@getEdit')->name('admin.bill.getE
 //Đơn trả lại
 Route::get('/refund', 'Admins\RefundController@getIndex')->name('admin.refund.getIndex');
 Route::get('/refund/data', 'Admins\RefundController@data')->name('admin.refund.data');
-Route::get('/refund/add', 'Admins\RefundController@getAdd')->name('admin.refund.getAdd');
-Route::post('/refund/add', 'Admins\RefundController@postAdd')->name('admin.refund.postAdd');
+Route::get('/refund/add/{bill_id}', 'Admins\RefundController@getAdd')->name('admin.refund.getAdd');
+Route::post('/refund/add/{bill_id}', 'Admins\RefundController@postAdd')->name('admin.refund.postAdd');
 Route::get('/refund/{id}', 'Admins\RefundController@getEdit')->name('admin.refund.getEdit');
 
 

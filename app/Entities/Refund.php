@@ -27,7 +27,7 @@ class Refund extends Model implements Transformable
 
     public function medicines(): BelongsToMany
     {
-        return $this->belongsToMany(Medicine::class)->withPivot('price','amount', 'total_price','unit_id');
+        return $this->belongsToMany(Medicine::class,'refund_medicine')->withPivot('price','amount', 'total_price','unit_id');
     }
 
     public function bill(): BelongsTo

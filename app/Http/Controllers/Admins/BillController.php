@@ -36,7 +36,13 @@ class BillController extends CURDController
         $bill = $billRepository->with(['user', 'member'])->select('*')->orderByDesc('id');
         return Datatables::of($bill)
             ->editColumn('user_id', function ($bill) {
-                return $this->actionCurd($bill, 'admin.bill.getEdit', '', 'user');
+                return '<div class="item_name">
+                        <a href="' . route('admin.bill.getEdit', $bill->id) . '">' . ($bill->user->name ?? 'Không rõ') . '</a>
+                        <span class="tool_tip_item_name">
+                            <a href="' . route('admin.bill.getEdit', $bill->id) . '">Sửa</a>
+                            <a href="' . route('admin.refund.getAdd', $bill->id) . '">Tạo đơn trả</a>
+                        </span>
+                    </div>';
             })->editColumn('member_id', function ($bill) {
                 return $bill->member->name ?? "Không xác định";
             })->editColumn('created_at', function ($bill) {
@@ -48,9 +54,16 @@ class BillController extends CURDController
 
     protected function dataDetail($id, BillRepositoryEloquent $billRepository, MedicinesRepositoryEloquent $medicinesRepository)
     {
-        $bill = $billRepository->with(['medicines'])->find($id);
+        $bill = $billRepository->with(['medicines', 'refunds'])->find($id);
+
         $medicine = $bill->medicines;
         return Datatables::of($medicine)
+            ->setRowClass(function ($medicine) {
+                return $medicine->pivot->status == 0 ? 'alert-danger' : '';
+            })
+            ->addColumn('checkbox', function ($medicine) {
+                return $this->checkboxMulti($medicine);
+            })
             ->editColumn('unit_id', function ($medicine) {
                 $unit = Unit::find($medicine->pivot->unit_id);
                 if (is_object($unit)) {
@@ -63,7 +76,9 @@ class BillController extends CURDController
                 return $this->formatNumber($medicine->pivot->price);
             })->editColumn('total_price', function ($medicine) {
                 return $this->formatNumber($medicine->pivot->total_price);
-            })->make(true);
+            })->editColumn('status', function ($medicine) {
+                return $medicine->pivot->status == 1 ? "Đã bán" : "Trả lại";
+            })->rawColumns(['checkbox'])->make(true);
     }
 
     protected function getEdit($id, BillRepositoryEloquent $billRepository)

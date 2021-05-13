@@ -22,11 +22,13 @@ class RefundController extends CURDController
 {
     public $unitRepository;
     public $refundRepository;
+    public $billRepository;
 
-    public function __construct(UnitRepositoryEloquent $unitRepository, RefundRepositoryEloquent $refundRepository)
+    public function __construct(UnitRepositoryEloquent $unitRepository, RefundRepositoryEloquent $refundRepository, BillRepositoryEloquent $billRepository)
     {
         $this->refundRepository = $refundRepository;
         $this->unitRepository = $unitRepository;
+        $this->billRepository = $billRepository;
     }
 
     protected function getIndex()
@@ -49,65 +51,26 @@ class RefundController extends CURDController
             })->rawColumns(['user_id'])->make(true);
     }
 
-    protected function dataDetail($id, BillRepositoryEloquent $refundRepository, MedicinesRepositoryEloquent $medicinesRepository)
+    protected function postAdd($bill_id, Request $request)
     {
-        $refund = $this->refundRepository->with(['medicines'])->find($id);
-        $medicine = $refund->medicines;
-        return Datatables::of($medicine)
-            ->editColumn('unit_id', function ($medicine) {
-                $unit = Unit::find($medicine->pivot->unit_id);
-                if (is_object($unit)) {
-                    return $unit->name;
-                }
-                return "";
-            })->editColumn('amount', function ($medicine) {
-                return $this->formatNumber($medicine->pivot->amount??0);
-            })->editColumn('price', function ($medicine) {
-                return $this->formatNumber($medicine->pivot->price??0);
-            })->editColumn('total_price', function ($medicine) {
-                return $this->formatNumber($medicine->pivot->total_price??0);
-            })->make(true);
-    }
-
-    protected function getEdit($id)
-    {
-        if (isset($id)) {
-            $data['refund'] = $this->refundRepository->with('medicines')->find($id);
-            return view('admins.contents.refunds.edit', $data);
+        $bill = $this->billRepository->find($bill_id);
+        $update_0 = $bill->medicines()->updateExistingPivot($request->get('medicine_ids'), ['status' => 0]);
+        if ($update_0) {
+            return response()->json([
+                'status' => true,
+                'message' => "Trả lại thành công!"
+            ]);
         }
-    }
-
-    protected function getAdd()
-    {
-        return view('admins.contents.refunds.add');
-    }
-
-    protected function postAdd(Request $request)
-    {
-        $importMedicine = $importRepository->create([
-            'user_id' => 1,
+        $update = $bill->medicines()->updateExistingPivot($request->get('medicine_ids'), ['status' => 1]);
+        if ($update) {
+            return response()->json([
+                'status' => true,
+                'message' => "Hủy trả lại thuốc thành công!"
+            ]);
+        }
+        return response()->json([
+            'status' => false,
         ]);
-        if ($importMedicine) {
-            $amounts = $request->get("amounts");
-            $units = $request->get("units");
-            $notes = $request->get("notes");
-            $import_medicines =[];
-            if (!empty($amounts)){
-                foreach($amounts as $key=>$amount){
-                    $import_medicines[]=[
-                        'amount'=>$amount,
-                        'unit'=>$units[$key],
-                        'note'=>$notes[$key]
-                    ];
-                }
-            }
-            $dataAttach = array_combine($request->get("medicine_id"),$import_medicines);
-            $importMedicine->medicines()->attach($dataAttach);
-            Alert::success('Thành công', 'Thêm mới thành công');
-            return redirect(route('admin.import_medicine.getIndex'));
-        } else {
-            Alert::error('Lỗi', 'Có lỗi xảy ra!');
-            return redirect()->back();
-        }
+
     }
 }
