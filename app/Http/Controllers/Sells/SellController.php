@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Repositories\BillRepositoryEloquent;
 use App\Repositories\MedicinesRepositoryEloquent;
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class SellController extends Controller
 {
@@ -37,6 +36,7 @@ class SellController extends Controller
                         $total += $unit->price * $amount;
                         $data[$medicine->id]['amount'] = $amount;
                         $data[$medicine->id]['unit_id'] = $unit->id;
+                        $data[$medicine->id]['unit_name'] = $unit->name;
                         $data[$medicine->id]['price'] = $unit->price;
 
                         $data[$medicine->id]['total_price'] = $unit->price * $amount;

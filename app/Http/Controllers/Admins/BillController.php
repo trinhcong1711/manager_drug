@@ -2,19 +2,10 @@
 
 namespace App\Http\Controllers\Admins;
 
-use App\Entities\Unit;
-use App\Exports\MedicineDefaultExport;
-use App\Exports\MedicineExport;
 use App\Http\Controllers\CURD\CURDController;
-use App\Http\Requests\AddMedicineRequest;
-use App\Http\Requests\EditMedicineRequest;
-use App\Imports\MedicineImport;
 use App\Repositories\BillRepositoryEloquent;
 use App\Repositories\MedicinesRepositoryEloquent;
 use App\Repositories\UnitRepositoryEloquent;
-use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
-use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\DataTables\DataTables;
 
 class BillController extends CURDController
@@ -39,8 +30,7 @@ class BillController extends CURDController
                 return '<div class="item_name">
                         <a href="' . route('admin.bill.getEdit', $bill->id) . '">' . ($bill->user->name ?? 'Không rõ') . '</a>
                         <span class="tool_tip_item_name">
-                            <a href="' . route('admin.bill.getEdit', $bill->id) . '">Sửa</a>
-                            <a href="' . route('admin.refund.getAdd', $bill->id) . '">Tạo đơn trả</a>
+                            <a href="' . route('admin.bill.getEdit', $bill->id) . '">Chi tiết</a>
                         </span>
                     </div>';
             })->editColumn('member_id', function ($bill) {
@@ -65,17 +55,13 @@ class BillController extends CURDController
                 return $this->checkboxMulti($medicine);
             })
             ->editColumn('unit_id', function ($medicine) {
-                $unit = Unit::find($medicine->pivot->unit_id);
-                if (is_object($unit)) {
-                    return $unit->name;
-                }
-                return "";
+                return $medicine->pivot->unit_name ?? "";
             })->editColumn('amount', function ($medicine) {
-                return $this->formatNumber($medicine->pivot->amount);
+                return $this->formatNumber($medicine->pivot->amount ?? 0);
             })->editColumn('price', function ($medicine) {
-                return $this->formatNumber($medicine->pivot->price);
+                return $this->formatNumber($medicine->pivot->price ?? 0);
             })->editColumn('total_price', function ($medicine) {
-                return $this->formatNumber($medicine->pivot->total_price);
+                return $this->formatNumber($medicine->pivot->total_price ?? 0);
             })->editColumn('status', function ($medicine) {
                 return $medicine->pivot->status == 1 ? "Đã bán" : "Trả lại";
             })->rawColumns(['checkbox'])->make(true);

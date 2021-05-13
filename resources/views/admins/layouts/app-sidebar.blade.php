@@ -68,19 +68,14 @@
             </ul>
         </li>
         {{--Quản Lý Hóa Đơn--}}
-
         <li class="slide">
-            <a class="side-menu__item" data-toggle="slide" href="#">
+            <a class="side-menu__item" href="{{route('admin.bill.getIndex')}}">
                 <i class="side-menu__icon ti-home"></i>
                 <span class="side-menu__label">Quản lý hóa đơn</span>
-                <i class="angle fa fa-angle-right"></i>
             </a>
-            <ul class="slide-menu">
-                <li><a class="slide-item" href="{{route('admin.bill.getIndex')}}"><span>Đơn bán</span></a></li>
-                <li><a class="slide-item" href="{{route('admin.refund.getIndex')}}"><span>Đơn trả lại</span></a></li>
-            </ul>
         </li>
         {{--Quản Lý Nhân viên--}}
+
         <li class="slide">
             <a class="side-menu__item" href="/nhan-vien">
                 <i class="side-menu__icon ti-home"></i>

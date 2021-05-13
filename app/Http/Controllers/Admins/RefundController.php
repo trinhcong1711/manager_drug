@@ -20,57 +20,52 @@ use Yajra\DataTables\DataTables;
 
 class RefundController extends CURDController
 {
-    public $unitRepository;
-    public $refundRepository;
     public $billRepository;
 
-    public function __construct(UnitRepositoryEloquent $unitRepository, RefundRepositoryEloquent $refundRepository, BillRepositoryEloquent $billRepository)
+    public function __construct(BillRepositoryEloquent $billRepository)
     {
-        $this->refundRepository = $refundRepository;
-        $this->unitRepository = $unitRepository;
         $this->billRepository = $billRepository;
     }
 
-    protected function getIndex()
-    {
-        return view('admins.contents.refunds.list');
-    }
-
-    protected function data()
-    {
-        $refund = $this->refundRepository->with(['user', 'member'])->select('*')->orderByDesc('id');
-        return Datatables::of($refund)
-            ->editColumn('user_id', function ($refund) {
-                return $this->actionCurd($refund, 'admin.refund.getEdit', '', 'user');
-            })->editColumn('member_id', function ($refund) {
-                return $refund->member->name ?? "Không xác định";
-            })->editColumn('created_at', function ($refund) {
-                return $refund->created_at->format('d/m/Y H:i:s');
-            })->editColumn('total', function ($refund) {
-                return $this->formatNumber($refund->total);
-            })->rawColumns(['user_id'])->make(true);
-    }
-
-    protected function postAdd($bill_id, Request $request)
+    protected function postAdd($bill_id, Request $request): \Illuminate\Http\JsonResponse
     {
         $bill = $this->billRepository->find($bill_id);
-        $update_0 = $bill->medicines()->updateExistingPivot($request->get('medicine_ids'), ['status' => 0]);
-        if ($update_0) {
+//        Trả lại thuốc
+        $refund = $this->actionRefund($bill, $request->get('medicine_ids'), 1, 0);
+        if ($refund) {
             return response()->json([
                 'status' => true,
-                'message' => "Trả lại thành công!"
+                'message' => "Trả lại thuốc thành công!"
             ]);
         }
-        $update = $bill->medicines()->updateExistingPivot($request->get('medicine_ids'), ['status' => 1]);
-        if ($update) {
+//       Hủy trả lại thuốc
+        $cancel_refund = $this->actionRefund($bill, $request->get('medicine_ids'), 0, 1);
+        if ($cancel_refund) {
             return response()->json([
                 'status' => true,
                 'message' => "Hủy trả lại thuốc thành công!"
             ]);
         }
         return response()->json([
-            'status' => false,
+            'status' => false
         ]);
+    }
 
+    private function actionRefund($bill, $medicine_ids, $status, $status_update): bool
+    {
+        $bill_medicine = $bill->medicines()->wherePivotIn('medicine_id', $medicine_ids)->wherePivot('status', $status);
+        $medicine_ids_refund = $bill_medicine->pluck('medicine_id')->toArray();
+        $price_refund = $bill_medicine->sum('total_price');
+        if ($status_update == 0) {
+            $total_bill = $bill->total - $price_refund;
+        } else {
+            $total_bill = $bill->total + $price_refund;
+        }
+        $update = $bill->medicines()->updateExistingPivot($medicine_ids_refund, ['status' => $status_update]);
+        if ($update) {
+            $bill->update(['total' => $total_bill]);
+            return true;
+        }
+        return false;
     }
 }

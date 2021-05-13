@@ -16,7 +16,7 @@
                         <div class="btn-list text-right">
                             <div class="btn-group mt-2 mb-2">
                                 <button type="button" class="btn btn-info" id="add_refund">
-                                    <i class="fe fe-plus mr-2"></i>Tạo đơn khách trả lại
+                                    <i class="icon icon-action-undo mr-2"></i>Trả lại thuốc
                                 </button>
                             </div>
                         </div>
@@ -109,7 +109,7 @@
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
                         cancelButtonText: 'Hủy',
-                        confirmButtonText: 'Tạo đơn'
+                        confirmButtonText: 'Xác nhận'
                     }).then((result) => {
                         if (result.value) {
                             $.ajax({

@@ -28,7 +28,7 @@ class Bill extends Model implements Transformable
 
     public function medicines(): BelongsToMany
     {
-        return $this->belongsToMany(Medicine::class)->withPivot('price', 'amount', 'total_price', 'unit_id', 'status');
+        return $this->belongsToMany(Medicine::class)->withPivot('price', 'amount', 'total_price', 'unit_id', 'status','unit_name');
     }
 
     public function user(): BelongsTo
