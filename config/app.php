@@ -182,6 +182,7 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
     ],
 
+
     /*
     |--------------------------------------------------------------------------
     | Class Aliases

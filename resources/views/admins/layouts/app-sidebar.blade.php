@@ -77,10 +77,15 @@
         {{--Quản Lý Nhân viên--}}
 
         <li class="slide">
-            <a class="side-menu__item" href="/nhan-vien">
-                <i class="side-menu__icon ti-home"></i>
-                <span class="side-menu__label">Quản lý nhân viên</span>
+            <a class="side-menu__item" data-toggle="slide" href="#">
+                <i class="side-menu__icon ti-settings"></i>
+                <span class="side-menu__label">Quản lý Quyền</span>
+                <i class="angle fa fa-angle-right"></i>
             </a>
+            <ul class="slide-menu">
+                <li><a class="slide-item" href="{{route('admin.role.getIndex')}}"><span>Danh sách Nhóm quyền</span></a></li>
+                <li><a class="slide-item" href="{{route('admin.permission.getIndex')}}"><span>Danh sách Quyền</span></a></li>
+            </ul>
         </li>
     </ul>
 </aside>

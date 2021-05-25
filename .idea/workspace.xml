@@ -2,16 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b4f10b91-2a09-4a3d-bd43-235e16b4caed" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admins/PermissionController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admins/RoleController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/AddPermissionRequest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/EditPermissionRequest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/permissions/add.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/permissions/edit.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/permissions/list.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/roles/add.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/roles/edit.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admins/contents/roles/list.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Entities/Bill.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Entities/Bill.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admins/BillController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admins/BillController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admins/RefundController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admins/RefundController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Sells/SellController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Sells/SellController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/bills/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/contents/bills/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/refunds/add.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/refunds/edit.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admins/contents/refunds/list.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/RepositoryServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/RepositoryServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admins/layouts/app-sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admins/layouts/app-sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -156,7 +166,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../choxeoto" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/admins/contents" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -165,9 +175,9 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\laragon\www\test\resources\views\admins\contents" />
       <recent name="C:\laragon\www\test\app\Http\Controllers\Admins" />
+      <recent name="C:\laragon\www\test\app\Http\Requests" />
       <recent name="C:\laragon\www\test\resources\views\admins\contents\bills" />
       <recent name="C:\laragon\www\test\resources\views\admins\contents\export_medicines" />
-      <recent name="C:\laragon\www\manager_drug\resources\views\sells" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\laragon\www\manager_drug\resources\views" />
@@ -283,7 +293,10 @@
       <workItem from="1620830203600" duration="16000" />
       <workItem from="1620830978930" duration="3902000" />
       <workItem from="1620895283770" duration="97000" />
-      <workItem from="1620907209736" duration="12360000" />
+      <workItem from="1620907209736" duration="12390000" />
+      <workItem from="1620956240828" duration="570000" />
+      <workItem from="1621864751569" duration="935000" />
+      <workItem from="1621950337445" duration="10411000" />
     </task>
     <servers />
   </component>
