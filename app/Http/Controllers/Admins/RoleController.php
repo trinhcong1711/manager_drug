@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admins;
 
 use App\Http\Controllers\CURD\CURDController;
-use App\Http\Requests\AddPermissionRequest;
-use App\Http\Requests\EditPermissionRequest;
+use App\Http\Requests\AddRoleRequest;
+use App\Http\Requests\EditRoleRequest;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Models\Permission;
@@ -20,28 +20,33 @@ class RoleController extends CURDController
 
     protected function data()
     {
-        $permission = Role::select('*');
-        return Datatables::of($permission)
-            ->addColumn('checkbox', function ($permission) {
-                return $this->checkboxMulti($permission);
-            })->editColumn('name', function ($permission) {
-                return $this->actionCurd($permission, 'admin.role.getEdit', 'admin.role.getDelete');
+        $role = Role::select('*');
+        return Datatables::of($role)
+            ->addColumn('checkbox', function ($role) {
+                return $this->checkboxMulti($role);
+            })->editColumn('name', function ($role) {
+                return $this->actionCurd($role, 'admin.role.getEdit', 'admin.role.getDelete');
             })->rawColumns(['checkbox', 'name'])->make(true);
     }
 
     protected function getAdd()
     {
-        $data['permissions'] = Permission::pluck('name','id');
-        return view('admins.contents.roles.add',$data);
+        $data['permissions'] = Permission::pluck('name', 'id');
+        return view('admins.contents.roles.add', $data);
     }
 
-    protected function postAdd(AddPermissionRequest $request)
+    protected function postAdd(AddRoleRequest $request)
     {
-        $data = $request->only('name');
-        $permission = Role::create($data);
-        if ($permission) {
-            Alert::success('Thêm mới thành công!');
-            return redirect(route('admin.permission.getIndex'));
+        $role = Role::create($request->only('name'));
+        if ($role) {
+            $permissions = Permission::whereIn('id', $request->get('permission_ids'))->get();
+            if (count($permissions) > 0) {
+                $role->givePermissionTo($permissions);
+                Alert::success('Thêm mới thành công!');
+                return redirect(route('admin.permission.getIndex'));
+            }
+            Alert::warning('Tạo được nhóm quyền! Nhưng chưa gắn được quyền!');
+            return redirect()->back();
         }
         Alert::error('Lỗi', 'Có lỗi xảy ra!');
         return redirect()->back();
@@ -49,23 +54,30 @@ class RoleController extends CURDController
 
     protected function getEdit($id)
     {
-        $permission = Role::find($id);
-        if (is_object($permission)) {
-            $data['permission'] = $permission;
-            return view('admins.contents.permissions.edit', $data);
+        $role = Role::with('permissions')->find($id);
+        if (is_object($role)) {
+            $data['role'] = $role;
+            $data['permission'] = $role->permissions->pluck('id')->toArray();
+            $data['permissions'] = Permission::pluck('name', 'id');
+            return view('admins.contents.roles.edit', $data);
         }
-        return redirect(route('admin.permission.getIndex'));
+        return redirect(route('admin.roles.getIndex'));
     }
 
-    protected function postEdit($id, EditPermissionRequest $request)
+    protected function postEdit($id, EditRoleRequest $request)
     {
-        $data = $request->only('name');
-        $permission = Role::find($id);
-        if (is_object($permission)) {
-            $update = $permission->update($data);
+        $role = Role::find($id);
+        if (is_object($role)) {
+            $update = $role->update($request->only('name'));
             if ($update) {
-                Alert::success('Cập nhật thành công!');
-                return redirect(route('admin.permission.getIndex'));
+                $permissions = Permission::whereIn('id', $request->get('permission_ids'))->get();
+                if (count($permissions) > 0) {
+                    $role->syncPermissions($permissions);
+                    Alert::success('Cập nhật thành công!');
+                    return redirect(route('admin.role.getIndex'));
+                }
+                Alert::warning('Chỉnh sửa được nhóm quyền! Nhưng chưa gắn được quyền!');
+                return redirect()->back();
             }
         }
         Alert::error('Lỗi', 'Có lỗi xảy ra!');
@@ -77,8 +89,8 @@ class RoleController extends CURDController
     {
         $delete = Role::destroy([$id]);
         if ($delete) {
-            Alert::success('Thành công', 'Xóa thành công');
-            return redirect(route('admin.permission.getIndex'));
+            Alert::success('Xóa thành công!');
+            return redirect(route('admin.role.getIndex'));
         }
 
         Alert::error('Lỗi', 'Có lỗi xảy ra!');

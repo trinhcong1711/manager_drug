@@ -121,7 +121,7 @@
                     Swal.fire({
                         icon: 'warning',
                         title: 'Warning',
-                        text: 'Bạn chưa chọn bane ghi nào !!!',
+                        text: 'Bạn chưa chọn bản ghi nào !!!',
                     })
                 }
             });

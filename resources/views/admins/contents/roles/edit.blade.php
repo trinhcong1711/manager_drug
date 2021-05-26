@@ -8,13 +8,12 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="col-6 p-0">
-                            <h3 class="mb-0 card-title">Chỉnh sửa quyền</h3>
+                            <h3 class="mb-0 card-title">Chỉnh sửa nhóm quyền</h3>
                         </div>
                         <div class="col-6 p-0">
                             <div class="btn-list text-right">
-                                <button type="button" class="btn btn-outline-default" data-toggle="tooltip"
-                                        title="Quay về trang danh sách quyền">
-                                    <a href="{{route('admin.permission.getIndex')}}" style="color: inherit;"><i
+                                <button type="button" class="btn btn-outline-default">
+                                    <a href="{{route('admin.role.getIndex')}}" style="color: inherit;"><i
                                             class="icon icon-action-undo mr-2"></i>Quay lại</a>
                                 </button>
                                 <button type="submit" class="btn btn-primary"><i
@@ -28,12 +27,24 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="form-label">Tên thuốc</label>
-                                    <input type="text" class="form-control" value="{{$permission->name}}" name="name"
-                                           placeholder="Nhập tên thuốc">
+                                    <label class="form-label">Tên nhóm quyền</label>
+                                    <input type="text" class="form-control" value="{{$role->name}}" name="name"
+                                           placeholder="Nhập tên nhóm quyền">
                                     @error('name')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
+                                </div>
+                                <div class="form-group form-elements m-0">
+                                    <div class="form-label">Chọn quyền</div>
+                                    <div class="custom-controls-stacked">
+                                        @foreach($permissions as $id=>$name)
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input"
+                                                       name="permission_ids[]" {{ in_array($id, $permission)?"checked":"" }} value="{{$id}}">
+                                                <span class="custom-control-label">{{$name}}</span>
+                                            </label>
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -41,7 +41,7 @@
                                         @foreach($permissions as $id=>$name)
                                             <label class="custom-control custom-checkbox">
                                                 <input type="checkbox" class="custom-control-input"
-                                                       name="example-checkbox1" value="{{$id}}">
+                                                       name="permission_ids[]" value="{{$id}}">
                                                 <span class="custom-control-label">{{$name}}</span>
                                             </label>
                                         @endforeach
