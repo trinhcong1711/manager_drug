@@ -21,7 +21,7 @@ class Import extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = ["user_id", "note", "checked_at","status"];
+    protected $guarded = [];
 
     public function medicines()
     {
