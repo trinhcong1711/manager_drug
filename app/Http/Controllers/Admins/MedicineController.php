@@ -12,6 +12,7 @@ use App\Imports\MedicineImport;
 use App\Repositories\MedicinesRepositoryEloquent;
 use App\Repositories\UnitRepositoryEloquent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\DataTables\DataTables;
@@ -77,6 +78,7 @@ class MedicineController extends CURDController
     {
         $data = array_merge($request->only('name', 'package', 'inventory', 'rest'), [
             'status' => $request->get('status') == 'on' ? 1 : 0,
+
         ]);
         $medicine = $medicines->create($data);
         if ($medicine) {
