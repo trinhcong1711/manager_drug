@@ -10,18 +10,19 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes();
+Auth::routes(['register' => false]);
 
-
+//Route::group(['prefix'=>'store', "namespace"=>"\App\Http\Controllers\Store", 'as'=>'store.', "middleware"=>"auth:store"], function () {
+//    Auth::routes(['register' => false]);
+//});
 Route::group(['prefix'=>'admin', "middleware"=>"auth"], function () {
-
     Route::get('/sell',  'Sells\SellController@getIndex')->name('sell.getIndex');
     Route::post('/sell',  'Sells\SellController@postSell')->name('sell.postSell');
     Route::get('/sell/ajax-search-medicine',  'Sells\SellController@ajaxSearchMedicine')->name('sell.ajax.ajaxSearchMedicine');
     Route::get('/sell/ajax-sell-add-medicine',  'Sells\SellController@ajaxSellAddMedicine')->name('sell.ajax.ajaxSellAddMedicine');
 
     Route::get('/medicine', 'Admins\MedicineController@getIndex')->name('admin.medicine.getIndex');
-    Route::get('/medicine/export', 'Admins\MedicineController@export')->name('admin.medicine.export');
+    Route::get('/medicine/export', 'Admins\MedicineController@export')->name('admin.medicine.export')->middleware('auth.store');
     Route::get('/medicine/export-default', 'Admins\MedicineController@exportDefaultFile')->name('admin.medicine.exportDefaultFile');
     Route::post('/medicine/import', 'Admins\MedicineController@import')->name('admin.medicine.import');
     Route::get('/medicine/add', 'Admins\MedicineController@getAdd')->name('admin.medicine.getAdd');
@@ -88,9 +89,6 @@ Route::group(['prefix'=>'admin', "middleware"=>"auth"], function () {
 Route::get('/nhan-vien', function () {
     return view('admins.contents.employees.list');
 });
-
-
-Route::get('/home', 'HomeController@index')->name('home');
 //Route::get('/setting', 'Admin\HomeController@getIndex')->name('home1');
 //Route::get('/', 'HomeController@index');
 

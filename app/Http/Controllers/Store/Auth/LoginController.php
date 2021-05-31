@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Store\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -34,11 +35,19 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('store.guest')->except('logout');
     }
 
+    protected function guard()
+    {
+        return Auth::guard('store');
+    }
     public function username()
     {
         return 'phone';
+    }
+    public function showLoginForm()
+    {
+        return view('store.auth.login');
     }
 }

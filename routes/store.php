@@ -10,8 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
-Route::group(['prefix'=>'store', "middleware"=>"store", "namespace"=>"\App\Http\Controllers\Store"], function () {
-    Auth::routes();
+Route::group(['prefix'=>'store', "namespace"=>"\App\Http\Controllers\Store", 'as'=>'store.'], function () {
+    Auth::routes(['register' => false]);
 });
