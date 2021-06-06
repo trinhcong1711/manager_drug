@@ -14,9 +14,11 @@ class CreateExportMedicineTable extends Migration
     public function up()
     {
         Schema::create('export_medicine', function (Blueprint $table) {
-            $table->bigInteger('medicine_id');
             $table->bigInteger('export_id');
-            $table->integer('amount')->default(0)->comment("Số lượng");
+            $table->bigInteger('medicine_id');
+            $table->bigInteger('price')->default(0)->nullable();
+            $table->string('unit_name')->nullable()->comment("Đơn vị tính");
+            $table->integer('amount')->default(1)->comment("Số lượng");
         });
     }
 

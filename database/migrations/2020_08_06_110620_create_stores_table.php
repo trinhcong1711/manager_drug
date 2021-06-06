@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumnUserIdToBillsTable extends Migration
+class CreateStoresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class AddColumnUserIdToBillsTable extends Migration
      */
     public function up()
     {
-        Schema::table('bills', function (Blueprint $table) {
-            $table->bigInteger('member_id')->nullable()->comment("Bán cho ai?");
-            $table->bigInteger('user_id')->nullable()->comment("Ai là người bán?");
+        Schema::create('stores', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->bigInteger("admin_id");
+            $table->string("name");
+            $table->string("address");
+            $table->timestamps();
         });
     }
 
@@ -26,8 +29,6 @@ class AddColumnUserIdToBillsTable extends Migration
      */
     public function down()
     {
-        Schema::table('bills', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('stores');
     }
 }

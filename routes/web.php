@@ -12,9 +12,6 @@
 */
 Auth::routes(['register' => false]);
 
-//Route::group(['prefix'=>'store', "namespace"=>"\App\Http\Controllers\Store", 'as'=>'store.', "middleware"=>"auth:store"], function () {
-//    Auth::routes(['register' => false]);
-//});
 Route::group(['prefix'=>'admin', "middleware"=>"auth"], function () {
     Route::get('/sell',  'Sells\SellController@getIndex')->name('sell.getIndex');
     Route::post('/sell',  'Sells\SellController@postSell')->name('sell.postSell');
@@ -59,6 +56,15 @@ Route::group(['prefix'=>'admin', "middleware"=>"auth"], function () {
 
 
 //Quyền
+    Route::get('/role', 'Admins\RoleController@getIndex')->name('admin.role.getIndex');
+    Route::get('/role/data', 'Admins\RoleController@data')->name('admin.role.data');
+    Route::get('/role/add', 'Admins\RoleController@getAdd')->name('admin.role.getAdd');
+    Route::post('/role/add', 'Admins\RoleController@postAdd')->name('admin.role.postAdd');
+    Route::get('/role/delete-multil', 'Admins\RoleController@getDeleteMultil')->name('admin.role.getDeleteMultil');
+    Route::get('/role/delete/{id}', 'Admins\RoleController@getDelete')->name('admin.role.getDelete');
+    Route::get('/role/{id}', 'Admins\RoleController@getEdit')->name('admin.role.getEdit');
+    Route::post('/role/{id}', 'Admins\RoleController@postEdit')->name('admin.role.postEdit');
+
     Route::get('/permission', 'Admins\PermissionController@getIndex')->name('admin.permission.getIndex');
     Route::get('/permission/data', 'Admins\PermissionController@data')->name('admin.permission.data');
     Route::get('/permission/add', 'Admins\PermissionController@getAdd')->name('admin.permission.getAdd');
@@ -68,15 +74,6 @@ Route::group(['prefix'=>'admin', "middleware"=>"auth"], function () {
     Route::get('/permission/{id}', 'Admins\PermissionController@getEdit')->name('admin.permission.getEdit');
     Route::post('/permission/{id}', 'Admins\PermissionController@postEdit')->name('admin.permission.postEdit');
 
-//Quyền
-    Route::get('/role', 'Admins\RoleController@getIndex')->name('admin.role.getIndex');
-    Route::get('/role/data', 'Admins\RoleController@data')->name('admin.role.data');
-    Route::get('/role/add', 'Admins\RoleController@getAdd')->name('admin.role.getAdd');
-    Route::post('/role/add', 'Admins\RoleController@postAdd')->name('admin.role.postAdd');
-    Route::get('/role/delete-multil', 'Admins\RoleController@getDeleteMultil')->name('admin.role.getDeleteMultil');
-    Route::get('/role/delete/{id}', 'Admins\RoleController@getDelete')->name('admin.role.getDelete');
-    Route::get('/role/{id}', 'Admins\RoleController@getEdit')->name('admin.role.getEdit');
-    Route::post('/role/{id}', 'Admins\RoleController@postEdit')->name('admin.role.postEdit');
 //Đơn hàng
     Route::get('/bill', 'Admins\BillController@getIndex')->name('admin.bill.getIndex');
     Route::get('/bill/data', 'Admins\BillController@data')->name('admin.bill.data');
@@ -84,7 +81,15 @@ Route::group(['prefix'=>'admin', "middleware"=>"auth"], function () {
     Route::get('/bill/{id}', 'Admins\BillController@getEdit')->name('admin.bill.getEdit');
 //Đơn trả lại
     Route::post('/refund/add/{bill_id}', 'Admins\RefundController@postAdd')->name('admin.refund.postAdd');
-
+//Nhân viên
+    Route::get('/user', 'Admins\UserController@getIndex')->name('admin.user.getIndex');
+    Route::get('/user/data', 'Admins\UserController@data')->name('admin.user.data');
+    Route::get('/user/add', 'Admins\UserController@getAdd')->name('admin.user.getAdd');
+    Route::post('/user/add', 'Admins\UserController@postAdd')->name('admin.user.postAdd');
+    Route::get('/user/delete-multil', 'Admins\UserController@getDeleteMultil')->name('admin.user.getDeleteMultil');
+    Route::get('/user/delete/{id}', 'Admins\UserController@getDelete')->name('admin.user.getDelete');
+    Route::get('/user/{id}', 'Admins\UserController@getEdit')->name('admin.user.getEdit');
+    Route::post('/user/{id}', 'Admins\UserController@postEdit')->name('admin.user.postEdit');
 });
 Route::get('/nhan-vien', function () {
     return view('admins.contents.employees.list');

@@ -18,7 +18,7 @@ class CreateImportMedicineTable extends Migration
             $table->bigInteger('import_id');
             $table->integer('price')->nullable()->comment("Giá nhập");
             $table->integer('amount')->default(0)->comment("Số lượng");
-            $table->string('unit')->comment("Đơn vị nhập");
+            $table->string('unit_name')->nullable()->comment("Đơn vị tính");
             $table->text('note')->nullable()->comment("Ghi chú");
         });
     }

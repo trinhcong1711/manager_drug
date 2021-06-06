@@ -54,6 +54,13 @@
                 <span class="side-menu__label">Bán hàng</span>
             </a>
         </li>
+        {{--Quản Lý Hóa Đơn--}}
+        <li class="slide">
+            <a class="side-menu__item" href="{{route('admin.bill.getIndex')}}">
+                <i class="side-menu__icon ti-home"></i>
+                <span class="side-menu__label">Quản lý đơn bán</span>
+            </a>
+        </li>
         {{--Quản lý kho--}}
         <li class="slide">
             <a class="side-menu__item" data-toggle="slide" href="#">
@@ -67,15 +74,8 @@
                 <li><a class="slide-item" href="{{route('admin.export_medicine.getIndex')}}"><span>Xuất Hàng</span></a></li>
             </ul>
         </li>
-        {{--Quản Lý Hóa Đơn--}}
-        <li class="slide">
-            <a class="side-menu__item" href="{{route('admin.bill.getIndex')}}">
-                <i class="side-menu__icon ti-home"></i>
-                <span class="side-menu__label">Quản lý hóa đơn</span>
-            </a>
-        </li>
-        {{--Quản Lý Nhân viên--}}
 
+        {{--Quản Lý Phân Quyền--}}
         <li class="slide">
             <a class="side-menu__item" data-toggle="slide" href="#">
                 <i class="side-menu__icon ti-settings"></i>
@@ -86,6 +86,13 @@
                 <li><a class="slide-item" href="{{route('admin.role.getIndex')}}"><span>Danh sách Nhóm quyền</span></a></li>
                 <li><a class="slide-item" href="{{route('admin.permission.getIndex')}}"><span>Danh sách Quyền</span></a></li>
             </ul>
+        </li>
+        {{--Quản Lý Nhân viên--}}
+        <li class="slide">
+            <a class="side-menu__item" href="{{route('admin.user.getIndex')}}">
+                <i class="side-menu__icon ti-user"></i>
+                <span class="side-menu__label">Quản lý nhân viên</span>
+            </a>
         </li>
     </ul>
 </aside>

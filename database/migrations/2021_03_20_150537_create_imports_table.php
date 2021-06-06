@@ -15,6 +15,7 @@ class CreateImportsTable extends Migration
     {
         Schema::create('imports', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('store_id')->comment("Hóa đơn này của cửa hàng nào!");
             $table->text('user_id')->comment("Người tạo hóa đơn nhập!");
             $table->text('note')->nullable();
             $table->dateTime('checked_at')->nullable()->comment("Ngày kiểm phiếu");

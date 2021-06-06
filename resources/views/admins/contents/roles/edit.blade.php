@@ -34,7 +34,7 @@
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <div class="form-group form-elements m-0">
+                                <div class="form-group form-elements">
                                     <div class="form-label">Chọn quyền</div>
                                     <div class="custom-controls-stacked">
                                         @foreach($permissions as $id=>$name)

@@ -15,6 +15,7 @@ class CreateMedicinesTable extends Migration
     {
         Schema::create('medicines', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('store_id')->comment("Thuốc này của cừa hàng nào");
             $table->string('name');
             $table->string('package')->nullable()->comment('Quy cách đóng gói');
             $table->integer('inventory')->nullable()->comment('Tồn kho(Số lượng thuốc còn lại trong kho tính theo đơn vị tính nhỏ nhất)');

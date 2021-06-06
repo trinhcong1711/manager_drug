@@ -16,7 +16,10 @@ class CreateExportsTable extends Migration
     {
         Schema::create('exports', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('import_id');
+            $table->bigInteger('store_id')->comment("Hóa đơn này của cửa hàng nào!");
+            $table->bigInteger("user_id")->comment("Người xuất");
+            $table->bigInteger("member_id")->nullable()->comment("Người nhận");
+            $table->bigInteger('total_money')->nullable()->default(0)->comment("Tổng tiền của háo đơn");
             $table->text('note')->nullable();
             $table->tinyInteger('status')->default(0)->comment("0 => Chưa thanh toán | 1 => Đã thanh toán");
             $table->timestamps();

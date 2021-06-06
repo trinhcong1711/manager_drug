@@ -35,6 +35,21 @@
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
+                                @if(count($roles)>0)
+                                    <div class="form-group form-elements">
+                                        <div class="form-label">Nhóm quyền</div>
+                                        <div class="custom-controls-stacked">
+                                            @foreach($roles as $id=>$role)
+                                                <label class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                           name="role_id[]"
+                                                           value="{{$id}}" {{in_array($id,$role_id)?"checked":""}}>
+                                                    <span class="custom-control-label">{{$role}}</span>
+                                                </label>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>

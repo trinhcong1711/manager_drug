@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumnPhoneToUsersTable extends Migration
+class AddColumnStoreIdToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,8 @@ class AddColumnPhoneToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer("phone");
+            $table->bigInteger("store_id")->comment("Nhân viên này thuộc cửa hàng nào");
+            $table->tinyInteger("is_owner")->comment("1=> Người có chức vụ cao nhất cửa hàng | 0=> Chức vụ khác");
         });
     }
 
@@ -26,7 +27,8 @@ class AddColumnPhoneToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->dropColumn("store_id");
+            $table->dropColumn("is_owner");
         });
     }
 }

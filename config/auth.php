@@ -40,10 +40,6 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        'store' => [
-            'driver' => 'session',
-            'provider' => 'stores',
-        ],
 
         'api' => [
             'driver' => 'token',
@@ -73,10 +69,6 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
-        ],
-        'stores' => [
-            'driver' => 'eloquent',
-            'model' => \App\Entities\Store::class,
         ],
 
         // 'users' => [
